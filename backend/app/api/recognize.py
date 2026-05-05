@@ -14,8 +14,20 @@ from PIL import Image, UnidentifiedImageError
 
 UPLOAD_DIR = Path("/tank/projects/TexImageScan/jobs/uploads")
 MAX_UPLOAD_BYTES = 10 * 1024 * 1024
-MAX_IMAGE_PIXELS = 25_000_000
+MAX_IMAGE_PIXELS = 20_000_000
 ALLOWED_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".bmp"}
+FORMAT_EXTENSIONS = {
+    "PNG": ".png",
+    "JPEG": ".jpg",
+    "WEBP": ".webp",
+    "BMP": ".bmp",
+}
+FORMAT_ALLOWED_EXTENSIONS = {
+    "PNG": {".png"},
+    "JPEG": {".jpg", ".jpeg"},
+    "WEBP": {".webp"},
+    "BMP": {".bmp"},
+}
 PROJECT_TIMEZONE = ZoneInfo("Europe/Berlin")
 
 router = APIRouter()
@@ -27,6 +39,8 @@ class ImageMetadata:
     width: int
     height: int
     format: str
+    file_extension: str
+    saved_extension: str
 
 
 @router.post("/api/recognize")
@@ -35,8 +49,9 @@ async def recognize(file: UploadFile = File(...)):
     image_metadata = validate_upload(file.filename, content)
     job_time = make_job_time()
 
-    # save the file and keep the random prefix as upload ID
-    upload_id, saved_path = save_uploaded_file(file.filename, content, job_time)
+    # save the file and keep the upload ID
+    upload_id, saved_path = save_uploaded_file(file.filename, content, job_time, image_metadata)
+    warnings = make_upload_warnings(image_metadata)
 
     return {
         "upload_id": upload_id,
@@ -46,7 +61,10 @@ async def recognize(file: UploadFile = File(...)):
         "image_width": image_metadata.width,
         "image_height": image_metadata.height,
         "image_format": image_metadata.format,
+        "file_extension": image_metadata.file_extension,
+        "saved_extension": image_metadata.saved_extension,
         "saved_image": str(saved_path),
+        "warnings": warnings,
         "latex": r"\text{model not connected yet}",
     }
 
@@ -84,6 +102,7 @@ def validate_upload(original_filename: str | None, content: bytes) -> ImageMetad
         )
 
     # check that the uploaded file can be opened as an image
+    # TODO: later create a separate normalized image with EXIF orientation applied, while keeping the original upload
     try:
         with Image.open(BytesIO(content)) as image:
             image.verify()
@@ -111,10 +130,23 @@ def validate_upload(original_filename: str | None, content: bytes) -> ImageMetad
             max_pixels=MAX_IMAGE_PIXELS,
         )
 
+    # check that detected image format can be mapped to a saved file extension
+    saved_extension = FORMAT_EXTENSIONS.get(image_format)
+    if saved_extension is None:
+        raise_upload_error(
+            status_code=400,
+            error="unsupported_image_format",
+            message="Unsupported detected image format.",
+            image_format=image_format,
+            supported_image_formats=sorted(FORMAT_EXTENSIONS),
+        )
+
     return ImageMetadata(
         width=image_width,
         height=image_height,
         format=image_format,
+        file_extension=suffix,
+        saved_extension=saved_extension,
     )
 
 
@@ -134,17 +166,18 @@ def save_uploaded_file(
     original_filename: str | None,
     content: bytes,
     job_time: datetime,
+    image_metadata: ImageMetadata,
 ) -> tuple[str, Path]:
 
     # save the file with an upload ID of random 64 bits (16 hex chars) as prefix
     upload_dir = make_upload_dir(job_time)
     upload_dir.mkdir(parents=True, exist_ok=True)
-    safe_name = make_filename_safe(original_filename)
+    safe_stem = make_filename_safe_stem(original_filename)
 
     # try multiple upload IDs before giving up
     for _ in range(10):
         upload_id = uuid4().hex[:16]
-        saved_path = upload_dir / f"{upload_id}_{safe_name}"
+        saved_path = upload_dir / f"{upload_id}_{safe_stem}{image_metadata.saved_extension}"
         try:
             # create file only if it does not already exist
             with saved_path.open("xb") as upload_file:
@@ -168,12 +201,30 @@ def make_upload_dir(job_time: datetime) -> Path:
     return UPLOAD_DIR / job_time.strftime("%Y") / job_time.strftime("%m") / job_time.strftime("%d")
 
 
-def make_filename_safe(original_filename: str | None) -> str:
+def make_filename_safe_stem(original_filename: str | None) -> str:
 
-    # replace unwanted characters with underscores and ensure filename is not empty
-    filename = Path(original_filename or "upload").name
-    safe_name = re.sub(r"[^A-Za-z0-9._-]+", "_", filename)
-    return safe_name or "upload"
+    # replace unwanted characters with underscores and ensure filename stem is not empty
+    filename_stem = Path(original_filename or "upload").stem
+    safe_stem = re.sub(r"[^A-Za-z0-9._-]+", "_", filename_stem)
+    return safe_stem or "upload"
+
+
+def make_upload_warnings(image_metadata: ImageMetadata) -> list[dict[str, Any]]:
+
+    # return upload warnings without interrupting the operation
+    allowed_extensions = FORMAT_ALLOWED_EXTENSIONS.get(image_metadata.format, set())
+    if image_metadata.file_extension in allowed_extensions:
+        return []
+
+    return [
+        {
+            "warning": "image_format_extension_mismatch",
+            "message": "File extension did not match detected image format. Saved using detected image format extension.",
+            "file_extension": image_metadata.file_extension,
+            "image_format": image_metadata.format,
+            "saved_extension": image_metadata.saved_extension,
+        }
+    ]
 
 
 def raise_upload_error(
