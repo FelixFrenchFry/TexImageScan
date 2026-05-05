@@ -1,8 +1,10 @@
+import logging
 import re
 from dataclasses import dataclass
 from datetime import datetime
 from io import BytesIO
 from pathlib import Path
+from typing import Any
 from uuid import uuid4
 from zoneinfo import ZoneInfo
 
@@ -17,6 +19,7 @@ ALLOWED_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".bmp"}
 PROJECT_TIMEZONE = ZoneInfo("Europe/Berlin")
 
 router = APIRouter()
+logger = logging.getLogger(__name__)
 
 
 @dataclass(frozen=True)
@@ -52,25 +55,32 @@ def validate_upload(original_filename: str | None, content: bytes) -> ImageMetad
 
     # reject empty files before saving anything to disk
     if not content:
-        raise HTTPException(
+        raise_upload_error(
             status_code=400,
-            detail="Uploaded file is empty.",
+            error="empty_file",
+            message="Uploaded file is empty.",
+            actual_bytes=len(content),
         )
 
     # check for valid file extension 
     suffix = Path(original_filename or "").suffix.lower()
     if suffix not in ALLOWED_EXTENSIONS:
-        allowed = ", ".join(sorted(ALLOWED_EXTENSIONS))
-        raise HTTPException(
+        raise_upload_error(
             status_code=400,
-            detail=f"Unsupported file extension. Use one of the supported types: {allowed}.",
+            error="unsupported_file_extension",
+            message="Unsupported file extension.",
+            file_extension=suffix,
+            allowed_extensions=sorted(ALLOWED_EXTENSIONS),
         )
 
     # check for file size limit
     if len(content) > MAX_UPLOAD_BYTES:
-        raise HTTPException(
+        raise_upload_error(
             status_code=413,
-            detail="Uploaded file is too large. Maximum size of single files is 10 MB.",
+            error="file_too_large",
+            message="Uploaded file is too large.",
+            actual_bytes=len(content),
+            max_bytes=MAX_UPLOAD_BYTES,
         )
 
     # check that the uploaded file can be opened as an image
@@ -80,17 +90,25 @@ def validate_upload(original_filename: str | None, content: bytes) -> ImageMetad
             image_width = image.width
             image_height = image.height
             image_format = image.format or ""
-    except (UnidentifiedImageError, OSError) as exc:
-        raise HTTPException(
+    except (UnidentifiedImageError, OSError):
+        logger.warning("Pillow could not validate uploaded image.", exc_info=True)
+        raise_upload_error(
             status_code=400,
-            detail="Uploaded file is not a valid image.",
-        ) from exc
+            error="invalid_image",
+            message="Uploaded file is not a valid image.",
+            actual_bytes=len(content),
+        )
 
     # check for image dimension limit
     if image_width * image_height > MAX_IMAGE_PIXELS:
-        raise HTTPException(
+        raise_upload_error(
             status_code=413,
-            detail="Uploaded image dimensions are too large. Maximum size is 25 megapixels.",
+            error="image_dimensions_too_large",
+            message="Uploaded image dimensions are too large.",
+            image_width=image_width,
+            image_height=image_height,
+            actual_pixels=image_width * image_height,
+            max_pixels=MAX_IMAGE_PIXELS,
         )
 
     return ImageMetadata(
@@ -133,11 +151,14 @@ def save_uploaded_file(
                 upload_file.write(content)
             return upload_id, saved_path
         except FileExistsError:
+            logger.warning("Upload filename collision for %s.", saved_path)
             continue
 
-    raise HTTPException(
+    logger.error("Could not create a unique upload filename after 10 attempts.")
+    raise_upload_error(
         status_code=500,
-        detail="Could not create a unique upload filename.",
+        error="upload_filename_unavailable",
+        message="Could not create a unique upload filename.",
     )
 
 
@@ -153,3 +174,21 @@ def make_filename_safe(original_filename: str | None) -> str:
     filename = Path(original_filename or "upload").name
     safe_name = re.sub(r"[^A-Za-z0-9._-]+", "_", filename)
     return safe_name or "upload"
+
+
+def raise_upload_error(
+    status_code: int,
+    error: str,
+    message: str,
+    **details: Any,
+) -> None:
+
+    # return consistent upload error details to the frontend
+    raise HTTPException(
+        status_code=status_code,
+        detail={
+            "error": error,
+            "message": message,
+            **details,
+        },
+    )
