@@ -1,0 +1,21 @@
+# Prefer Linux line endings for source files
+* text=auto eol=lf
+
+# Windows scripts may use CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.pdf binary
+*.pth binary
+*.onnx binary
+*.safetensors binary
+*.zip binary
+*.tar binary
+*.gz binary

@@ -25,3 +25,10 @@ temp/
 Thumbs.db
 .vscode/
 .idea/
+
+# Local Conda environment
+.conda/
+
+# Local configs
+*config.toml
+AGENTS.md
