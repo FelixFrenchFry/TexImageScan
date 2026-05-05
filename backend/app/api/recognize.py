@@ -1,4 +1,5 @@
 import logging
+import json
 import re
 from dataclasses import dataclass
 from datetime import datetime
@@ -13,6 +14,7 @@ from PIL import Image, UnidentifiedImageError
 
 
 UPLOAD_DIR = Path("/tank/projects/TexImageScan/jobs/uploads")
+OUTPUT_DIR = Path("/tank/projects/TexImageScan/jobs/outputs")
 MAX_UPLOAD_BYTES = 10 * 1024 * 1024
 MAX_IMAGE_PIXELS = 20_000_000
 ALLOWED_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".bmp"}
@@ -52,6 +54,15 @@ async def recognize(file: UploadFile = File(...)):
     # save the file and keep the upload ID
     upload_id, saved_path = save_uploaded_file(file.filename, content, job_time, image_metadata)
     warnings = make_upload_warnings(image_metadata)
+    output_json = save_placeholder_output(
+        upload_id=upload_id,
+        job_time=job_time,
+        original_filename=file.filename or "",
+        bytes_received=len(content),
+        image_metadata=image_metadata,
+        saved_image=saved_path,
+        warnings=warnings,
+    )
 
     return {
         "upload_id": upload_id,
@@ -64,6 +75,7 @@ async def recognize(file: UploadFile = File(...)):
         "file_extension": image_metadata.file_extension,
         "saved_extension": image_metadata.saved_extension,
         "saved_image": str(saved_path),
+        "output_json": str(output_json),
         "warnings": warnings,
         "latex": r"\text{model not connected yet}",
     }
@@ -199,6 +211,54 @@ def make_upload_dir(job_time: datetime) -> Path:
 
     # use Berlin job time stamp to group uploads by year, month, and day
     return UPLOAD_DIR / job_time.strftime("%Y") / job_time.strftime("%m") / job_time.strftime("%d")
+
+
+def make_output_dir(job_time: datetime) -> Path:
+
+    # use Berlin job time stamp to group outputs by year, month, and day
+    return OUTPUT_DIR / job_time.strftime("%Y") / job_time.strftime("%m") / job_time.strftime("%d")
+
+
+def save_placeholder_output(
+    upload_id: str,
+    job_time: datetime,
+    original_filename: str,
+    bytes_received: int,
+    image_metadata: ImageMetadata,
+    saved_image: Path,
+    warnings: list[dict[str, Any]],
+) -> Path:
+
+    # save placeholder output JSON using the same upload ID and job time
+    output_dir = make_output_dir(job_time)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_path = output_dir / f"{upload_id}.json"
+
+    payload = {
+        "upload_id": upload_id,
+        "job_time": format_job_time(job_time),
+        "status": "uploaded",
+        "input": {
+            "original_filename": original_filename,
+            "saved_image": str(saved_image),
+            "bytes_received": bytes_received,
+            "image_width": image_metadata.width,
+            "image_height": image_metadata.height,
+            "image_format": image_metadata.format,
+            "file_extension": image_metadata.file_extension,
+            "saved_extension": image_metadata.saved_extension,
+        },
+        "warnings": warnings,
+        "result": {
+            "latex": r"\text{model not connected yet}",
+        },
+    }
+
+    output_path.write_text(
+        json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    return output_path
 
 
 def make_filename_safe_stem(original_filename: str | None) -> str:
