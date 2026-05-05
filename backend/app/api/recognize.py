@@ -1,5 +1,4 @@
 import logging
-import json
 import re
 from dataclasses import dataclass
 from datetime import datetime
@@ -14,9 +13,12 @@ from PIL import Image, UnidentifiedImageError
 from backend.app.core.settings import (
     MAX_IMAGE_PIXELS,
     MAX_UPLOAD_BYTES,
-    OUTPUT_DIR,
     PROJECT_TIMEZONE,
     UPLOAD_DIR,
+)
+from backend.app.services.job_store import (
+    create_job_record,
+    job_record_exists,
 )
 
 ALLOWED_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".bmp"}
@@ -32,17 +34,6 @@ FORMAT_ALLOWED_EXTENSIONS = {
     "WEBP": {".webp"},
     "BMP": {".bmp"},
 }
-# keep allowed job status values in one place
-STATUS_UPLOADED = "uploaded"
-STATUS_PROCESSING = "processing"
-STATUS_COMPLETE = "complete"
-STATUS_FAILED = "failed"
-JOB_STATUSES = (
-    STATUS_UPLOADED,
-    STATUS_PROCESSING,
-    STATUS_COMPLETE,
-    STATUS_FAILED,
-)
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -66,31 +57,22 @@ async def recognize(file: UploadFile = File(...)):
     # save the file and keep the upload ID
     upload_id, saved_path = save_uploaded_file(file.filename, content, job_time, image_metadata)
     warnings = make_upload_warnings(image_metadata)
-    output_json = save_placeholder_output(
-        upload_id=upload_id,
-        job_time=job_time,
+    job_input = make_job_input(
         original_filename=file.filename or "",
         bytes_received=len(content),
         image_metadata=image_metadata,
         saved_image=saved_path,
+    )
+    output_json, job_record = create_job_record(
+        upload_id=upload_id,
+        created_at=job_time,
+        input_data=job_input,
         warnings=warnings,
     )
 
     return {
-        "upload_id": upload_id,
-        "job_time": format_job_time(job_time),
-        "status": STATUS_UPLOADED,
-        "filename": file.filename or "",
-        "bytes_received": len(content),
-        "image_width": image_metadata.width,
-        "image_height": image_metadata.height,
-        "image_format": image_metadata.format,
-        "file_extension": image_metadata.file_extension,
-        "saved_extension": image_metadata.saved_extension,
-        "saved_image": str(saved_path),
+        **job_record,
         "output_json": str(output_json),
-        "warnings": warnings,
-        "latex": r"\text{model not connected yet}",
     }
 
 
@@ -181,12 +163,6 @@ def make_job_time() -> datetime:
     return datetime.now(PROJECT_TIMEZONE).replace(microsecond=0)
 
 
-def format_job_time(job_time: datetime) -> str:
-
-    # return job time with timezone offset and second precision
-    return job_time.isoformat(timespec="seconds")
-
-
 def save_uploaded_file(
     original_filename: str | None,
     content: bytes,
@@ -203,6 +179,10 @@ def save_uploaded_file(
     for _ in range(10):
         upload_id = uuid4().hex[:16]
         saved_path = upload_dir / f"{upload_id}_{safe_stem}{image_metadata.saved_extension}"
+        if job_record_exists(upload_id):
+            logger.warning("Job record collision for upload ID %s.", upload_id)
+            continue
+
         try:
             # create file only if it does not already exist
             with saved_path.open("xb") as upload_file:
@@ -226,52 +206,24 @@ def make_upload_dir(job_time: datetime) -> Path:
     return UPLOAD_DIR / job_time.strftime("%Y") / job_time.strftime("%m") / job_time.strftime("%d")
 
 
-def make_output_dir(job_time: datetime) -> Path:
-
-    # use Berlin job time stamp to group outputs by year/month/day
-    return OUTPUT_DIR / job_time.strftime("%Y") / job_time.strftime("%m") / job_time.strftime("%d")
-
-
-def save_placeholder_output(
-    upload_id: str,
-    job_time: datetime,
+def make_job_input(
     original_filename: str,
     bytes_received: int,
     image_metadata: ImageMetadata,
     saved_image: Path,
-    warnings: list[dict[str, Any]],
-) -> Path:
+) -> dict[str, Any]:
 
-    # save placeholder output JSON using the same upload ID and job time
-    output_dir = make_output_dir(job_time)
-    output_dir.mkdir(parents=True, exist_ok=True)
-    output_path = output_dir / f"{upload_id}.json"
-
-    payload = {
-        "upload_id": upload_id,
-        "job_time": format_job_time(job_time),
-        "status": STATUS_UPLOADED,
-        "input": {
-            "original_filename": original_filename,
-            "saved_image": str(saved_image),
-            "bytes_received": bytes_received,
-            "image_width": image_metadata.width,
-            "image_height": image_metadata.height,
-            "image_format": image_metadata.format,
-            "file_extension": image_metadata.file_extension,
-            "saved_extension": image_metadata.saved_extension,
-        },
-        "warnings": warnings,
-        "result": {
-            "latex": r"\text{model not connected yet}",
-        },
+    # collect upload details that should be stored in the job record
+    return {
+        "original_filename": original_filename,
+        "saved_image": str(saved_image),
+        "bytes_received": bytes_received,
+        "image_width": image_metadata.width,
+        "image_height": image_metadata.height,
+        "image_format": image_metadata.format,
+        "file_extension": image_metadata.file_extension,
+        "saved_extension": image_metadata.saved_extension,
     }
-
-    output_path.write_text(
-        json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
-        encoding="utf-8",
-    )
-    return output_path
 
 
 def make_filename_safe_stem(original_filename: str | None) -> str:
