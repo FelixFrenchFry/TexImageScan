@@ -7,16 +7,18 @@ from io import BytesIO
 from pathlib import Path
 from typing import Any
 from uuid import uuid4
-from zoneinfo import ZoneInfo
 
 from fastapi import APIRouter, File, HTTPException, UploadFile
 from PIL import Image, UnidentifiedImageError
 
+from backend.app.core.settings import (
+    MAX_IMAGE_PIXELS,
+    MAX_UPLOAD_BYTES,
+    OUTPUT_DIR,
+    PROJECT_TIMEZONE,
+    UPLOAD_DIR,
+)
 
-UPLOAD_DIR = Path("/tank/projects/TexImageScan/jobs/uploads")
-OUTPUT_DIR = Path("/tank/projects/TexImageScan/jobs/outputs")
-MAX_UPLOAD_BYTES = 10 * 1024 * 1024
-MAX_IMAGE_PIXELS = 20_000_000
 ALLOWED_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".bmp"}
 FORMAT_EXTENSIONS = {
     "PNG": ".png",
@@ -30,7 +32,17 @@ FORMAT_ALLOWED_EXTENSIONS = {
     "WEBP": {".webp"},
     "BMP": {".bmp"},
 }
-PROJECT_TIMEZONE = ZoneInfo("Europe/Berlin")
+# keep allowed job status values in one place
+STATUS_UPLOADED = "uploaded"
+STATUS_PROCESSING = "processing"
+STATUS_COMPLETE = "complete"
+STATUS_FAILED = "failed"
+JOB_STATUSES = (
+    STATUS_UPLOADED,
+    STATUS_PROCESSING,
+    STATUS_COMPLETE,
+    STATUS_FAILED,
+)
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -67,6 +79,7 @@ async def recognize(file: UploadFile = File(...)):
     return {
         "upload_id": upload_id,
         "job_time": format_job_time(job_time),
+        "status": STATUS_UPLOADED,
         "filename": file.filename or "",
         "bytes_received": len(content),
         "image_width": image_metadata.width,
@@ -209,13 +222,13 @@ def save_uploaded_file(
 
 def make_upload_dir(job_time: datetime) -> Path:
 
-    # use Berlin job time stamp to group uploads by year, month, and day
+    # use Berlin job time stamp to group uploads by year/month/day
     return UPLOAD_DIR / job_time.strftime("%Y") / job_time.strftime("%m") / job_time.strftime("%d")
 
 
 def make_output_dir(job_time: datetime) -> Path:
 
-    # use Berlin job time stamp to group outputs by year, month, and day
+    # use Berlin job time stamp to group outputs by year/month/day
     return OUTPUT_DIR / job_time.strftime("%Y") / job_time.strftime("%m") / job_time.strftime("%d")
 
 
@@ -237,7 +250,7 @@ def save_placeholder_output(
     payload = {
         "upload_id": upload_id,
         "job_time": format_job_time(job_time),
-        "status": "uploaded",
+        "status": STATUS_UPLOADED,
         "input": {
             "original_filename": original_filename,
             "saved_image": str(saved_image),
