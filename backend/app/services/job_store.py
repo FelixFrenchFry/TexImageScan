@@ -165,6 +165,27 @@ def job_record_exists(upload_id: str) -> bool:
     return find_job_record_path(upload_id) is not None
 
 
+def find_recent_job_records(limit: int, status: str | None = None) -> list[dict[str, Any]]:
+
+    # find recent job records, optionally limited to one status
+    if status is not None:
+        status = validate_job_status(status)
+
+    job_records = []
+    for output_path in find_job_record_paths():
+        try:
+            job_record = read_job_record_from_path(output_path)
+        except (json.JSONDecodeError, OSError):
+            continue
+
+        if status is not None and job_record.get("status") != status:
+            continue
+
+        job_records.append(job_record)
+
+    return sort_job_records_newest_first(job_records)[:limit]
+
+
 def find_job_records_by_status(status: str) -> list[dict[str, Any]]:
 
     # find job records with a specific status
@@ -180,7 +201,91 @@ def find_job_records_by_status(status: str) -> list[dict[str, Any]]:
         if job_record.get("status") == validated_status:
             job_records.append(job_record)
 
-    return job_records
+    return sort_job_records_oldest_first(job_records)
+
+
+def make_queue_metadata(
+    job_record: dict[str, Any] | None = None,
+    uploaded_jobs: list[dict[str, Any]] | None = None,
+    processing_jobs: list[dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+
+    # describe the current file-based recognition queue
+    if uploaded_jobs is None:
+        uploaded_jobs = find_job_records_by_status(STATUS_UPLOADED)
+
+    if processing_jobs is None:
+        processing_jobs = find_job_records_by_status(STATUS_PROCESSING)
+
+    queue_position = None
+    waiting_jobs_before = None
+
+    if job_record is not None and job_record.get("status") == STATUS_UPLOADED:
+        upload_id = job_record.get("upload_id")
+        for index, uploaded_job in enumerate(uploaded_jobs, start=1):
+            if uploaded_job.get("upload_id") == upload_id:
+                queue_position = index
+                waiting_jobs_before = index - 1
+                break
+
+    return {
+        "pending_jobs": len(uploaded_jobs) + len(processing_jobs),
+        "uploaded_jobs": len(uploaded_jobs),
+        "processing_jobs": len(processing_jobs),
+        "queue_position": queue_position,
+        "waiting_jobs_before": waiting_jobs_before,
+    }
+
+
+def sort_job_records_oldest_first(job_records: list[dict[str, Any]]) -> list[dict[str, Any]]:
+
+    # process older uploads before newer uploads
+    return sorted(job_records, key=make_oldest_first_sort_key)
+
+
+def sort_job_records_newest_first(job_records: list[dict[str, Any]]) -> list[dict[str, Any]]:
+
+    # show newer jobs first in API lists
+    return sorted(job_records, key=make_newest_first_sort_key, reverse=True)
+
+
+def make_oldest_first_sort_key(job_record: dict[str, Any]) -> tuple[datetime, str]:
+
+    # use upload time first and upload ID as a stable tie breaker
+    created_at = parse_job_time(
+        job_record.get("created_at"),
+        fallback=datetime.max.replace(tzinfo=PROJECT_TIMEZONE),
+    )
+    upload_id = str(job_record.get("upload_id", ""))
+    return created_at, upload_id
+
+
+def make_newest_first_sort_key(job_record: dict[str, Any]) -> tuple[datetime, str]:
+
+    # use upload time first and upload ID as a stable tie breaker
+    created_at = parse_job_time(
+        job_record.get("created_at"),
+        fallback=datetime.min.replace(tzinfo=PROJECT_TIMEZONE),
+    )
+    upload_id = str(job_record.get("upload_id", ""))
+    return created_at, upload_id
+
+
+def parse_job_time(value: Any, fallback: datetime) -> datetime:
+
+    # parse job timestamps stored in JSON records
+    if not isinstance(value, str):
+        return fallback
+
+    try:
+        parsed_time = datetime.fromisoformat(value)
+    except ValueError:
+        return fallback
+
+    if parsed_time.tzinfo is None:
+        return parsed_time.replace(tzinfo=PROJECT_TIMEZONE)
+
+    return parsed_time
 
 
 def find_job_record_paths() -> list[Path]:
