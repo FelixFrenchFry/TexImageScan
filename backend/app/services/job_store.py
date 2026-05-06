@@ -93,15 +93,16 @@ def update_job_status(
     updated_at: datetime | None = None,
 ) -> dict[str, Any]:
     job_record, output_path = read_job_record_with_path(upload_id)
+    validated_status = validate_job_status(status)
     timestamp = format_job_time(updated_at or datetime.now(PROJECT_TIMEZONE).replace(microsecond=0))
 
     # update the job record and append a status event
     job_record["updated_at"] = timestamp
-    job_record["status"] = validate_job_status(status)
-    job_record["events"].append(
+    job_record["status"] = validated_status
+    job_record.setdefault("events", []).append(
         {
             "time": timestamp,
-            "status": status,
+            "status": validated_status,
             "message": message,
         }
     )

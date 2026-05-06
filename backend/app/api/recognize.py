@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 from uuid import uuid4
 
-from fastapi import APIRouter, File, HTTPException, UploadFile
+from fastapi import APIRouter, BackgroundTasks, File, HTTPException, UploadFile
 from PIL import Image, UnidentifiedImageError
 
 from backend.app.core.settings import (
@@ -20,6 +20,7 @@ from backend.app.services.job_store import (
     create_job_record,
     job_record_exists,
 )
+from backend.app.services.recognition_worker import process_job
 
 ALLOWED_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".bmp"}
 FORMAT_EXTENSIONS = {
@@ -49,7 +50,7 @@ class ImageMetadata:
 
 
 @router.post("/api/recognize")
-async def recognize(file: UploadFile = File(...)):
+async def recognize(background_tasks: BackgroundTasks, file: UploadFile = File(...)):
     content = await file.read()
     image_metadata = validate_upload(file.filename, content)
     job_time = make_job_time()
@@ -69,6 +70,7 @@ async def recognize(file: UploadFile = File(...)):
         input_data=job_input,
         warnings=warnings,
     )
+    background_tasks.add_task(process_job, upload_id)
 
     return {
         **job_record,
