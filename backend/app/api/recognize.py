@@ -7,10 +7,11 @@ from pathlib import Path
 from typing import Any
 from uuid import uuid4
 
-from fastapi import APIRouter, BackgroundTasks, File, HTTPException, UploadFile
+from fastapi import APIRouter, File, HTTPException, UploadFile
 from PIL import Image, UnidentifiedImageError
 
 from backend.app.core.settings import (
+    DEFAULT_RECOGNITION_MODEL,
     MAX_IMAGE_PIXELS,
     MAX_UPLOAD_BYTES,
     PROJECT_TIMEZONE,
@@ -20,7 +21,6 @@ from backend.app.services.job_store import (
     create_job_record,
     job_record_exists,
 )
-from backend.app.services.recognition_worker import process_job
 
 ALLOWED_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".bmp"}
 FORMAT_EXTENSIONS = {
@@ -50,7 +50,7 @@ class ImageMetadata:
 
 
 @router.post("/api/recognize")
-async def recognize(background_tasks: BackgroundTasks, file: UploadFile = File(...)):
+async def recognize(file: UploadFile = File(...)):
     content = await file.read()
     image_metadata = validate_upload(file.filename, content)
     job_time = make_job_time()
@@ -68,9 +68,9 @@ async def recognize(background_tasks: BackgroundTasks, file: UploadFile = File(.
         upload_id=upload_id,
         created_at=job_time,
         input_data=job_input,
+        model_data=make_job_model(),
         warnings=warnings,
     )
-    background_tasks.add_task(process_job, upload_id)
 
     return {
         **job_record,
@@ -225,6 +225,19 @@ def make_job_input(
         "image_format": image_metadata.format,
         "file_extension": image_metadata.file_extension,
         "saved_extension": image_metadata.saved_extension,
+    }
+
+
+def make_job_model() -> dict[str, Any]:
+
+    # store requested model for a separate worker to pick up this job
+    return {
+        "requested": DEFAULT_RECOGNITION_MODEL,
+        "used": None,
+        "runtime": None,
+        "device": None,
+        "elapsed_ms": None,
+        "model_dir": None,
     }
 
 
