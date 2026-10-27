@@ -209,7 +209,16 @@ export function ModelSetup({
   return (
     <section className="model-card" aria-label="Model setup">
       <div className="section-heading">
-        <strong>{manifest.displayName}</strong>
+        <strong>
+          <a
+            className="model-link"
+            href={`https://huggingface.co/${manifest.repository}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {manifest.displayName}
+          </a>
+        </strong>
         <span className={`model-badge${downloaded ? ' ready' : ''}`}>
           {downloaded ? 'Ready' : 'Setup needed'}
         </span>

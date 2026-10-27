@@ -38,7 +38,7 @@ export function App() {
   const [reading, setReading] = useState(false);
   const [startingCapture, setStartingCapture] = useState(false);
   const [text, setText] = useState('');
-  const [tokens, setTokens] = useState('1024');
+  const [tokens, setTokens] = useState('2048');
   const [task, setTask] = useState<RecognitionMode>('auto');
   const [notice, setNotice] = useState('');
   const [view, setView] = useState<'scan' | 'settings' | 'history'>('scan');

@@ -516,6 +516,14 @@ small {
   font-size: 15px;
   font-weight: 600;
 }
+.model-link {
+  color: var(--brand);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.model-link:hover {
+  color: var(--ink);
+}
 .model-badge {
   display: inline-flex;
   align-items: center;
