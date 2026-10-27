@@ -1,0 +1,15 @@
+@import '@fontsource-variable/geist';
+html,
+body {
+  margin: 0;
+  overflow: hidden;
+  background: #525252;
+}
+#status {
+  margin: 24px;
+  color: #fff;
+  font:
+    13px/1.5 'Geist Variable',
+    system-ui,
+    sans-serif;
+}

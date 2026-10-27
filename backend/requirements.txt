@@ -1,7 +1,0 @@
-# install in the lightweight FastAPI backend conda environment
-# keep ML packages in requirements-unimernet-worker.txt
-
-fastapi
-pillow
-python-multipart
-uvicorn[standard]

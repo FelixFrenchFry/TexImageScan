@@ -1,0 +1,339 @@
+[
+  {
+    "id": "arxiv-2405-21060",
+    "family": "arxiv:2405.21060",
+    "publisher": "arXiv",
+    "split": "development",
+    "adapter": "mathml",
+    "url": "https://arxiv.org/html/2405.21060v1",
+    "counts": {
+      "equation": 3,
+      "mixed": 5
+    },
+    "license": "CC-BY-4.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+    "licenseEvidenceUrl": "https://arxiv.org/abs/2405.21060v1",
+    "authors": [
+      "Dao, Tri",
+      "Gu, Albert"
+    ]
+  },
+  {
+    "id": "arxiv-2406-04093",
+    "family": "arxiv:2406.04093",
+    "publisher": "arXiv",
+    "split": "development",
+    "adapter": "mathml",
+    "url": "https://arxiv.org/html/2406.04093v1",
+    "counts": {
+      "equation": 3,
+      "mixed": 5
+    },
+    "license": "CC-BY-4.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+    "licenseEvidenceUrl": "https://arxiv.org/abs/2406.04093v1",
+    "authors": [
+      "Gao, Leo",
+      "la Tour, Tom Dupré",
+      "Tillman, Henk",
+      "Goh, Gabriel",
+      "Troll, Rajan",
+      "Radford, Alec",
+      "Sutskever, Ilya",
+      "Leike, Jan",
+      "Wu, Jeffrey"
+    ]
+  },
+  {
+    "id": "arxiv-2412-05265",
+    "family": "arxiv:2412.05265",
+    "publisher": "arXiv",
+    "split": "development",
+    "adapter": "mathml",
+    "url": "https://arxiv.org/html/2412.05265v5",
+    "counts": {
+      "equation": 3,
+      "mixed": 5
+    },
+    "license": "CC-BY-4.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+    "licenseEvidenceUrl": "https://arxiv.org/abs/2412.05265v5",
+    "authors": [
+      "Murphy, Kevin"
+    ]
+  },
+  {
+    "id": "wiki-matrix-multiplication",
+    "family": "wikipedia-Matrix_multiplication",
+    "publisher": "Wikipedia",
+    "split": "development",
+    "adapter": "wiki",
+    "url": "https://en.wikipedia.org/wiki/Matrix_multiplication",
+    "counts": {
+      "equation": 3,
+      "mixed": 5
+    },
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#7._Licensing_of_Content",
+    "authors": "Wikipedia contributors; pinned revision and history retained"
+  },
+  {
+    "id": "wiki-determinant",
+    "family": "wikipedia-Determinant",
+    "publisher": "Wikipedia",
+    "split": "development",
+    "adapter": "wiki",
+    "url": "https://en.wikipedia.org/wiki/Determinant",
+    "counts": {
+      "equation": 3,
+      "mixed": 5
+    },
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#7._Licensing_of_Content",
+    "authors": "Wikipedia contributors; pinned revision and history retained"
+  },
+  {
+    "id": "wiki-eigenvalues-and-eigenvectors",
+    "family": "wikipedia-Eigenvalues_and_eigenvectors",
+    "publisher": "Wikipedia",
+    "split": "development",
+    "adapter": "wiki",
+    "url": "https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors",
+    "counts": {
+      "equation": 3,
+      "mixed": 5
+    },
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#7._Licensing_of_Content",
+    "authors": "Wikipedia contributors; pinned revision and history retained"
+  },
+  {
+    "id": "wiki-probability-density-function",
+    "family": "wikipedia-Probability_density_function",
+    "publisher": "Wikipedia",
+    "split": "development",
+    "adapter": "wiki",
+    "url": "https://en.wikipedia.org/wiki/Probability_density_function",
+    "counts": {
+      "equation": 3,
+      "mixed": 5
+    },
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#7._Licensing_of_Content",
+    "authors": "Wikipedia contributors; pinned revision and history retained"
+  },
+  {
+    "id": "quantecon-linear-decisions",
+    "family": "quantecon-dp2",
+    "publisher": "QuantEcon",
+    "split": "development",
+    "adapter": "katex",
+    "url": "https://quantecon.github.io/book-dp2/ch-ldps/",
+    "counts": {
+      "equation": 3,
+      "mixed": 5
+    },
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://quantecon.github.io/book-dp2/licensing/",
+    "authors": "Thomas J. Sargent and John Stachurski"
+  },
+  {
+    "id": "neuromatch-matrices",
+    "family": "neuromatch-compneuro",
+    "publisher": "Neuromatch",
+    "split": "development",
+    "adapter": "mathjax",
+    "url": "https://compneuro.neuromatch.io/tutorials/W0D3_LinearAlgebra/student/W0D3_Tutorial2.html",
+    "counts": {
+      "equation": 3,
+      "mixed": 5
+    },
+    "license": "CC-BY-4.0",
+    "licenseUrl": "https://compneuro.neuromatch.io/tutorials/intro.html",
+    "authors": "Neuromatch Academy and the credited tutorial contributors",
+    "excludeNumberedEquations": true,
+    "includeInlineEquations": true
+  },
+  {
+    "id": "distill-bayesian-optimization",
+    "family": "distill:2020/bayesian-optimization",
+    "publisher": "Distill",
+    "split": "development",
+    "adapter": "katex",
+    "url": "https://distill.pub/2020/bayesian-optimization/",
+    "counts": {
+      "equation": 3,
+      "mixed": 5
+    },
+    "license": "CC-BY-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "authors": "Article authors credited in source metadata and archived front matter",
+    "includeInlineEquations": true
+  },
+  {
+    "id": "distill-feature-wise-transformations",
+    "family": "distill:2018/feature-wise-transformations",
+    "publisher": "Distill",
+    "split": "heldout",
+    "adapter": "katex",
+    "url": "https://distill.pub/2018/feature-wise-transformations/",
+    "counts": {
+      "equation": 1,
+      "mixed": 3,
+      "text": 6
+    },
+    "license": "CC-BY-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "authors": "Article authors credited in source metadata and archived front matter",
+    "includeInlineEquations": true
+  },
+  {
+    "id": "distill-differentiable-parameterizations",
+    "family": "distill:2018/differentiable-parameterizations",
+    "publisher": "Distill",
+    "split": "heldout",
+    "adapter": "katex",
+    "url": "https://distill.pub/2018/differentiable-parameterizations/",
+    "counts": {
+      "equation": 2,
+      "mixed": 2,
+      "text": 6
+    },
+    "license": "CC-BY-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "authors": "Article authors credited in source metadata and archived front matter",
+    "includeInlineEquations": true
+  },
+  {
+    "id": "distill-computing-receptive-fields",
+    "family": "distill:2019/computing-receptive-fields",
+    "publisher": "Distill",
+    "split": "heldout",
+    "adapter": "mathjax2",
+    "url": "https://distill.pub/2019/computing-receptive-fields/",
+    "counts": {
+      "equation": 6,
+      "mixed": 3,
+      "text": 1
+    },
+    "license": "CC-BY-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "authors": "Article authors credited in source metadata and archived front matter",
+    "includeInlineEquations": true,
+    "excludeNumberedEquations": true
+  },
+  {
+    "id": "distill-gnn-intro",
+    "family": "distill:gnn-series",
+    "publisher": "Distill",
+    "split": "heldout",
+    "adapter": "mathjax2",
+    "url": "https://distill.pub/2021/gnn-intro/",
+    "counts": {
+      "equation": 2,
+      "mixed": 6,
+      "text": 2
+    },
+    "license": "CC-BY-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "authors": "Article authors credited in source metadata and archived front matter",
+    "includeInlineEquations": true
+  },
+  {
+    "id": "distill-understanding-gnns",
+    "family": "distill:gnn-series",
+    "publisher": "Distill",
+    "split": "heldout",
+    "adapter": "katex",
+    "url": "https://distill.pub/2021/understanding-gnns/",
+    "counts": {
+      "equation": 7,
+      "mixed": 2,
+      "text": 1
+    },
+    "license": "CC-BY-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "authors": "Article authors credited in source metadata and archived front matter",
+    "includeInlineEquations": true
+  },
+  {
+    "id": "wiki-divergence",
+    "family": "wikipedia-Divergence",
+    "publisher": "Wikipedia",
+    "split": "heldout",
+    "adapter": "wiki",
+    "url": "https://en.wikipedia.org/wiki/Divergence",
+    "counts": {
+      "equation": 4,
+      "mixed": 4,
+      "text": 2
+    },
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#7._Licensing_of_Content",
+    "authors": "Wikipedia contributors; pinned revision and history retained"
+  },
+  {
+    "id": "wiki-laplace-transform",
+    "family": "wikipedia-Laplace_transform",
+    "publisher": "Wikipedia",
+    "split": "heldout",
+    "adapter": "wiki",
+    "url": "https://en.wikipedia.org/wiki/Laplace_transform",
+    "counts": {
+      "equation": 4,
+      "mixed": 4,
+      "text": 2
+    },
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#7._Licensing_of_Content",
+    "authors": "Wikipedia contributors; pinned revision and history retained"
+  },
+  {
+    "id": "wiki-schrodinger-equation",
+    "family": "wikipedia-Schr%C3%B6dinger_equation",
+    "publisher": "Wikipedia",
+    "split": "heldout",
+    "adapter": "wiki",
+    "url": "https://en.wikipedia.org/wiki/Schr%C3%B6dinger_equation",
+    "counts": {
+      "equation": 4,
+      "mixed": 6,
+      "text": 0
+    },
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#7._Licensing_of_Content",
+    "authors": "Wikipedia contributors; pinned revision and history retained"
+  },
+  {
+    "id": "wiki-cauchy-schwarz-inequality",
+    "family": "wikipedia-Cauchy%E2%80%93Schwarz_inequality",
+    "publisher": "Wikipedia",
+    "split": "heldout",
+    "adapter": "wiki",
+    "url": "https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality",
+    "counts": {
+      "equation": 6,
+      "mixed": 4,
+      "text": 0
+    },
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#7._Licensing_of_Content",
+    "authors": "Wikipedia contributors; pinned revision and history retained"
+  },
+  {
+    "id": "wiki-taylors-theorem",
+    "family": "wikipedia-Taylor%27s_theorem",
+    "publisher": "Wikipedia",
+    "split": "heldout",
+    "adapter": "wiki",
+    "url": "https://en.wikipedia.org/wiki/Taylor%27s_theorem",
+    "counts": {
+      "equation": 4,
+      "mixed": 6,
+      "text": 0
+    },
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#7._Licensing_of_Content",
+    "authors": "Wikipedia contributors; pinned revision and history retained"
+  }
+]

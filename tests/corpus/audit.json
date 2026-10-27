@@ -1,0 +1,679 @@
+{
+  "reviewedAt": "2026-10-24T13:36:36.685Z",
+  "reviewer": "Codex visual inspection of all 15 image/reference contact sheets. This is not human expert approval.",
+  "scope": [
+    "Checked visible crop content against independently extracted document text and TeX.",
+    "Checked for clipped glyphs, unrelated floating content, and generated headings.",
+    "Excluded nested equation/paragraph targets across selected kinds.",
+    "Kept original references; no model output was available during audit."
+  ],
+  "corrections": [
+    "Removed invisible CSS from reference extraction.",
+    "Rejected floating panels, overflowing math, and overlapping headings.",
+    "Removed journal consent overlays and excluded prose with unreferenced native HTML math."
+  ],
+  "contactSheets": [
+    {
+      "file": "audit/d2l-linear-algebra.png",
+      "sha256": "751df16ac2e5efbe52fab2f203561357e22d5c078e9caad3e820ed90c42e522c"
+    },
+    {
+      "file": "audit/d2l-calculus.png",
+      "sha256": "42b77686723f5cf47e82b5b1f38f68fff739d877703ffc4d394d24b650987170"
+    },
+    {
+      "file": "audit/d2l-probability.png",
+      "sha256": "f67781ac20293a7f636e3f9d4f69a1e9b4bf491954f6bc87af6757d380c68d12"
+    },
+    {
+      "file": "audit/d2l-gd.png",
+      "sha256": "3a5a9d2873ce82e5770dd753ba861852f2146ee84202692962dfcbb6081c37cf"
+    },
+    {
+      "file": "audit/ila-eigenvectors.png",
+      "sha256": "77b3572832f3219337eccae41995420e9249d30b3e12ce33bb0b881a72d609aa"
+    },
+    {
+      "file": "audit/ila-least-squares.png",
+      "sha256": "4229f8ee7487a43e81a9f9becfe634a591728019e7651a4aaa4af74a33833293"
+    },
+    {
+      "file": "audit/ila-row-reduction.png",
+      "sha256": "bfeb43892283089c17c4cef20e573be96e06d7a4285e2f140087267154c465c1"
+    },
+    {
+      "file": "audit/wiki-gradient.png",
+      "sha256": "6fa51dbd8e25167ef0ecd220f8675fd784295b3fd18887af5252bf2a19c5bc0d"
+    },
+    {
+      "file": "audit/wiki-normal-distribution.png",
+      "sha256": "73999b6ae255b2333fc1e9cb88166c8193c4f5e0846a811fe0ce5da4e9c9b74b"
+    },
+    {
+      "file": "audit/wiki-bayes-theorem.png",
+      "sha256": "0e88760f8f8c3c0fb13f7477c7c8c26257d2167ae621a7d176b4033428de7e4c"
+    },
+    {
+      "file": "audit/wiki-eulers-formula.png",
+      "sha256": "2f99eef289eb645304d63899909dbc925c5435dc93f2ef9265f6574c9a4eebb5"
+    },
+    {
+      "file": "audit/wiki-fourier-transform.png",
+      "sha256": "879b473d970eae67fd2ece7dc93449863d70c45398caaf56ddf37c9187410cbf"
+    },
+    {
+      "file": "audit/wiki-taylor-series.png",
+      "sha256": "b37420ee682ae8abd9cc6b125e342e182d5d81b68013852ce479e5ce78f4fe97"
+    },
+    {
+      "file": "audit/plos-1001102.png",
+      "sha256": "6af1425da9853c8b356867d172326953a833771c1d5569bca5c1324ab0fb7a7b"
+    },
+    {
+      "file": "audit/plos-1008462.png",
+      "sha256": "594d79781678f1f1f89fb174d90f8c1741782f14c176449c279dee34da8fc30f"
+    }
+  ],
+  "cases": [
+    {
+      "id": "d2l-linear-algebra-equation-01",
+      "imageSha256": "3e413287821c03f4515ad94639261d838ca6cb5d71f176a625666e2d16d901c1",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-linear-algebra-equation-02",
+      "imageSha256": "b91931e97aaf8d90c69a08eb0bf5c74e4f5deb87f209a7839408fece4abeaccc",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-linear-algebra-equation-03",
+      "imageSha256": "3cdcc4f0af529874146c008a32c20f06531359cb4f653661c3586f084edda283",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-linear-algebra-equation-04",
+      "imageSha256": "963b51ed4818b5610c7c4834a3f645b1a5dc48d4dfe61b1721e8fd1ceae4c833",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-linear-algebra-equation-05",
+      "imageSha256": "021a324bb7cb8256cecfef20ee181ee2ae4fbb8ddb13140f5e563cc15a902211",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-linear-algebra-mixed-01",
+      "imageSha256": "6652f86329684ff1118d06eaf364895f737bea15dd6dc83c27a0c153d3c866a5",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-linear-algebra-mixed-02",
+      "imageSha256": "f5973405feaf92fd4e6dcc00c000984e16ff726234748244f6036a6f3f483e44",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-linear-algebra-mixed-03",
+      "imageSha256": "bdac1fd283168e65fe53b3cc78ecbe45ff668b6f5ed771fe6caa03c9e9ffba47",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-linear-algebra-text-01",
+      "imageSha256": "9879af3069b4404976e39caaa2960c8d0a33a91a9a88f831222e195dc315f4a9",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-linear-algebra-text-02",
+      "imageSha256": "508968167734dd17ec0a948fdf73db3480bde4fbf92958048f5bfd423f128aae",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-calculus-equation-01",
+      "imageSha256": "82345aae29b3dfe9e5ca5052600dc5efc4a45d630f36e1ca18bbb467e7733526",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-calculus-equation-02",
+      "imageSha256": "cf7e0a0be626751f847972363bbdc4eabdf014c88381520d04ad24ae4089efc8",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-calculus-equation-03",
+      "imageSha256": "5148510eb846a1097621e4a24a1a6700f2dea3d874eaf20c23e661fbeb55584b",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-calculus-equation-04",
+      "imageSha256": "8d6ec6dc85fb637bfc1abd1e67a72d926753cf9a31a70f1857bcc8a84d427a61",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-calculus-equation-05",
+      "imageSha256": "8e2009208b3ba7283092f0158e851a6d39c5e65e090ac4dd5d107d1d6f081a32",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-calculus-mixed-01",
+      "imageSha256": "81fa253bd97569e78205d687c760207b81612035b3d9592ed217cc472811c730",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-calculus-mixed-02",
+      "imageSha256": "8994317e8a81cfb5f3b69b030f3dc63ca559049b72f53d1b30e9f9bb33bbb023",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-calculus-mixed-03",
+      "imageSha256": "4fd48113d6d3514bdcfd94980d50ce52b2e3767722a7859a6e9e7934925488ab",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-calculus-text-01",
+      "imageSha256": "41ee75145f12b174c3c3a622fe5784e10c5b1d5febc6e025b05a1568fc7dcf2c",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-calculus-text-02",
+      "imageSha256": "bb2425cf6cdc025f3dc2732fb1ac801f5528517ba4a4a9262e5d01a8e40f813e",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-probability-equation-01",
+      "imageSha256": "92514ddca79e71a46fede8da276256c612080d363a9be82d7527552bcb37bc41",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-probability-equation-02",
+      "imageSha256": "3ed287173d15589e47d2c04b8aaba686cc254a5035b017289527bd3cfa6c2f4a",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-probability-equation-03",
+      "imageSha256": "1f45df50aba1a307d75ae97a32099a04886a6b83d4c02e46eede6790461aafba",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-probability-equation-04",
+      "imageSha256": "0d16afbf3568aacc904948a4c54e32278d923000a58d71c27d032f9fc91f85a0",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-probability-equation-05",
+      "imageSha256": "1536109f252702d3c017577a70d814375a5784cbe81ecb5992fa1454b3b7fc85",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-probability-mixed-01",
+      "imageSha256": "cd18061da1557a19bfc147a9899c5fb1a49852296feda384feea87e43ce489c6",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-probability-mixed-02",
+      "imageSha256": "433875d3ace8a8979f1d9d329560071fe72c5c97e2289cb72bd36fe3616d2e10",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-probability-mixed-03",
+      "imageSha256": "fb32144af048be135325c28d6a9b53d0aa4da1433d1e1dd6baba4766268a47c4",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-probability-text-01",
+      "imageSha256": "622833df39703051d9b101a7913abfbb8647582888596e1e72e7c044ac172d88",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-probability-text-02",
+      "imageSha256": "c8fef3d3d135752f97449e201a4bbc150a6f797713e71bda6b05fca12572e46d",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-gd-equation-01",
+      "imageSha256": "1ec058897746ab1a434e0468e9bee02d8dcb145f2f4403a98628b3801d5b1ee9",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-gd-equation-02",
+      "imageSha256": "3ddad167e39801db6a8495e09913789756561d352985dbe1ac39ea8096481706",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-gd-equation-03",
+      "imageSha256": "7493f403e6663c4b39fef64c520ca6cc5829c2dc3771d2919c0429ddb2925f71",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-gd-equation-04",
+      "imageSha256": "e74fd8362522cde798865743c060e1679de3cb195219bc7fd3a85561f9fc8de7",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-gd-equation-05",
+      "imageSha256": "b8ea71a0b468f312f2875a7df2a99fdcaa5de834a2f18f008c9a7c1981aa5f86",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-gd-mixed-01",
+      "imageSha256": "239392fcee23ac167f53a23f06bd6863b591ea318777781f27567038220b5473",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-gd-mixed-02",
+      "imageSha256": "143d7c1200be880737fa8527ad0508a4e815f8d7daddad52ca4315ab3932a4db",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-gd-mixed-03",
+      "imageSha256": "393775dafc561c7e3c87cc3fb32ec606f6222e9e3d197ede4be56f0c1d11f0a6",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-gd-text-01",
+      "imageSha256": "6b799547d1ebeba9ed7cf3ad72e17f44b5f75ca3bcf600959d3dcb6b63035913",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "d2l-gd-text-02",
+      "imageSha256": "08386c2ee5c8d8572df54a36b92004a2cf174305119c614f337afc7b0483b3a0",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "ila-eigenvectors-text-01",
+      "imageSha256": "64abfecf8bc201a3dcb4a26916d02dfd6c6e70df00f1cb65cbbe0eadee771c7f",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "ila-eigenvectors-text-02",
+      "imageSha256": "6e7b513892528d5845f01c16cec1b092e5d0b404ec81ae366fa1a5e88d59df2d",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "ila-eigenvectors-text-03",
+      "imageSha256": "9c6f6d7e87ccf478e8210912d03778cb14e5a1e86caff44f90b54cdb40d9f093",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "ila-eigenvectors-text-04",
+      "imageSha256": "f3308b4ba690f66b7ec851116d3a35d2615ab330c95005564cf3c76d35a813a3",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "ila-least-squares-text-01",
+      "imageSha256": "4b9eda650ef134a016fe29ea2eb588cead624b7c3361631ef72876100436c720",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "ila-least-squares-text-02",
+      "imageSha256": "c208941141543be1570508e5854f1f1a21595392f4cf06f3d0c981b3170786a6",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "ila-least-squares-text-03",
+      "imageSha256": "4f2e0128486d6c826988b55a4a9a75bf2396476587a4b01c630f18106e1718e8",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "ila-row-reduction-text-01",
+      "imageSha256": "cf2e18305e919baa796ee87d6cbe877c8dfe6a3fe13a3f31a345e78667f4cd60",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "ila-row-reduction-text-02",
+      "imageSha256": "ad6cbd709445034f877a63cc0c3fa1fb29e07b62568644a16a952dce09695cc1",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "ila-row-reduction-text-03",
+      "imageSha256": "d92fe46d80185dfae4175dfd9b4d4b9767313c0f9c1205ca79185d791e56c4aa",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-gradient-equation-01",
+      "imageSha256": "f9cb1950db9f455abe93d192b87a46b7698831abb12d341c1b2e2440503949f0",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-gradient-equation-02",
+      "imageSha256": "c0a4fefa1af274b01fd3b1d2aa72c7f29440c9ef4853db4967aea7c2d6c54540",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-gradient-equation-03",
+      "imageSha256": "1948290e2056d71caed442798eb23ebe79025317bb286feb1505ffef73ec5d37",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-gradient-equation-04",
+      "imageSha256": "827718d1cfad165465f4a564a04ab692d748ceabe7467df555e36fb625b876d0",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-gradient-equation-05",
+      "imageSha256": "6840e84fc7eb85a4d5f4f1702073e5a4e5d94fbae620ad4e58d8906372d7adb0",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-gradient-mixed-01",
+      "imageSha256": "15ae7ed050954197d9990f7fdbcace815e956cc14de1e8173465166f30f47c8a",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-gradient-mixed-02",
+      "imageSha256": "778985fa6a8d96a8b4a3221ed50efa117f1853fabd14ba0596e5adaa91d1739b",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-gradient-mixed-03",
+      "imageSha256": "375ca5a0ada9f2d79519cdce51ef05ae4199b26c4bdbe1b8dbb2cf90d084cd9e",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-gradient-text-01",
+      "imageSha256": "ce9ec642708e8127ed137edbdd5909798d2cf36affb9d70a36dacea6a35eed29",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-gradient-text-02",
+      "imageSha256": "81e1098e4f75fa83e9977623efbdc45b6931b2bf306013953567c9750246132c",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-normal-distribution-equation-01",
+      "imageSha256": "b8babd8682b3bb4067e56b546cf56bf3982c1687acb61c1a285a4f15fbdabfa5",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-normal-distribution-equation-02",
+      "imageSha256": "057fd7bd52a35af325849f3ea10be61ced86081d89d0a3a2eb38533e62d4e15b",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-normal-distribution-equation-03",
+      "imageSha256": "dd71a8a8c5e0f41b0f7dd92bad9f650fbdd84a76cdb33af30827ec5195fa9292",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-normal-distribution-equation-04",
+      "imageSha256": "87782d168bcaf420bee2a97ec127b22bd85a50a73bea08ea9ba4cfc3301df264",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-normal-distribution-equation-05",
+      "imageSha256": "7fed0b15102c38909b75bc4e8c8780cd683be9a4c2dcbd664a79cf1a445211c2",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-normal-distribution-mixed-01",
+      "imageSha256": "82d66067200edd840a4b7e289881e7020c48ea266dc0626ff08548e3a30afec7",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-normal-distribution-mixed-02",
+      "imageSha256": "fc6fa621abe12a26c1e4f8999ee87ef34f40bd62b46821c3b01c4d2b4db15437",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-normal-distribution-mixed-03",
+      "imageSha256": "f6b323dba15a3f3eb000edfdcf186df2915bb903e2f859449e37932d9f3a37c9",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-normal-distribution-text-01",
+      "imageSha256": "9c76872bff367793a45550630cec9d49078d2963dafabad03eac816a162b5fed",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-normal-distribution-text-02",
+      "imageSha256": "d1613ce3951d91043104f24e9de31b761fe6aeeff71baef5f2ee54396f33000e",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-bayes-theorem-equation-01",
+      "imageSha256": "c2ce5f9c7f26ac9c61eb1474f93a1f87551d032641275bada37b22a8b054c66f",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-bayes-theorem-equation-02",
+      "imageSha256": "7aa104b0a71b20bac951be7eb188ef01ed7a8702e338048ea77e14a266b37b63",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-bayes-theorem-equation-03",
+      "imageSha256": "a8d1f63920212557860554727979984f8392e40794ccc9339acb8ce41ee2c60c",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-bayes-theorem-equation-04",
+      "imageSha256": "c3448df52a786fc5201ceb3c211b30fb66f5b45ffa06af8ce19e881486ae310b",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-bayes-theorem-equation-05",
+      "imageSha256": "e35f5238a9ed8240c6ab9f1835bc43263c982728ed616f19839d14c6d70fb062",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-bayes-theorem-mixed-01",
+      "imageSha256": "dc0689c67844be24cc7dea2ef31161b89efddf6e27f121bf178b59e60fc24749",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-bayes-theorem-mixed-02",
+      "imageSha256": "15f51f5d8b87235a2a15912829b1c02958f5253ba5f3207be7f02984f2b08cd9",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-bayes-theorem-mixed-03",
+      "imageSha256": "8d9fe2f036cebd4d5916245b3a490914941c8f3ff83370d0446bac2d59baeb77",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-bayes-theorem-text-01",
+      "imageSha256": "2a54ac2f3a8ff36e75b31a38fd36f4f6a43da313f76b605142081ff1d8876616",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-bayes-theorem-text-02",
+      "imageSha256": "2efae72ac3cb33a3b16baf518653d53b7373770ce93b54429c45735a0e084fd2",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-eulers-formula-equation-01",
+      "imageSha256": "14f59d4293442867a5b9b0d80f2754d044139c4c8023e3f7fdb4f6dcc9461cb6",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-eulers-formula-equation-02",
+      "imageSha256": "1864807f3efe550f109f88240442a0638c9a44ac61e9bfb475daa919f38dc236",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-eulers-formula-equation-03",
+      "imageSha256": "125c4fde314e7286d3bca1bdea92c60254d74d6d4b53e8926d37e9127c840ad1",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-eulers-formula-equation-04",
+      "imageSha256": "982c7f29087012b1b76ba7fb402c8e7e7d13ef7190e4c6fc6cc362b1d41013fb",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-eulers-formula-equation-05",
+      "imageSha256": "f73b671ef2faf14f02c3e676f26f2844641ecdbf679961912a10afc8048880f1",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-eulers-formula-mixed-01",
+      "imageSha256": "e334ceee5028cf9a5533d8b27f62fe7d6aff5a96f75ebe91139d2cbe63f579cb",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-eulers-formula-mixed-02",
+      "imageSha256": "59c904c023e4b85a64e5a472dda8637dec65ff00651bb43123d8e713a70982b4",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-eulers-formula-mixed-03",
+      "imageSha256": "20e32fa9a7b13203f7c89423c0a1e98d857772951bdd64065fe97f392dc51fc2",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-eulers-formula-text-01",
+      "imageSha256": "87d31c72207ddd6d297d7c1dcdfdabe5cbfc028175a17b1787a30df95ab31244",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-eulers-formula-text-02",
+      "imageSha256": "2924a40a328efb784182d3656672b31ada79d7498e1d4f24e2f47f073c2753fa",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-fourier-transform-equation-01",
+      "imageSha256": "898436441ea1b30547ba99b94455dceaa0ad07da7c34d3b24aa6b28b29020ac9",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-fourier-transform-equation-02",
+      "imageSha256": "156b9c9740b13c418970a0f1ca9a2b0523cea926e80f37bbdb0d34c198963052",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-fourier-transform-equation-03",
+      "imageSha256": "fb1b73c72c9b286ceea6f109fe479b3583448ea94e895056994917447628033e",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-fourier-transform-equation-04",
+      "imageSha256": "9fcab32ac8bf9d1a9cd439ce7816c6d08781156789cfcb1166b0c30457e69cc6",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-fourier-transform-equation-05",
+      "imageSha256": "7c2d3cd481ad4e6b945a1e6107ef8a9fe6712bab868ff6130f5d0b21f380afcc",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-fourier-transform-mixed-01",
+      "imageSha256": "b11415231569f2d364bd8d924c415085e1bc72a9395895f95caa9c5a63b36b17",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-fourier-transform-mixed-02",
+      "imageSha256": "58d5138e8d9b5038d8aad8c5aa48de87f96bcdbb059c4fb7b161fadd9344976c",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-fourier-transform-mixed-03",
+      "imageSha256": "95a80ecfb4ed613aced581e6bf24d1b07c683375082ed1749a4b52e6bbae4d22",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-fourier-transform-text-01",
+      "imageSha256": "11e0afd9f1710d27f4cfadd90e7242b56ae3d1334d1699cc4247b79822d7641e",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-fourier-transform-text-02",
+      "imageSha256": "ffdf9ed29d746a5aa14b2c6624b6dbaaacb79625392b407765fb2e06422a49e6",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-taylor-series-equation-01",
+      "imageSha256": "88ba117db23c081e7a868189e3e2df6995916cff1352e7f29b2bb16ae9161fbf",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-taylor-series-equation-02",
+      "imageSha256": "5d2d89a2da14586cd48951b23a5716842732e6510128782e1406146df7207b45",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-taylor-series-equation-03",
+      "imageSha256": "770d7611bb6814259e2fc64810b199a16fe2753fb8964a753b4c56c993c7806a",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-taylor-series-equation-04",
+      "imageSha256": "c76aa0f1ed66979979ed1599a1cd6d878800507b82b90607a82fbf55483a2abc",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-taylor-series-equation-05",
+      "imageSha256": "63a3bc145f6ee183afe849f37c22c9388fd23b170763d89346c154eb97c70a9c",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-taylor-series-mixed-01",
+      "imageSha256": "c991b033e8bd034f270e86abe01f0b8329cda846f5785185a47464b9b3468c65",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-taylor-series-mixed-02",
+      "imageSha256": "18dad92ccde5bc79d89420e7f7ebc6638a0f398162b90596f752a555046aae2e",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-taylor-series-mixed-03",
+      "imageSha256": "da1d357f0c79b8d6b3fcb438ccf6c4bfe2d9d9e186ba6f41a530a7d0406a4d81",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-taylor-series-text-01",
+      "imageSha256": "1cb6bc7d8a498e64201586956aa5666ba7ddf859e647e39d5bb4ac6a92cab264",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "wiki-taylor-series-text-02",
+      "imageSha256": "4cdbfb3d856b0cfe511fad49c83436c49a869278c7418a766437ab57b55df777",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "plos-1001102-text-01",
+      "imageSha256": "048e7daee793a0ec754be8dff1a8a41ca8a6d43aa8e4159e5ed10c8ffaf911af",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "plos-1001102-text-02",
+      "imageSha256": "01dd2065844476d82c150e7590b8b53a4ea7ab78c098aacc053c33fc4339093e",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "plos-1001102-text-03",
+      "imageSha256": "52054fca588a80b17b2fea5f26c7d2fc7e868da8a408a41ecdaaa167e62b778f",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "plos-1001102-text-04",
+      "imageSha256": "827380c14cec82dccda32e53e9bdbbb49e770880c141d37d43b871a6a4bc3da2",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "plos-1001102-text-05",
+      "imageSha256": "522f4f85a20e566941d2e9693d9c5886b1f564efd83c72dd2f904db83d62edba",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "plos-1008462-text-01",
+      "imageSha256": "a8d2ecc6d49d77337bd25d1ec338c0110d8fddf935b8712d2c4c7b5b982c9a8b",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "plos-1008462-text-02",
+      "imageSha256": "f58f1316245b0f5e8aea03537c3e27e0514be5ed2fadc976479294fa09186e07",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "plos-1008462-text-03",
+      "imageSha256": "3c13d94c4fcc9a887e6570adebc1b49d001c1d83cba96cbab3dfe5a63a04f6de",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "plos-1008462-text-04",
+      "imageSha256": "742e80ec74ee46eac0a4f2ec8bc5af8253a1dd8b179a358abe36eadab2687fd5",
+      "status": "source-checked-and-visually-audited"
+    },
+    {
+      "id": "plos-1008462-text-05",
+      "imageSha256": "a590c486df927bcdc46518108a3e65409d0e409be8aafea649befff8e5623dac",
+      "status": "source-checked-and-visually-audited"
+    }
+  ]
+}

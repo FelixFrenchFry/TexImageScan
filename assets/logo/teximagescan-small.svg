@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 128 128" fill="none">
+  <title>TexImageScan logo, small sizes</title>
+  <desc>Full-bleed edge-to-edge badge with heavier strokes and zero margin padding for 16 and 32 px icons.</desc>
+  <defs>
+    <clipPath id="badge-clip-small">
+      <rect x="0" y="0" width="128" height="128" rx="22"/>
+    </clipPath>
+  </defs>
+  <!-- full-bleed 100% edge-to-edge badge for small toolbar icons -->
+  <rect id="badge" x="0" y="0" width="128" height="128" rx="22" fill="#052723"/>
+  <g id="laser" clip-path="url(#badge-clip-small)">
+    <polygon id="laser-glow" points="-10,52 138,32 138,78 -10,98" fill="#14B8A6" opacity="0.45"/>
+    <line id="laser-core" x1="-10" y1="75" x2="138" y2="55" stroke="#2DD4BF" stroke-width="13" stroke-linecap="round"/>
+  </g>
+  <path id="root" d="M26 68 L44 98 L76 30 H104" stroke="#FFFFFF" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,1 +1,0 @@
-"""TexImageScan backend app"""

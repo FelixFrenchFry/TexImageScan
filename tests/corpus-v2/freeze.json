@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "frozenAt": "2026-10-25T03:52:22.561Z",
+  "manifestSha256": "cb6865d1f897ed49c2da6cf49487b5e6fcda40c78303ff41d283221e3f51cea5",
+  "auditSha256": "72ae412e0943d42980a78500d38a9154386e6a2c18d30e5cc292d31e0fefeafd",
+  "cases": 300,
+  "policy": "Freeze before first inference. No prompt, preprocessing, or router tuning against held-out results."
+}

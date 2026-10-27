@@ -1,4 +1,4 @@
-# Secrets
+# secrets
 .env
 .env.local
 .env.*.local
@@ -11,10 +11,16 @@ venv/
 
 # Node
 node_modules/
+.wxt/
+.output/
+.model-cache/
+test-results/
+playwright-report/
+artifacts/
 dist/
 build/
 
-# Logs and temp
+# logs and temp
 *.log
 tmp/
 temp/
@@ -26,9 +32,9 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Local Conda environment
+# local Conda environment
 .conda/
 
-# Local configs
+# local configs
 *config.toml
 AGENTS.md

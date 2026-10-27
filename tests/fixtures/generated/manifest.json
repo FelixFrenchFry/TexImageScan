@@ -1,0 +1,9 @@
+{
+  "id": "bold-vectors",
+  "source": "Original synthetic expression defined in scripts/generate-test-fixtures.mjs",
+  "latex": "\\nabla f(\\boldsymbol{x}_1+\\boldsymbol{x}_2)=\\boldsymbol{x}_3-\\boldsymbol{x}_4",
+  "renderer": "KaTeX 0.19.0",
+  "sha256": "f2b9742420481bd123e39e849093a010bc4ee3941829be9eabad1008c3347b84",
+  "width": 345,
+  "height": 133
+}
