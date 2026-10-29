@@ -1,0 +1,4838 @@
+{
+  "version": 1,
+  "purpose": "printed-math",
+  "limitations": [
+    "Printed publisher formulas only. Source references come from author TeX/MathML, not recognition outputs.",
+    "The 80 inherited development cases and their sources were previously evaluated. Earlier heldout reports are historical and excluded here.",
+    "New heldout pages were selected and captured before inference. Documents, normalized formula families and identical images cannot cross splits.",
+    "The source-zoom pairs re-rasterize live browser math at CSS zoom 1 and 2. They measure browser source detail, not PDF zoom or digital PNG upsampling.",
+    "KaTeX-unsupported references and crops outside the capture size bounds are excluded; the corpus is not an unbiased population estimate."
+  ],
+  "cases": [
+    {
+      "id": "d2l-linear-algebra-equation-01",
+      "split": "development",
+      "documentId": "d2l-en",
+      "familyId": "5f7b6e15e90a30bc6548bd99229efb31b99f2c58293554f849bb08f5ebe0cdd6",
+      "tags": [
+        "equation",
+        "D2L",
+        "bold",
+        "subscripts",
+        "matrices",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/d2l-linear-algebra-equation-01.png",
+        "sha256": "3e413287821c03f4515ad94639261d838ca6cb5d71f176a625666e2d16d901c1",
+        "width": 88,
+        "height": 83
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\begin{split}\\mathbf{x} =\\begin{bmatrix}x_{1}  \\\\ \\vdots  \\\\x_{n}\\end{bmatrix},\\end{split}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://d2l.ai/chapter_preliminaries/linear-algebra.html",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "d2l-linear-algebra-equation-02",
+      "split": "development",
+      "documentId": "d2l-en",
+      "familyId": "9e7133f54d61d7996f9c116edaf3d73768a687f5bb23beb4ee29356c9a2f9952",
+      "tags": [
+        "equation",
+        "D2L",
+        "bold",
+        "subscripts",
+        "superscripts",
+        "matrices",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/d2l-linear-algebra-equation-02.png",
+        "sha256": "b91931e97aaf8d90c69a08eb0bf5c74e4f5deb87f209a7839408fece4abeaccc",
+        "width": 248,
+        "height": 113
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\begin{split}\\mathbf{A}^\\top =\n\\begin{bmatrix}\n    a_{11} & a_{21} & \\dots  & a_{m1} \\\\\n    a_{12} & a_{22} & \\dots  & a_{m2} \\\\\n    \\vdots & \\vdots & \\ddots  & \\vdots \\\\\n    a_{1n} & a_{2n} & \\dots  & a_{mn}\n\\end{bmatrix}.\\end{split}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://d2l.ai/chapter_preliminaries/linear-algebra.html",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "d2l-linear-algebra-equation-03",
+      "split": "development",
+      "documentId": "d2l-en",
+      "familyId": "603dee5a5d601cdc3012cd074b6b60961a78c05493cf932050997ac2132a3dfd",
+      "tags": [
+        "equation",
+        "D2L",
+        "bold",
+        "subscripts",
+        "superscripts",
+        "matrices",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/d2l-linear-algebra-equation-03.png",
+        "sha256": "3cdcc4f0af529874146c008a32c20f06531359cb4f653661c3586f084edda283",
+        "width": 204,
+        "height": 116
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\begin{split}\\mathbf{A}\\mathbf{x}\n= \\begin{bmatrix}\n\\mathbf{a}^\\top_{1} \\\\\n\\mathbf{a}^\\top_{2} \\\\\n\\vdots \\\\\n\\mathbf{a}^\\top_m \\\\\n\\end{bmatrix}\\mathbf{x}\n= \\begin{bmatrix}\n \\mathbf{a}^\\top_{1} \\mathbf{x}  \\\\\n \\mathbf{a}^\\top_{2} \\mathbf{x} \\\\\n\\vdots\\\\\n \\mathbf{a}^\\top_{m} \\mathbf{x}\\\\\n\\end{bmatrix}.\\end{split}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://d2l.ai/chapter_preliminaries/linear-algebra.html",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "d2l-linear-algebra-equation-04",
+      "split": "development",
+      "documentId": "d2l-en",
+      "familyId": "ec15cfa4fe7ecdc75d5057e08bb224366e14857f725aa07dd2f806b3747eecfc",
+      "tags": [
+        "equation",
+        "D2L",
+        "bold",
+        "greek"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/d2l-linear-algebra-equation-04.png",
+        "sha256": "963b51ed4818b5610c7c4834a3f645b1a5dc48d4dfe61b1721e8fd1ceae4c833",
+        "width": 126,
+        "height": 20
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\|\\alpha \\mathbf{x}\\| = |\\alpha| \\|\\mathbf{x}\\|.",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://d2l.ai/chapter_preliminaries/linear-algebra.html",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "d2l-linear-algebra-equation-05",
+      "split": "development",
+      "documentId": "d2l-en",
+      "familyId": "3d7b671224a6b8124ad425de94b4cd4317cb34ecbc8fccd987de5b4cec7336d8",
+      "tags": [
+        "equation",
+        "D2L",
+        "bold",
+        "subscripts",
+        "superscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/d2l-linear-algebra-equation-05.png",
+        "sha256": "021a324bb7cb8256cecfef20ee181ee2ae4fbb8ddb13140f5e563cc15a902211",
+        "width": 127,
+        "height": 52
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\|\\mathbf{x}\\|_1 = \\sum_{i=1}^n \\left|x_i \\right|.",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://d2l.ai/chapter_preliminaries/linear-algebra.html",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "d2l-calculus-equation-01",
+      "split": "development",
+      "documentId": "d2l-en",
+      "familyId": "daaed8e6b56ebb02772d687e3784d86f32c5404fc1120103514558701ecbea90",
+      "tags": [
+        "equation",
+        "D2L",
+        "subscripts",
+        "fractions"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/d2l-calculus-equation-01.png",
+        "sha256": "82345aae29b3dfe9e5ca5052600dc5efc4a45d630f36e1ca18bbb467e7733526",
+        "width": 240,
+        "height": 43
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "f'(x) = \\lim_{h \\rightarrow 0} \\frac{f(x+h) - f(x)}{h}.",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://d2l.ai/chapter_preliminaries/calculus.html",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "d2l-calculus-equation-02",
+      "split": "development",
+      "documentId": "d2l-en",
+      "familyId": "d3e60cec55c956844a282e7bbf293ba5697c2138b722aab2f46a386b9483f7dd",
+      "tags": [
+        "equation",
+        "D2L",
+        "superscripts",
+        "fractions",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/d2l-calculus-equation-02.png",
+        "sha256": "cf7e0a0be626751f847972363bbdc4eabdf014c88381520d04ad24ae4089efc8",
+        "width": 322,
+        "height": 173
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\begin{split}\\begin{aligned} \\frac{d}{dx} C & = 0 && \\textrm{for any constant $C$} \\\\ \\frac{d}{dx} x^n & = n x^{n-1} && \\textrm{for } n \\neq 0 \\\\ \\frac{d}{dx} e^x & = e^x \\\\ \\frac{d}{dx} \\ln x & = x^{-1}. \\end{aligned}\\end{split}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://d2l.ai/chapter_preliminaries/calculus.html",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "d2l-calculus-equation-03",
+      "split": "development",
+      "documentId": "d2l-en",
+      "familyId": "983c1bad0917fde489b6bd0235272398e7e751b46889cc2c112c92ee0abb3999",
+      "tags": [
+        "equation",
+        "D2L",
+        "superscripts",
+        "fractions"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/d2l-calculus-equation-03.png",
+        "sha256": "5148510eb846a1097621e4a24a1a6700f2dea3d874eaf20c23e661fbeb55584b",
+        "width": 348,
+        "height": 40
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\frac{d}{dx} [3 x^2 - 4x] = 3 \\frac{d}{dx} x^2 - 4 \\frac{d}{dx} x = 6x - 4.",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://d2l.ai/chapter_preliminaries/calculus.html",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "d2l-calculus-equation-04",
+      "split": "development",
+      "documentId": "d2l-en",
+      "familyId": "27e10e81c2dbb749fce20bddc3654f7dff08d29fe2b64e596cb490c303cc05f1",
+      "tags": [
+        "equation",
+        "D2L",
+        "subscripts",
+        "fractions"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/d2l-calculus-equation-04.png",
+        "sha256": "8d6ec6dc85fb637bfc1abd1e67a72d926753cf9a31a70f1857bcc8a84d427a61",
+        "width": 422,
+        "height": 43
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\frac{\\partial y}{\\partial x_i} = \\frac{\\partial f}{\\partial x_i} = \\partial_{x_i} f = \\partial_i f = f_{x_i} = f_i = D_i f = D_{x_i} f.",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://d2l.ai/chapter_preliminaries/calculus.html",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "d2l-calculus-equation-05",
+      "split": "development",
+      "documentId": "d2l-en",
+      "familyId": "de137a334c89d04f147209b8b69e5589317a627a911dda2065ee73450fa3c209",
+      "tags": [
+        "equation",
+        "D2L",
+        "fractions"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/d2l-calculus-equation-05.png",
+        "sha256": "8e2009208b3ba7283092f0158e851a6d39c5e65e090ac4dd5d107d1d6f081a32",
+        "width": 118,
+        "height": 40
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\frac{dy}{dx} = \\frac{dy}{du} \\frac{du}{dx}.",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://d2l.ai/chapter_preliminaries/calculus.html",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "d2l-probability-equation-01",
+      "split": "development",
+      "documentId": "d2l-en",
+      "familyId": "4d950d13c2579a94730874b68b9c719b0d042ec7b2f521499f7055e2a19ef4fa",
+      "tags": [
+        "equation",
+        "D2L"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/d2l-probability-equation-01.png",
+        "sha256": "92514ddca79e71a46fede8da276256c612080d363a9be82d7527552bcb37bc41",
+        "width": 516,
+        "height": 20
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "P(A=a, B=b) \\leq P(A=a) \\textrm{ and } P(A=a, B=b) \\leq P(B = b),",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://d2l.ai/chapter_preliminaries/probability.html",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "d2l-probability-equation-02",
+      "split": "development",
+      "documentId": "d2l-en",
+      "familyId": "0e2155a46d55f0247fb0de0f4cec8bab1736bf922a6b102d8f8a6b9e7a891ccb",
+      "tags": [
+        "equation",
+        "D2L",
+        "subscripts",
+        "fractions"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/d2l-probability-equation-02.png",
+        "sha256": "3ed287173d15589e47d2c04b8aaba686cc254a5035b017289527bd3cfa6c2f4a",
+        "width": 329,
+        "height": 47
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "P(A \\mid B) = \\frac{P(B \\mid A) P(A)}{\\sum_a P(B \\mid A=a) P(A = a)}.",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://d2l.ai/chapter_preliminaries/probability.html",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "d2l-probability-equation-03",
+      "split": "development",
+      "documentId": "d2l-en",
+      "familyId": "f2921d9f1ed7d3ebda364adc7f7ee28dc03d9817c68fcddc8d23a13afb843c03",
+      "tags": [
+        "equation",
+        "D2L",
+        "subscripts",
+        "fractions"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/d2l-probability-equation-03.png",
+        "sha256": "1f45df50aba1a307d75ae97a32099a04886a6b83d4c02e46eede6790461aafba",
+        "width": 504,
+        "height": 46
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "P(H = 1 \\mid D_1 = 1) = \\frac{P(D_1=1 \\mid H=1) P(H=1)}{P(D_1=1)} = 0.1306.",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://d2l.ai/chapter_preliminaries/probability.html",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "d2l-probability-equation-04",
+      "split": "development",
+      "documentId": "d2l-en",
+      "familyId": "f1e58db9f5229e4e33edcb91c9d34268adab171a208e736966cbf40e8d30fb88",
+      "tags": [
+        "equation",
+        "D2L",
+        "subscripts",
+        "fractions"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/d2l-probability-equation-04.png",
+        "sha256": "0d16afbf3568aacc904948a4c54e32278d923000a58d71c27d032f9fc91f85a0",
+        "width": 637,
+        "height": 46
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "P(H = 1 \\mid D_1 = 1, D_2 = 1)\n= \\frac{P(D_1 = 1, D_2 = 1 \\mid H=1) P(H=1)}{P(D_1 = 1, D_2 = 1)}\n= 0.8307.",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://d2l.ai/chapter_preliminaries/probability.html",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "d2l-probability-equation-05",
+      "split": "development",
+      "documentId": "d2l-en",
+      "familyId": "62ce21294de129fdc0d5c769edd7cca6a8af2d4b56e345effda88d0e5a1518a5",
+      "tags": [
+        "equation",
+        "D2L",
+        "superscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/d2l-probability-equation-05.png",
+        "sha256": "1536109f252702d3c017577a70d814375a5784cbe81ecb5992fa1454b3b7fc85",
+        "width": 371,
+        "height": 24
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\textrm{Var}[X] = E\\left[(X - E[X])^2\\right] = E[X^2] - E[X]^2.",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://d2l.ai/chapter_preliminaries/probability.html",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "d2l-gd-equation-01",
+      "split": "development",
+      "documentId": "d2l-en",
+      "familyId": "472023a0749da07ce70fd5c9df2325ecd505961df833d82da47c5c676354e769",
+      "tags": [
+        "equation",
+        "D2L",
+        "greek",
+        "superscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/d2l-gd-equation-01.png",
+        "sha256": "1ec058897746ab1a434e0468e9bee02d8dcb145f2f4403a98628b3801d5b1ee9",
+        "width": 274,
+        "height": 23
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "f(x + \\epsilon) = f(x) + \\epsilon f'(x) + \\mathcal{O}(\\epsilon^2).",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://d2l.ai/chapter_optimization/gd.html",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "d2l-gd-equation-02",
+      "split": "development",
+      "documentId": "d2l-en",
+      "familyId": "e0595dd7c6193d49c7a870b32dabd72b17e5d0111e6c3563edea0c24c471200a",
+      "tags": [
+        "equation",
+        "D2L",
+        "superscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/d2l-gd-equation-02.png",
+        "sha256": "3ddad167e39801db6a8495e09913789756561d352985dbe1ac39ea8096481706",
+        "width": 376,
+        "height": 22
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "f(x - \\eta f'(x)) = f(x) - \\eta f'^2(x) + \\mathcal{O}(\\eta^2 f'^2(x)).",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://d2l.ai/chapter_optimization/gd.html",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "d2l-gd-equation-03",
+      "split": "development",
+      "documentId": "d2l-en",
+      "familyId": "74c75f0c36b119e1693bf000966f115acd70d8518f5b9adacc2335a3e3d14f3c",
+      "tags": [
+        "equation",
+        "D2L",
+        "bold",
+        "greek",
+        "superscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/d2l-gd-equation-03.png",
+        "sha256": "7493f403e6663c4b39fef64c520ca6cc5829c2dc3771d2919c0429ddb2925f71",
+        "width": 320,
+        "height": 23
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "f(\\mathbf{x} + \\boldsymbol{\\epsilon}) = f(\\mathbf{x}) + \\mathbf{\\boldsymbol{\\epsilon}}^\\top \\nabla f(\\mathbf{x}) + \\mathcal{O}(\\|\\boldsymbol{\\epsilon}\\|^2).",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://d2l.ai/chapter_optimization/gd.html",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "d2l-gd-equation-04",
+      "split": "development",
+      "documentId": "d2l-en",
+      "familyId": "73ef3d6e133097a9b2e36f41e4c305761971269c6d9db80c4a35c50158ca4dfe",
+      "tags": [
+        "equation",
+        "D2L",
+        "bold",
+        "greek",
+        "superscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/d2l-gd-equation-04.png",
+        "sha256": "e74fd8362522cde798865743c060e1679de3cb195219bc7fd3a85561f9fc8de7",
+        "width": 368,
+        "height": 22
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\nabla f(\\mathbf{x}) + \\mathbf{H} \\boldsymbol{\\epsilon} = 0 \\textrm{ and hence }\n\\boldsymbol{\\epsilon} = -\\mathbf{H}^{-1} \\nabla f(\\mathbf{x}).",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://d2l.ai/chapter_optimization/gd.html",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "d2l-gd-equation-05",
+      "split": "development",
+      "documentId": "d2l-en",
+      "familyId": "791dd0e4bdf1d1071b159693bdbab57d381a594ed806b7cb365814b229e1dfce",
+      "tags": [
+        "equation",
+        "D2L",
+        "superscripts",
+        "fractions"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/d2l-gd-equation-05.png",
+        "sha256": "b8ea71a0b468f312f2875a7df2a99fdcaa5de834a2f18f008c9a7c1981aa5f86",
+        "width": 296,
+        "height": 51
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "e^{(k)} - \\frac{f'(x^{(k)})}{f''(x^{(k)})} = \\frac{1}{2} (e^{(k)})^2 \\frac{f'''(\\xi^{(k)})}{f''(x^{(k)})}.",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://d2l.ai/chapter_optimization/gd.html",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-gradient-equation-01",
+      "split": "development",
+      "documentId": "wikipedia-Gradient",
+      "familyId": "9f1a393e95d92a9f95695e851b62ab44b5e85a0ebab4a2c389eef5d0d37ca804",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "bold"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-gradient-equation-01.png",
+        "sha256": "f9cb1950db9f455abe93d192b87a46b7698831abb12d341c1b2e2440503949f0",
+        "width": 107,
+        "height": 22
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "df=\\nabla f \\cdot d\\mathbf{r}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Gradient",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-gradient-equation-02",
+      "split": "development",
+      "documentId": "wikipedia-Gradient",
+      "familyId": "f069c77f3679472f1995561a3cfef5284ff9d800eb65bccb03044d1c1aa98059",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "matrices",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-gradient-equation-02.png",
+        "sha256": "c0a4fefa1af274b01fd3b1d2aa72c7f29440c9ef4853db4967aea7c2d6c54540",
+        "width": 209,
+        "height": 80
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\nabla f(x, y, z) = \n\\begin{bmatrix}\n 2 \\\\\n 6y \\\\\n -\\cos z\n\\end{bmatrix}.\n",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Gradient",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-gradient-equation-03",
+      "split": "development",
+      "documentId": "wikipedia-Gradient",
+      "familyId": "732a2b3860759a4bd370e71f379699ed38fdaeacada66575adcd37c5f517d8dd",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "subscripts",
+        "fractions",
+        "matrices",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-gradient-equation-03.png",
+        "sha256": "1948290e2056d71caed442798eb23ebe79025317bb286feb1505ffef73ec5d37",
+        "width": 171,
+        "height": 113
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\nabla f(p) = \\begin{bmatrix}\\frac{\\partial f}{\\partial x_1}(p) \\\\ \\vdots \\\\ \\frac{\\partial f}{\\partial x_n}(p) \\end{bmatrix} ;",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Gradient",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-gradient-equation-04",
+      "split": "development",
+      "documentId": "wikipedia-Gradient",
+      "familyId": "fe16d80f95875d8cb1784810c41b4817417d5ce40f2ffd8a153dd6ade142b804",
+      "tags": [
+        "equation",
+        "Wikipedia"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-gradient-equation-04.png",
+        "sha256": "827718d1cfad165465f4a564a04ab692d748ceabe7467df555e36fb625b876d0",
+        "width": 218,
+        "height": 26
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "(f\\circ g)'(c) = \\nabla f(a)\\cdot g'(c),",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Gradient",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-gradient-equation-05",
+      "split": "development",
+      "documentId": "wikipedia-Gradient",
+      "familyId": "b59d6769f3bd5a059d9815af49697b60c6786a95e399cec5279bfc8520f22907",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "bold",
+        "subscripts",
+        "superscripts",
+        "fractions"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-gradient-equation-05.png",
+        "sha256": "6840e84fc7eb85a4d5f4f1702073e5a4e5d94fbae620ad4e58d8906372d7adb0",
+        "width": 177,
+        "height": 51
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\nabla \\mathbf{f}=g^{jk}\\frac{\\partial f^i}{\\partial x^j} \\mathbf{e}_i \\otimes \\mathbf{e}_k,",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Gradient",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-normal-distribution-equation-01",
+      "split": "development",
+      "documentId": "wikipedia-Normal_distribution",
+      "familyId": "a4ee2ee2ce5817583d95479ea9b099c98f701e0761931a35b20cc9516e9dea19",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "greek",
+        "superscripts",
+        "fractions"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-normal-distribution-equation-01.png",
+        "sha256": "b8babd8682b3bb4067e56b546cf56bf3982c1687acb61c1a285a4f15fbdabfa5",
+        "width": 294,
+        "height": 63
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\nf(x) = \\frac{1}{\\sqrt{2\\pi\\sigma^2}} \\exp{\\left(-\\frac{(x-\\mu)^2}{2\\sigma^2}\\right)}\\,.\n",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Normal_distribution",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-normal-distribution-equation-02",
+      "split": "development",
+      "documentId": "wikipedia-Normal_distribution",
+      "familyId": "362fa19e0a67b99893e84ee519eac91989d1a4992eebce7d39943549685ca735",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "greek",
+        "subscripts",
+        "superscripts",
+        "fractions",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-normal-distribution-equation-02.png",
+        "sha256": "057fd7bd52a35af325849f3ea10be61ced86081d89d0a3a2eb38533e62d4e15b",
+        "width": 523,
+        "height": 146
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\begin{align}\n\\Phi^{(0)}(x_0) &= \\frac{1}{\\sqrt{2\\pi}}\\int_{-\\infty}^{x_0}e^{-t^2/2}\\,dt \\\\\n\\Phi^{(1)}(x_0) &= \\frac{1}{\\sqrt{2\\pi}}e^{-x_0^2/2} \\\\\n\\Phi^{(n)}(x_0) &= -\\left(x_0\\Phi^{(n-1)}(x_0)+(n-2)\\Phi^{(n-2)}(x_0)\\right), & n \\geq 2\\,.\n\\end{align}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Normal_distribution",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-normal-distribution-equation-03",
+      "split": "development",
+      "documentId": "wikipedia-Normal_distribution",
+      "familyId": "dd7d5d2028e6a0e092ce9c00929ba12e22f678994d2050c1d7a298d56f0802dd",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "greek",
+        "superscripts",
+        "accents"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-normal-distribution-equation-03.png",
+        "sha256": "dd71a8a8c5e0f41b0f7dd92bad9f650fbdd84a76cdb33af30827ec5195fa9292",
+        "width": 304,
+        "height": 31
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "M(t) = \\operatorname{E}\\left[e^{tX}\\right] = \\hat f(it) = e^{\\mu t} e^{\\sigma^2 t^2/2}\\,.",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Normal_distribution",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-normal-distribution-equation-04",
+      "split": "development",
+      "documentId": "wikipedia-Normal_distribution",
+      "familyId": "83c6cd9aa6ad344c691f29163863efcf431fd2480724d35778eebc48958587d6",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "subscripts",
+        "superscripts",
+        "fractions"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-normal-distribution-equation-04.png",
+        "sha256": "87782d168bcaf420bee2a97ec127b22bd85a50a73bea08ea9ba4cfc3301df264",
+        "width": 332,
+        "height": 62
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "F = \\frac{\\left(X_1^2+X_2^2+\\cdots+X_n^2\\right)/n}{\\left(Y_1^2+Y_2^2+\\cdots+Y_m^2\\right)/m} \\sim F_{n,m}.",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Normal_distribution",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-normal-distribution-equation-05",
+      "split": "development",
+      "documentId": "wikipedia-Normal_distribution",
+      "familyId": "16e879b5bcb211980c574e5f66f21ffdd132befc2b697085dc716f3488e59634",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "bold",
+        "greek",
+        "subscripts",
+        "superscripts",
+        "fractions",
+        "multiline",
+        "accents"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-normal-distribution-equation-05.png",
+        "sha256": "7fed0b15102c38909b75bc4e8c8780cd683be9a4c2dcbd664a79cf1a445211c2",
+        "width": 540,
+        "height": 185
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\begin{align}\np(\\mathbf{X}\\mid\\mu,\\tau) &= \\prod_{i=1}^n \\sqrt{\\frac{\\tau}{2\\pi}} \\exp\\left(-\\frac{1}{2} \\tau(x_i-\\mu)^2\\right) \\\\\n&= \\left(\\frac{\\tau}{2\\pi}\\right)^{n/2} \\exp\\left(-\\frac{1}{2}\\tau \\sum_{i=1}^n (x_i-\\mu)^2\\right) \\\\\n&= \\left(\\frac{\\tau}{2\\pi}\\right)^{n/2} \\exp\\left[-\\frac{1}{2}\\tau \\left(\\sum_{i=1}^n(x_i-\\bar{x})^2 + n(\\bar{x} -\\mu)^2\\right)\\right].\n\\end{align}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Normal_distribution",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-bayes-theorem-equation-01",
+      "split": "development",
+      "documentId": "wikipedia-Bayes%27_theorem",
+      "familyId": "8475e762e246c28185e3730b2777d5d582ada7c0cb6ea0508a1cfbd50cfb41fd",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "fractions"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-bayes-theorem-equation-01.png",
+        "sha256": "c2ce5f9c7f26ac9c61eb1474f93a1f87551d032641275bada37b22a8b054c66f",
+        "width": 205,
+        "height": 55
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "P(A\\vert B) = \\frac{P(B \\vert A) P(A)}{P(B)}",
+            "display": false
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Bayes%27_theorem",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-bayes-theorem-equation-02",
+      "split": "development",
+      "documentId": "wikipedia-Bayes%27_theorem",
+      "familyId": "beb1d3f008e4c8b62f74c649245e84f1cd0508a08bc36390c0c4be95700d11ee",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "subscripts",
+        "fractions"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-bayes-theorem-equation-02.png",
+        "sha256": "7aa104b0a71b20bac951be7eb188ef01ed7a8702e338048ea77e14a266b37b63",
+        "width": 264,
+        "height": 57
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "P(A_i|B) = \\frac{P(A_i) P(B|A_i)}{\\sum_j P(A_j) P(B|A_j)} .",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Bayes%27_theorem",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-bayes-theorem-equation-03",
+      "split": "development",
+      "documentId": "wikipedia-Bayes%27_theorem",
+      "familyId": "3bbd1e497f9b71ac251e857a4b0b4ec452e5a62eb4318f4e022f7b53431d587b",
+      "tags": [
+        "equation",
+        "Wikipedia"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-bayes-theorem-equation-03.png",
+        "sha256": "a8d1f63920212557860554727979984f8392e40794ccc9339acb8ce41ee2c60c",
+        "width": 458,
+        "height": 24
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "P(H) = P(H|A)P(A) + P(H|B)P(B) + P(H|C)P(C).",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Bayes%27_theorem",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-bayes-theorem-equation-04",
+      "split": "development",
+      "documentId": "wikipedia-Bayes%27_theorem",
+      "familyId": "0ae3f9d712e6dd7ff4e77db6bf2edd44ee50e9a076fcc3ecca736e6dff10fbcd",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "subscripts",
+        "superscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-bayes-theorem-equation-04.png",
+        "sha256": "c3448df52a786fc5201ceb3c211b30fb66f5b45ffa06af8ce19e881486ae310b",
+        "width": 221,
+        "height": 27
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "P_X^y (A) = E (1_A (X) | Y = y)",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Bayes%27_theorem",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-bayes-theorem-equation-05",
+      "split": "development",
+      "documentId": "wikipedia-Bayes%27_theorem",
+      "familyId": "5d15095a1f1ff76116d9a3ceb2501870b2a652d20e4f432590d93fb1c9bab761",
+      "tags": [
+        "equation",
+        "Wikipedia"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-bayes-theorem-equation-05.png",
+        "sha256": "e35f5238a9ed8240c6ab9f1835bc43263c982728ed616f19839d14c6d70fb062",
+        "width": 232,
+        "height": 25
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "P(\\text{positive}|\\text{infected}) = 0.99.",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Bayes%27_theorem",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-eulers-formula-equation-01",
+      "split": "development",
+      "documentId": "wikipedia-Euler%27s_formula",
+      "familyId": "d10eb016965ca22f89236284c3b66a9f30af1b38e89e61165f7de51581c598b6",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "superscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-eulers-formula-equation-01.png",
+        "sha256": "14f59d4293442867a5b9b0d80f2754d044139c4c8023e3f7fdb4f6dcc9461cb6",
+        "width": 167,
+        "height": 26
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "e^{i x} = \\cos x + i \\sin x, ",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Euler%27s_formula",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-eulers-formula-equation-02",
+      "split": "development",
+      "documentId": "wikipedia-Euler%27s_formula",
+      "familyId": "71b1d177b03087d08f05a9200f056c8f31aa55c419e9f368a981844ea8f78cf2",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "subscripts",
+        "superscripts",
+        "fractions"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-eulers-formula-equation-02.png",
+        "sha256": "1864807f3efe550f109f88240442a0638c9a44ac61e9bfb475daa919f38dc236",
+        "width": 173,
+        "height": 41
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "e^z = \\lim_{n \\to \\infty} \\left(1+\\frac{z}{n}\\right)^n.",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Euler%27s_formula",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-eulers-formula-equation-03",
+      "split": "development",
+      "documentId": "wikipedia-Euler%27s_formula",
+      "familyId": "cd60c967d87adf90cea87e7373be6dff21d8aceb51c524e025f8d22f0b95425f",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "greek",
+        "superscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-eulers-formula-equation-03.png",
+        "sha256": "125c4fde314e7286d3bca1bdea92c60254d74d6d4b53e8926d37e9127c840ad1",
+        "width": 193,
+        "height": 28
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "e^{i x} = r \\left(\\cos \\theta + i \\sin \\theta\\right).",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Euler%27s_formula",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-eulers-formula-equation-04",
+      "split": "development",
+      "documentId": "wikipedia-Euler%27s_formula",
+      "familyId": "b45c95ba940227eb34f12b6dcee7e2fb5c87a00fc5b81631e3af675ff0182627",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "superscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-eulers-formula-equation-04.png",
+        "sha256": "982c7f29087012b1b76ba7fb402c8e7e7d13ef7190e4c6fc6cc362b1d41013fb",
+        "width": 102,
+        "height": 26
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "e^a e^b = e^{a + b}, ",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Euler%27s_formula",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-eulers-formula-equation-05",
+      "split": "development",
+      "documentId": "wikipedia-Euler%27s_formula",
+      "familyId": "d0dd9177ae1aa878666200c92f4c447e538391f1cc8c82e7389e71e09ae2b610",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "superscripts",
+        "fractions",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-eulers-formula-equation-05.png",
+        "sha256": "f73b671ef2faf14f02c3e676f26f2844641ecdbf679961912a10afc8048880f1",
+        "width": 352,
+        "height": 94
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\begin{align}\n\\cos iy &= \\frac{e^{-y} + e^y}{2} = \\cosh y, \\\\\n\\sin iy &= \\frac{e^{-y} - e^y}{2i} = \\frac{e^y - e^{-y}}{2}i = i\\sinh y.\n\\end{align}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Euler%27s_formula",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-fourier-transform-equation-01",
+      "split": "development",
+      "documentId": "wikipedia-Fourier_transform",
+      "familyId": "9debb900ce965cb0436e4d7dab3ffee860b53c78d44346f80d5e03e39666bf75",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "greek"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-fourier-transform-equation-01.png",
+        "sha256": "898436441ea1b30547ba99b94455dceaa0ad07da7c34d3b24aa6b28b29020ac9",
+        "width": 68,
+        "height": 21
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\omega = 2\\pi \\xi",
+            "display": false
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Fourier_transform",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-fourier-transform-equation-02",
+      "split": "development",
+      "documentId": "wikipedia-Fourier_transform",
+      "familyId": "1c9ba0b4f286ee7578b493baee0707cbfa453d8ed632aa37955e63a363c4c867",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "subscripts",
+        "superscripts",
+        "accents"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-fourier-transform-equation-02.png",
+        "sha256": "156b9c9740b13c418970a0f1ca9a2b0523cea926e80f37bbdb0d34c198963052",
+        "width": 336,
+        "height": 51
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "h(x) = (f \\star g)(x) = \\int_{-\\infty}^\\infty \\overline{f(y)}g(x + y)\\,dy",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Fourier_transform",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-fourier-transform-equation-03",
+      "split": "development",
+      "documentId": "wikipedia-Fourier_transform",
+      "familyId": "375aa1e408316abf3e6585fa83ccfda5da9e0664e9b7d2cfa2129fdc6903c615",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "subscripts",
+        "superscripts",
+        "accents",
+        "integrals"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-fourier-transform-equation-03.png",
+        "sha256": "fb1b73c72c9b286ceea6f109fe479b3583448ea94e895056994917447628033e",
+        "width": 210,
+        "height": 51
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": " \\widehat f (\\xi) = \\int _{-\\infty}^\\infty e^{-2i \\pi t \\xi} f(t) \\, dt ",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Fourier_transform",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-fourier-transform-equation-04",
+      "split": "development",
+      "documentId": "wikipedia-Fourier_transform",
+      "familyId": "fe0994586350d335baa5c120452c318c278252dc3bd2b00993aee4c92d39df5f",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "subscripts",
+        "superscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-fourier-transform-equation-04.png",
+        "sha256": "9fcab32ac8bf9d1a9cd439ce7816c6d08781156789cfcb1166b0c30457e69cc6",
+        "width": 324,
+        "height": 48
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\int_{\\mathbb{R}^n} f(x)\\mathcal{F}g(x)\\,dx = \\int_{\\mathbb{R}^n} \\mathcal{F}f(x)g(x)\\,dx. ",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Fourier_transform",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-fourier-transform-equation-05",
+      "split": "development",
+      "documentId": "wikipedia-Fourier_transform",
+      "familyId": "48f38c2709d1c41334df383485b6a9f4893656b37035b55b9598141fe4bbb165",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "superscripts",
+        "fractions"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-fourier-transform-equation-05.png",
+        "sha256": "7c2d3cd481ad4e6b945a1e6107ef8a9fe6712bab868ff6130f5d0b21f380afcc",
+        "width": 188,
+        "height": 53
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\frac{\\partial^2y(x, t)}{\\partial^2 x} = \\frac{\\partial^2y(x, t)}{\\partial^2t}.",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Fourier_transform",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-taylor-series-equation-01",
+      "split": "development",
+      "documentId": "wikipedia-Taylor_series",
+      "familyId": "a8cd0fc8862e0d547c786902e4e7659cfa5bb1122f0ed8dd76a25a34e1515e08",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "subscripts",
+        "superscripts",
+        "fractions"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-taylor-series-equation-01.png",
+        "sha256": "88ba117db23c081e7a868189e3e2df6995916cff1352e7f29b2bb16ae9161fbf",
+        "width": 556,
+        "height": 61
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": " f(a) + \\frac {f'(a)}{1!}(x-a) + \\frac{f''(a)}{2!} (x-a)^2+ \\cdots = \\sum_{n=0} ^ {\\infty} \\frac {f^{(n)}(a)}{n!} (x-a)^{n}. ",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Taylor_series",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-taylor-series-equation-02",
+      "split": "development",
+      "documentId": "wikipedia-Taylor_series",
+      "familyId": "74c6eef9ba1e2e2c5d9bdf8f7f311eaad6a332a1875c0b3b1071f3f82cec8329",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "subscripts",
+        "superscripts",
+        "fractions"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-taylor-series-equation-02.png",
+        "sha256": "5d2d89a2da14586cd48951b23a5716842732e6510128782e1406146df7207b45",
+        "width": 353,
+        "height": 58
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\arctan x = \\int_0^x \\frac{dt}{1+t^2} = \\sum_{n=0}^\\infty \\frac{(-1)^n}{2n+1}x^{2n+1},",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Taylor_series",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-taylor-series-equation-03",
+      "split": "development",
+      "documentId": "wikipedia-Taylor_series",
+      "familyId": "8cf73a724487be9d5fad283ca13f96bc7bad18062c84babddea54d764993699b",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "subscripts",
+        "superscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-taylor-series-equation-03.png",
+        "sha256": "770d7611bb6814259e2fc64810b199a16fe2753fb8964a753b4c56c993c7806a",
+        "width": 114,
+        "height": 58
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "y=\\sum_{n=0}^{\\infty}a_nx^n.",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Taylor_series",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-taylor-series-equation-04",
+      "split": "development",
+      "documentId": "wikipedia-Taylor_series",
+      "familyId": "f990158369de6d152e0988832cf49dae83f33776155648ebbda665965c854503",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "subscripts",
+        "superscripts",
+        "fractions"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-taylor-series-equation-04.png",
+        "sha256": "c76aa0f1ed66979979ed1599a1cd6d878800507b82b90607a82fbf55483a2abc",
+        "width": 306,
+        "height": 62
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\nf(x)=\\sum_{k=0}^n \\frac{f^{(k)}(a)}{k!}(x-a)^k+R_n(x),\n",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Taylor_series",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-taylor-series-equation-05",
+      "split": "development",
+      "documentId": "wikipedia-Taylor_series",
+      "familyId": "1936a9ca1a3352e43fac21dba3fffe5be7bd50529d30a7455984e1905480bc7a",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "subscripts",
+        "superscripts",
+        "fractions",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-taylor-series-equation-05.png",
+        "sha256": "63a3bc145f6ee183afe849f37c22c9388fd23b170763d89346c154eb97c70a9c",
+        "width": 727,
+        "height": 72
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\begin{align}\nT(x,y) &= f(a,b) +(x-a) f_x(a,b) +(y-b) f_y(a,b) \\\\\n&\\qquad {}+\\frac{1}{2!}\\left( (x-a)^2f_{xx}(a,b) \n+ 2(x-a)(y-b)f_{xy}(a,b) +(y-b)^2 f_{yy}(a,b) \\right)+ \\cdots\n\\end{align}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Taylor_series",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "arxiv-2405-21060-equation-01",
+      "split": "development",
+      "documentId": "arxiv:2405.21060",
+      "familyId": "82ed9a05b50ff7f44579a594bad4ad41dd19cbd4089152f0a224b5b0385afc34",
+      "tags": [
+        "equation",
+        "arXiv",
+        "subscripts",
+        "superscripts",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/arxiv-2405-21060-equation-01.png",
+        "sha256": "340f8211f837724d9aa9838a4057fc80cb2c9cc74e88908e37cb84add7652fad",
+        "width": 295,
+        "height": 78
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\begin{aligned}\\displaystyle h_{t} & \\displaystyle=Ah_{t-1}+Bx_{t} \\\\ \\displaystyle y_{t} & \\displaystyle=C^{\\top}h_{t}\\end{aligned}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://arxiv.org/html/2405.21060v1",
+        "license": "CC-BY-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "arxiv-2405-21060-equation-02",
+      "split": "development",
+      "documentId": "arxiv:2405.21060",
+      "familyId": "bf68ae1faade2b746d41bf251f83666e7b617c34670a3bc39598d74fb9de01eb",
+      "tags": [
+        "equation",
+        "arXiv"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/arxiv-2405-21060-equation-02.png",
+        "sha256": "c4ecabd78c66ef47784a82562310fa37dc861f8fbaf0a7e1e4d06b8b265f9f0a",
+        "width": 800,
+        "height": 26
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "Y=\\mathsf{contract}(\\mathtt{TN},\\mathtt{SN},\\mathtt{SP},\\mathtt{TS}\\to\\mathtt{TP})(Q,K,V,L)",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://arxiv.org/html/2405.21060v1",
+        "license": "CC-BY-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "arxiv-2405-21060-equation-03",
+      "split": "development",
+      "documentId": "arxiv:2405.21060",
+      "familyId": "29b2ac95a9d33b0bcb3cfb40ee00240de25ddbc13bffa9e51769f79e1fa6c096",
+      "tags": [
+        "equation",
+        "arXiv",
+        "subscripts",
+        "matrices",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/arxiv-2405-21060-equation-03.png",
+        "sha256": "a5fb9772d5949860beba31e24e1eb214f6cb961eb0bfe5a849496b397978f188",
+        "width": 800,
+        "height": 45
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\displaystyle\\begin{bmatrix}a_{t}&b_{t}\\\\\n0&1\\end{bmatrix}\\begin{bmatrix}a_{s}&b_{s}\\\\\n0&1\\end{bmatrix}=\\begin{bmatrix}a_{t}a_{s}&a_{t}b_{s}+b_{t}\\\\\n0&1\\end{bmatrix}.",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://arxiv.org/html/2405.21060v1",
+        "license": "CC-BY-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "arxiv-2406-04093-equation-01",
+      "split": "development",
+      "documentId": "arxiv:2406.04093",
+      "familyId": "c69933045845d0284f8cb6d0be304181247af6d3a53e3014b7b6a9638aa2b4ad",
+      "tags": [
+        "equation",
+        "arXiv",
+        "subscripts",
+        "multiline",
+        "accents"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/arxiv-2406-04093-equation-01.png",
+        "sha256": "8848d47ceb3ef0ee112c8cfed75ba3d8470e87718db6d552c3cf82279727c26c",
+        "width": 800,
+        "height": 68
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\begin{aligned}\\displaystyle z & \\displaystyle=\\text{ReLU}(W_{\\text{enc}}(x-b_{\\text{pre}})+b_{\\text{enc}}) \\\\ \\displaystyle\\hat{x} & \\displaystyle=W_{\\text{dec}}z+b_{\\text{pre}}\\end{aligned}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://arxiv.org/html/2406.04093v1",
+        "license": "CC-BY-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "arxiv-2406-04093-equation-02",
+      "split": "development",
+      "documentId": "arxiv:2406.04093",
+      "familyId": "d7f96cc825307ace9e64fafd3961213a104fce93b10a1ea8f6713dbc0558b538",
+      "tags": [
+        "equation",
+        "arXiv",
+        "subscripts",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/arxiv-2406-04093-equation-02.png",
+        "sha256": "947f088f3eebb29845ec2632842199ed6b0763660b50f6e98e8c453acb288ef6",
+        "width": 800,
+        "height": 35
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\begin{aligned}\\displaystyle z & \\displaystyle=\\text{TopK}(W_{\\text{enc}}(x-b_{\\text{pre}}))\\end{aligned}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://arxiv.org/html/2406.04093v1",
+        "license": "CC-BY-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "arxiv-2406-04093-equation-03",
+      "split": "development",
+      "documentId": "arxiv:2406.04093",
+      "familyId": "4c850b8ccba84532eb8efa80ca39d564c93ff94f019cea7149f37a167298315e",
+      "tags": [
+        "equation",
+        "arXiv",
+        "greek",
+        "subscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/arxiv-2406-04093-equation-03.png",
+        "sha256": "bc22a74fcc4a37f54f5d00a838aff9068403bde55dcebd7c5d43f7a16bb3596d",
+        "width": 800,
+        "height": 35
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\displaystyle L(n,k)=\\exp(\\alpha+\\beta_{k}\\log(k)+\\beta_{n}\\log(n)+\\gamma\\log(k)\\log(n))+\\exp(\\zeta+\\eta\\log(k))",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://arxiv.org/html/2406.04093v1",
+        "license": "CC-BY-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "arxiv-2412-05265-equation-01",
+      "split": "development",
+      "documentId": "arxiv:2412.05265",
+      "familyId": "5c0e74d0cdf814e74f12980646130f149221ccd30be5b735c6c500f1d3015fcb",
+      "tags": [
+        "equation",
+        "arXiv",
+        "subscripts",
+        "superscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/arxiv-2412-05265-equation-01.png",
+        "sha256": "0db5b936c47411a8e757223448f2f0a4eaa2993c8b8667c5814c4a6a56ef5b4e",
+        "width": 800,
+        "height": 60
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "V_{\\pi}(s_{0})=\\mathbb{E}_{{p(a_{0},s_{1},a_{1},\\ldots,a_{T},s_{T}|s_{0},\\pi)}}\\left[{\\sum_{t=0}^{T}R(s_{t},a_{t})|s_{0}}\\right]",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://arxiv.org/html/2412.05265v5",
+        "license": "CC-BY-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "arxiv-2412-05265-equation-02",
+      "split": "development",
+      "documentId": "arxiv:2412.05265",
+      "familyId": "484aedc8ddae3440f2c6605d185497d8210c536b04de29532eef511af4fb4c93",
+      "tags": [
+        "equation",
+        "arXiv",
+        "greek",
+        "subscripts",
+        "superscripts",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/arxiv-2412-05265-equation-02.png",
+        "sha256": "5d82830c5c1d591704cc4ccf03d1c5be27cd90af1b7b435cae8528ac11b048fd",
+        "width": 800,
+        "height": 60
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\begin{aligned}\\displaystyle v_{i} & \\displaystyle=V(s_{i})+\\sum_{t=i}^{i+n-1}\\gamma^{t-i}\\left(\\prod_{t^{\\prime}=i}^{t-1}c_{t^{\\prime}}\\right)\\rho_{t}\\delta_{t}\\end{aligned}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://arxiv.org/html/2412.05265v5",
+        "license": "CC-BY-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "arxiv-2412-05265-equation-03",
+      "split": "development",
+      "documentId": "arxiv:2412.05265",
+      "familyId": "aa40212e6c86baec9f8883434c4b329b11f2af780046637118b523cda93c7200",
+      "tags": [
+        "equation",
+        "arXiv",
+        "bold",
+        "greek",
+        "subscripts",
+        "superscripts",
+        "accents"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/arxiv-2412-05265-equation-03.png",
+        "sha256": "02235b146c6345ea6da372e22555877feb9204bd18182f6a6235358dd517eaa5",
+        "width": 800,
+        "height": 55
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "u_{i}(\\hat{{\\bm{h}}}_{t})=\\sum_{k=0}^{t-1}\\gamma^{k}\\mathcal{R}_{i}(s_{k},{\\bm{a}}_{k},s_{k+1})",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://arxiv.org/html/2412.05265v5",
+        "license": "CC-BY-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-matrix-multiplication-equation-01",
+      "split": "development",
+      "documentId": "wikipedia-Matrix_multiplication",
+      "familyId": "8d60c263d0f2d918742e9c84c107135b0acbc8bd1a34dc0ab3df5b3478917bc7",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "bold",
+        "subscripts",
+        "matrices",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-matrix-multiplication-equation-01.png",
+        "sha256": "909f4ac09bf325327cffd2cf8e7610eea9c45933e16307d64c275dc41273c8ef",
+        "width": 528,
+        "height": 124
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\mathbf{A}=\\begin{pmatrix}\n a_{11} & a_{12} & \\cdots & a_{1n} \\\\\n a_{21} & a_{22} & \\cdots & a_{2n} \\\\\n \\vdots & \\vdots & \\ddots & \\vdots \\\\\n a_{m1} & a_{m2} & \\cdots & a_{mn} \\\\\n\\end{pmatrix},\\quad\\mathbf{B}=\\begin{pmatrix}\n b_{11} & b_{12} & \\cdots & b_{1p} \\\\\n b_{21} & b_{22} & \\cdots & b_{2p} \\\\\n \\vdots & \\vdots & \\ddots & \\vdots \\\\\n b_{n1} & b_{n2} & \\cdots & b_{np} \\\\\n\\end{pmatrix}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Matrix_multiplication",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-matrix-multiplication-equation-02",
+      "split": "development",
+      "documentId": "wikipedia-Matrix_multiplication",
+      "familyId": "26492b97d5f45824eeddb5f17b61f97cc4056fc46b70e0627f313bc2b2744598",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "greek",
+        "matrices",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-matrix-multiplication-equation-02.png",
+        "sha256": "7ed0ee0bbdd7ef6f6922fd755ab8825b0c552713817a5b7df90d60fdae2a1ffa",
+        "width": 1024,
+        "height": 52
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\begin{bmatrix} \\cos \\beta & - \\sin \\beta \\\\ \\sin \\beta & \\cos \\beta \\end{bmatrix} \n       \\begin{bmatrix} \\cos \\alpha & - \\sin \\alpha \\\\ \\sin \\alpha & \\cos \\alpha \\end{bmatrix}\n     = \\begin{bmatrix} \\cos \\beta \\cos \\alpha - \\sin \\beta \\sin \\alpha & - \\cos \\beta \\sin \\alpha - \\sin \\beta \\cos \\alpha \\\\\n                       \\sin \\beta \\cos \\alpha + \\cos \\beta \\sin \\alpha & - \\sin \\beta \\sin \\alpha + \\cos \\beta \\cos \\alpha \\end{bmatrix}\n     = \\begin{bmatrix} \\cos (\\alpha+\\beta) & - \\sin(\\alpha+\\beta) \\\\ \\sin(\\alpha+\\beta) & \\cos(\\alpha+\\beta) \\end{bmatrix},",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Matrix_multiplication",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-matrix-multiplication-equation-03",
+      "split": "development",
+      "documentId": "wikipedia-Matrix_multiplication",
+      "familyId": "6d9972c6d5c8994a2095436813974bebe39b34d51e141b198a78d741d72c4d84",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "bold"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-matrix-multiplication-equation-03.png",
+        "sha256": "ba48072555a12c9fd3af96f8d1a93417ee02349f85caf1053242faa3c20a6d51",
+        "width": 139,
+        "height": 25
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": " c(\\mathbf{AB}) = (c \\mathbf{A})\\mathbf{B}",
+            "display": false
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Matrix_multiplication",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-determinant-equation-01",
+      "split": "development",
+      "documentId": "wikipedia-Determinant",
+      "familyId": "7f050681e38f5b559fd75cee746fdcd143b707808b4120ecafcfdb40fb589e07",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "matrices",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-determinant-equation-01.png",
+        "sha256": "b5adfb925cf6677764bee9a9346573addde365e88edb5b8f7176660880d07d3e",
+        "width": 456,
+        "height": 149
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\begin{aligned}\n\\det \\begin{bmatrix} a & b\\\\c & d \\end{bmatrix}&= ad-bc,\\\\[10pt]\n\\det \\begin{bmatrix} \na & b & c \\\\ \nd & e & f \\\\ \ng & h & i \n\\end{bmatrix} &= aei + bfg + cdh - ceg - bdi - afh.\n\\end{aligned}\n",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Determinant",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-determinant-equation-02",
+      "split": "development",
+      "documentId": "wikipedia-Determinant",
+      "familyId": "8cee850d8e8dcd58e51d5d6ef4b16d680863e2450a71495e5082b9c394f9a13d",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "subscripts",
+        "superscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-determinant-equation-02.png",
+        "sha256": "3ecaac0ccadb6c94ba24e913dfa1084c13cafceafd94186d043bc564beaaf2af",
+        "width": 164,
+        "height": 60
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\det A = \\sum_{j=1}^n a_{i,j}A_{i,j},",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Determinant",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-determinant-equation-03",
+      "split": "development",
+      "documentId": "wikipedia-Determinant",
+      "familyId": "5f93849426b1925704c579145762c98057354fb202169596cccf0a9fea8f6d6b",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "subscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-determinant-equation-03.png",
+        "sha256": "db5ae9e11c1ce0bec235cdf4f82540c187eb4c460ee3d7bd25de5a19a1839af0",
+        "width": 136,
+        "height": 24
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "P_2=(x_2,y_2,z_2)",
+            "display": false
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Determinant",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-eigenvalues-and-eigenvectors-equation-01",
+      "split": "development",
+      "documentId": "wikipedia-Eigenvalues_and_eigenvectors",
+      "familyId": "ca5d5cecf67f1622f379fd4712258b7bcf50b9be531d76a843de4a6fb62e0887",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "bold",
+        "greek"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-eigenvalues-and-eigenvectors-equation-01.png",
+        "sha256": "5c52289d61bee9fa895eea2199af57075cb451163f76a53709258db316ff6a12",
+        "width": 75,
+        "height": 19
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "T \\mathbf v = \\lambda \\mathbf v",
+            "display": false
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-eigenvalues-and-eigenvectors-equation-02",
+      "split": "development",
+      "documentId": "wikipedia-Eigenvalues_and_eigenvectors",
+      "familyId": "36288dfff0e440ba5dd3ac921e5df7736bcbbac10cdb7ee5f6f3f36634c53f57",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "bold",
+        "superscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-eigenvalues-and-eigenvectors-equation-02.png",
+        "sha256": "d643e4f498c08cb03fba20fbb4e1aeca8e348d34992e59bf7709797cdb499acd",
+        "width": 116,
+        "height": 24
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\nA^\\mathsf{T} \\mathbf{u}^\\mathsf{T} = \\kappa \\mathbf{u}^\\mathsf{T}.\n",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-eigenvalues-and-eigenvectors-equation-03",
+      "split": "development",
+      "documentId": "wikipedia-Eigenvalues_and_eigenvectors",
+      "familyId": "9287cc4f823aab3c3f7ab1c31cb91d6cf138fd7f9be9f5b313d7d4f1c33ca12b",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "bold",
+        "subscripts",
+        "matrices",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-eigenvalues-and-eigenvectors-equation-03.png",
+        "sha256": "821d6a4441be452b3fdfbb2f5630762aed4a6e3d4ed96fff8161412ce1276254",
+        "width": 350,
+        "height": 77
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\n  \\mathbf v_{\\lambda_1} = \\begin{bmatrix} 1\\\\ 0\\\\ 0 \\end{bmatrix},\\quad\n  \\mathbf v_{\\lambda_2} = \\begin{bmatrix} 0\\\\ 1\\\\ 0 \\end{bmatrix},\\quad\n  \\mathbf v_{\\lambda_3} = \\begin{bmatrix} 0\\\\ 0\\\\ 1 \\end{bmatrix},\n",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-probability-density-function-equation-01",
+      "split": "development",
+      "documentId": "wikipedia-Probability_density_function",
+      "familyId": "d4faeb6478bccd0c1417eaa83a48451b287c3e50c38c08547321964151fdcfbe",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "subscripts",
+        "superscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-probability-density-function-equation-01.png",
+        "sha256": "499cb71ac883c6437ec2e6c47004b9c7d2a0fab87b299712580703567bbf23c9",
+        "width": 255,
+        "height": 54
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": " \\Pr [a \\le X \\le b] = \\int_a^b f_X(x) \\, dx .",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Probability_density_function",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-probability-density-function-equation-02",
+      "split": "development",
+      "documentId": "wikipedia-Probability_density_function",
+      "familyId": "16d7bca884294de720e623aec31cf489a194199e7790d699a79b08c7ba6c1f0d",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "subscripts",
+        "integrals"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-probability-density-function-equation-02.png",
+        "sha256": "9f766fd49ed19abf55d2c43d0f2fd39e4f4219895abeaad9c5994bb4a0daff05",
+        "width": 440,
+        "height": 48
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "f_{X_i}(x_i) = \\int f(x_1,\\ldots,x_n)\\, dx_1 \\cdots dx_{i-1}\\,dx_{i+1}\\cdots dx_n .",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Probability_density_function",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "wiki-probability-density-function-equation-03",
+      "split": "development",
+      "documentId": "wikipedia-Probability_density_function",
+      "familyId": "9283bcc01ed9f0cce8f07814bb8fefee791575a73603bf5e548279b632264ba2",
+      "tags": [
+        "equation",
+        "Wikipedia",
+        "bold",
+        "greek",
+        "subscripts",
+        "superscripts",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/wiki-probability-density-function-equation-03.png",
+        "sha256": "f8863bb6ba424457327f266e90baf0690c8888530ae8311ede5051020aa784f5",
+        "width": 355,
+        "height": 196
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\begin{align}\n\\operatorname{E}_Y[Y] &=\\int_{\\R} y f_Y(y) \\, dy \\\\\n&= \\int_{\\R} y \\int_{\\R^n} f_X(\\mathbf{x}) \\delta\\big(y - V(\\mathbf{x})\\big) \\,d \\mathbf{x} \\,dy \\\\\n&= \\int_{{\\mathbb R}^n} \\int_{\\mathbb R} y f_{X}(\\mathbf{x}) \\delta\\big(y - V(\\mathbf{x})\\big) \\, dy \\, d \\mathbf{x} \\\\\n&= \\int_{\\mathbb R^n} V(\\mathbf{x}) f_X(\\mathbf{x}) \\, d \\mathbf{x}=\\operatorname{E}_X[V(X)].\n\\end{align}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Probability_density_function",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "quantecon-linear-decisions-equation-01",
+      "split": "development",
+      "documentId": "quantecon-dp2",
+      "familyId": "190a11478671da44b294ce600f8e94df9632d8f6f5a9e0e070ac3105d4750a16",
+      "tags": [
+        "equation",
+        "QuantEcon",
+        "greek",
+        "subscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/quantecon-linear-decisions-equation-01.png",
+        "sha256": "b1be399382deab5880038b7674f6701019d9f8992474731f55560f7fe6eeff44",
+        "width": 634,
+        "height": 25
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "T_\\sigma \\, v = r_\\sigma + K_\\sigma \\, v.",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://quantecon.github.io/book-dp2/ch-ldps/",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "quantecon-linear-decisions-equation-02",
+      "split": "development",
+      "documentId": "quantecon-dp2",
+      "familyId": "7b83cf1cb641532d2fbccc122c78d5a8d4572daf4548f4d5cd31d683906c8460",
+      "tags": [
+        "equation",
+        "QuantEcon",
+        "greek",
+        "subscripts",
+        "fractions"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/quantecon-linear-decisions-equation-02.png",
+        "sha256": "f56e0c67716726b741f49170fc58dcd50a02ee18f2c44c61430ef0837c6d0faa",
+        "width": 602,
+        "height": 60
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "(T_\\sigma \\, v)(x) = r(x, \\sigma(x)) + \\frac{\\beta}{\\theta}\n            \\ln \\left[ \\sum_{x'} \\exp(\\theta v(x')) P(x,\\sigma(x),x') \\right].",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://quantecon.github.io/book-dp2/ch-ldps/",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "quantecon-linear-decisions-equation-03",
+      "split": "development",
+      "documentId": "quantecon-dp2",
+      "familyId": "c6abda8c2e05d6dd4e9414d25af3690d4d4f3d14b9eb473a98fe41fe0c3335c7",
+      "tags": [
+        "equation",
+        "QuantEcon",
+        "greek",
+        "subscripts",
+        "superscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/quantecon-linear-decisions-equation-03.png",
+        "sha256": "6d1639dbf242a32c0b05f29347ef2d048012eafde7d88d8baad477c1b22947ff",
+        "width": 594,
+        "height": 57
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "v_\\sigma = (I - K_\\sigma)^{-1} r_\\sigma\n    = \\sum_{t=0}^{\\infty} K_\\sigma^t r_\\sigma.",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://quantecon.github.io/book-dp2/ch-ldps/",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "neuromatch-matrices-equation-01",
+      "split": "development",
+      "documentId": "neuromatch-compneuro",
+      "familyId": "a43010b28fc5d6c2fc958fe7e3b3958117a1ddf8f1d709b1e5a60608fc461ecb",
+      "tags": [
+        "equation",
+        "Neuromatch",
+        "bold",
+        "matrices",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/neuromatch-matrices-equation-01.png",
+        "sha256": "4bc982c4c62124a0f33995053e8994810b795f3989810efeedd853268d2815c6",
+        "width": 64,
+        "height": 46
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\mathbf{x} = \\begin{bmatrix}\n2 \\\\\n6  \\\\\n\\end{bmatrix}",
+            "display": false
+          }
+        ]
+      },
+      "source": {
+        "url": "https://compneuro.neuromatch.io/tutorials/W0D3_LinearAlgebra/student/W0D3_Tutorial2.html",
+        "license": "CC-BY-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "neuromatch-matrices-equation-02",
+      "split": "development",
+      "documentId": "neuromatch-compneuro",
+      "familyId": "5998d5df37bdc240cdd33b01f777acd047172f06f60f71a8b4708e60768d6097",
+      "tags": [
+        "equation",
+        "Neuromatch",
+        "matrices",
+        "multiline",
+        "accents"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/neuromatch-matrices-equation-02.png",
+        "sha256": "a68a5819c787c28250822731fda0930020bb1d3593862234d9a1d45132774d2a",
+        "width": 63,
+        "height": 46
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\bar{x} = \\begin{bmatrix}\n2 \\\\\n3  \\\\\n\\end{bmatrix}",
+            "display": false
+          }
+        ]
+      },
+      "source": {
+        "url": "https://compneuro.neuromatch.io/tutorials/W0D3_LinearAlgebra/student/W0D3_Tutorial2.html",
+        "license": "CC-BY-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "neuromatch-matrices-equation-03",
+      "split": "development",
+      "documentId": "neuromatch-compneuro",
+      "familyId": "e8df3e48a06cc1ef01db2e29fab1e9be46fd0d43ce2cf7f571304f0726391796",
+      "tags": [
+        "equation",
+        "Neuromatch",
+        "subscripts",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/neuromatch-matrices-equation-03.png",
+        "sha256": "87b67c91eb1600b62634303ac540c044c7cc94500be829987b23aef424208489",
+        "width": 110,
+        "height": 44
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\\begin{align}\nr_1 + 3r_2 &= g_{p_1} \\\\\n2r_1 + r_2 &= g_{p_2}\n\\end{align}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://compneuro.neuromatch.io/tutorials/W0D3_LinearAlgebra/student/W0D3_Tutorial2.html",
+        "license": "CC-BY-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "distill-bayesian-optimization-equation-01",
+      "split": "development",
+      "documentId": "distill:2020/bayesian-optimization",
+      "familyId": "3c479b5a57513ddc5c1a6a233befc1c25a149148c5cfe8df61286bf70d08c671",
+      "tags": [
+        "equation",
+        "Distill",
+        "greek",
+        "subscripts"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/distill-bayesian-optimization-equation-01.png",
+        "sha256": "b4c18b4cc00a13724b5eb73f54052e238475201914c0d1fc7fc98245c158a6fb",
+        "width": 160,
+        "height": 26
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "x_t = \\text{argmax}_x \\alpha(x)",
+            "display": false
+          }
+        ]
+      },
+      "source": {
+        "url": "https://distill.pub/2020/bayesian-optimization/",
+        "license": "CC-BY-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "distill-bayesian-optimization-equation-02",
+      "split": "development",
+      "documentId": "distill:2020/bayesian-optimization",
+      "familyId": "ca7661a13b8e336db2dc0aca21071698087bd475ddbb8fb00a064f60d2703f05",
+      "tags": [
+        "equation",
+        "Distill",
+        "greek",
+        "subscripts",
+        "superscripts",
+        "fractions"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/distill-bayesian-optimization-equation-02.png",
+        "sha256": "ac663e913b51b4796da3d4f40d74814825630cca183970492dc069edaf611318",
+        "width": 348,
+        "height": 49
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "x_{t+1} = argmax_x \\Phi\\left(\\frac{\\mu_t(x) - f(x^+) - \\epsilon}{\\sigma_t(x)}\\right)",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://distill.pub/2020/bayesian-optimization/",
+        "license": "CC-BY-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "distill-bayesian-optimization-equation-03",
+      "split": "development",
+      "documentId": "distill:2020/bayesian-optimization",
+      "familyId": "23f02c5d730d68bea481888f3e7d8157701c6a02c10d060d2a35939a28074a78",
+      "tags": [
+        "equation",
+        "Distill",
+        "greek",
+        "subscripts",
+        "superscripts",
+        "multiline"
+      ],
+      "image": {
+        "file": "tests/corpus-v2/images/distill-bayesian-optimization-equation-03.png",
+        "sha256": "c0b737cd65d21f22169be79d9f9daebb91f282a2a6cc0120f52489b9ffecb6a2",
+        "width": 549,
+        "height": 61
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "\n        EI(x)=\n        \\begin{cases}\n        (\\mu_t(x) - f(x^+) - \\epsilon)\\Phi(Z) + \\sigma_t(x)\\phi(Z), & \\text{if}\\ \\sigma_t(x) > 0 \\\\\n        0, & \\text{if}\\ \\sigma_t(x) = 0\n        \\end{cases}\n      ",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://distill.pub/2020/bayesian-optimization/",
+        "license": "CC-BY-4.0",
+        "previouslyEvaluated": true
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "hamilton-s-equations-01-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Hamilton's_equations",
+      "familyId": "a4daecb658d0db0eb0bf20bea5ca15b158c11bc785efb2c1deaa4724838eba7b",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/hamilton-s-equations-01-zoom-1.png",
+        "sha256": "32fe557a88d6cdd1abffbb2ff570922e638c5b4210163fd32177c86356afb610",
+        "width": 171,
+        "height": 33
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle \\textstyle p_{i}({\\boldsymbol {q}},{\\boldsymbol {\\dot {q}}},t)~{\\stackrel {\\text{def}}{=}}~{\\partial {\\mathcal {L}}}/{\\partial {\\dot {q}}^{i}}}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Hamilton's_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "e171b33badc9ff9133683ba413b78bb363b2aa0b53e5776d1b25c7272a4d6e58",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Hamiltonian_mechanics&oldid=1381752488#From_Euler%E2%80%93Lagrange_equation_to_Hamilton's_equations"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "hamilton-s-equations-02-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Hamilton's_equations",
+      "familyId": "f6ea2410d867ad3ac58f02793498b927b2b83a6388c6a4ab11ba400b547ae6a9",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/hamilton-s-equations-02-zoom-1.png",
+        "sha256": "f9aeeb5611b34ddcf1d9e9f5c60e491e0a6b9f075ace1d516c784770c5d89a43",
+        "width": 123,
+        "height": 24
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle ({\\boldsymbol {q}},{\\boldsymbol {\\dot {q}}})\\to \\left({\\boldsymbol {p}},{\\boldsymbol {q}}\\right)}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Hamilton's_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "e171b33badc9ff9133683ba413b78bb363b2aa0b53e5776d1b25c7272a4d6e58",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Hamiltonian_mechanics&oldid=1381752488#From_Euler%E2%80%93Lagrange_equation_to_Hamilton's_equations"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "hamilton-s-equations-03-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Hamilton's_equations",
+      "familyId": "84cc56cfe337bc2ade453b3ffd8eb92dd33bbb69f886050c82ee14ba1a38521e",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/hamilton-s-equations-03-zoom-1.png",
+        "sha256": "efa0c8da9e8e597cec5864f440783f70719449a072484811590fede6060d0ba4",
+        "width": 129,
+        "height": 24
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle ({\\boldsymbol {p}},{\\boldsymbol {q}})\\to ({\\boldsymbol {q}},{\\boldsymbol {\\dot {q}}}).}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Hamilton's_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "e171b33badc9ff9133683ba413b78bb363b2aa0b53e5776d1b25c7272a4d6e58",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Hamiltonian_mechanics&oldid=1381752488#From_Euler%E2%80%93Lagrange_equation_to_Hamilton's_equations"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "hamilton-s-equations-04-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Hamilton's_equations",
+      "familyId": "335b7f4a747fefd49b9eb969e551db925982cf434a23b16f7f7e982331907869",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/hamilton-s-equations-04-zoom-1.png",
+        "sha256": "b1af4c85bc9f1741b5eff97c8d5e2c57a9da669ce06c365c73237373115323f8",
+        "width": 244,
+        "height": 57
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle E_{\\mathcal {L}}({\\boldsymbol {q}},{\\boldsymbol {\\dot {q}}},t)\\,{\\stackrel {\\text{def}}{=}}\\,\\sum _{i=1}^{n}{\\dot {q}}^{i}{\\frac {\\partial {\\mathcal {L}}}{\\partial {\\dot {q}}^{i}}}-{\\mathcal {L}}.}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Hamilton's_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "e171b33badc9ff9133683ba413b78bb363b2aa0b53e5776d1b25c7272a4d6e58",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Hamiltonian_mechanics&oldid=1381752488#From_Euler%E2%80%93Lagrange_equation_to_Hamilton's_equations"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "hamilton-s-equations-05-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Hamilton's_equations",
+      "familyId": "f82de8a17a24605dd495cde693348a081bbcad61d2abadc8fd6a1124c4236e22",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/hamilton-s-equations-05-zoom-1.png",
+        "sha256": "40e4f20a345cbcae409335bc5683c8b113ceda0c685954ab6bfc21cb10922013",
+        "width": 79,
+        "height": 24
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle {\\mathcal {H}}({\\boldsymbol {p}},{\\boldsymbol {q}},t)}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Hamilton's_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "e171b33badc9ff9133683ba413b78bb363b2aa0b53e5776d1b25c7272a4d6e58",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Hamiltonian_mechanics&oldid=1381752488#From_Euler%E2%80%93Lagrange_equation_to_Hamilton's_equations"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "hamilton-s-equations-06-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Hamilton's_equations",
+      "familyId": "03ac46c2b6dfb32ebe8f67c2439f8956e9c17f9f12366d94d7bc07db75229a24",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/hamilton-s-equations-06-zoom-1.png",
+        "sha256": "3f0c7149ac804f00dc495d4d4db19b40de71a140bb6ee6c2af625d917b1dbb42",
+        "width": 226,
+        "height": 52
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle {\\mathcal {H}}{\\left({\\frac {\\partial {\\mathcal {L}}}{\\partial {\\boldsymbol {\\dot {q}}}}},{\\boldsymbol {q}},t\\right)}=E_{\\mathcal {L}}({\\boldsymbol {q}},{\\boldsymbol {\\dot {q}}},t)}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Hamilton's_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "e171b33badc9ff9133683ba413b78bb363b2aa0b53e5776d1b25c7272a4d6e58",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Hamiltonian_mechanics&oldid=1381752488#From_Euler%E2%80%93Lagrange_equation_to_Hamilton's_equations"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "hamilton-s-equations-07-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Hamilton's_equations",
+      "familyId": "38d8d4eeb45ba197fe4fc935fea6e1b764286e25efd081d0094216e224e911dd",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/hamilton-s-equations-07-zoom-1.png",
+        "sha256": "8b8869727654bd7789bb324bb4eeb29c5ae101b48d3a9090d09b40b772318372",
+        "width": 275,
+        "height": 58
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle {\\mathcal {H}}({\\boldsymbol {p}},{\\boldsymbol {q}},t)=\\sum _{i=1}^{n}p_{i}{\\dot {q}}^{i}-{\\mathcal {L}}({\\boldsymbol {q}},{\\boldsymbol {\\dot {q}}},t),}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Hamilton's_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "e171b33badc9ff9133683ba413b78bb363b2aa0b53e5776d1b25c7272a4d6e58",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Hamiltonian_mechanics&oldid=1381752488#From_Euler%E2%80%93Lagrange_equation_to_Hamilton's_equations"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "hamilton-s-equations-08-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Hamilton's_equations",
+      "familyId": "9c8eef7078cb27e96d8cb7c78112445601516132b9e1844415dd7b2ac2057cb1",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/hamilton-s-equations-08-zoom-1.png",
+        "sha256": "2dca76baf6e711314b6062223bd0d67db37efc5125776e5be893f1c712f4d052",
+        "width": 140,
+        "height": 27
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle {\\boldsymbol {\\dot {q}}}=({\\dot {q}}^{1},\\ldots ,{\\dot {q}}^{n})}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Hamilton's_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "e171b33badc9ff9133683ba413b78bb363b2aa0b53e5776d1b25c7272a4d6e58",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Hamiltonian_mechanics&oldid=1381752488#From_Euler%E2%80%93Lagrange_equation_to_Hamilton's_equations"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "christoffel-symbols-01-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Christoffel_symbols",
+      "familyId": "01eecc755fd0337d895d44c446dc0f98740887186e76b943405db3b3f9ac7b4f",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/christoffel-symbols-01-zoom-1.png",
+        "sha256": "a0b06d75c70ce297cbff5d3991e80acbf74613ddf7a1e59a3e4508dbe80acbf3",
+        "width": 98,
+        "height": 25
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle \\varphi :U\\to \\mathbb {R} ^{n}}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Christoffel_symbols",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "6e374625e437d0909845ce1fe3c9930109236912475ac995af6e4ae70b505dd7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Christoffel_symbols&oldid=1381752933"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "christoffel-symbols-02-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Christoffel_symbols",
+      "familyId": "0c8ee740b53a9270a3562044bc9ab4c2e882eaf517cae55484f4f57634b77d49",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/christoffel-symbols-02-zoom-1.png",
+        "sha256": "d79b91475f60b1854d5a70891cd33bad8d8f4879ad4af0b85133fc39a5f8b80a",
+        "width": 98,
+        "height": 25
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle ({\\vec {e}}_{1},\\cdots ,{\\vec {e}}_{n})}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Christoffel_symbols",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "6e374625e437d0909845ce1fe3c9930109236912475ac995af6e4ae70b505dd7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Christoffel_symbols&oldid=1381752933"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "christoffel-symbols-03-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Christoffel_symbols",
+      "familyId": "7d54022bea78f9d7665a5887f42c3d1b6083a1bc5c74d18d33677b906e21c84d",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/christoffel-symbols-03-zoom-1.png",
+        "sha256": "5be1ab8c7f846e80cae3d670002b2c30a1e4a18770549f63b9c93b268b52586f",
+        "width": 92,
+        "height": 22
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle f:M\\to \\mathbb {R} }",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Christoffel_symbols",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "6e374625e437d0909845ce1fe3c9930109236912475ac995af6e4ae70b505dd7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Christoffel_symbols&oldid=1381752933"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "christoffel-symbols-04-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Christoffel_symbols",
+      "familyId": "8a588343a3ea5650e12cfb80884c9bd83d1b77f9247f85b78d944d720e05902e",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/christoffel-symbols-04-zoom-1.png",
+        "sha256": "d7ceaaf4fac9541d746cf8e05ffffc8585be60d28e1e7b5e23ec1fba217dc017",
+        "width": 99,
+        "height": 24
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle (\\partial _{1},\\cdots ,\\partial _{n})}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Christoffel_symbols",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "6e374625e437d0909845ce1fe3c9930109236912475ac995af6e4ae70b505dd7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Christoffel_symbols&oldid=1381752933"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "christoffel-symbols-05-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Christoffel_symbols",
+      "familyId": "3e1a8cc297d3681d5dfefa7a0dce8ec72f380dcfaf09e9c67786c09d5c787740",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/christoffel-symbols-05-zoom-1.png",
+        "sha256": "f2a7ae1b8552479d4a2c6ffcbb3dc3c1a856e78ab2b379e078c43365ea46e081",
+        "width": 250,
+        "height": 48
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle \\partial _{i}\\equiv {\\frac {\\partial }{\\partial x^{i}}}\\equiv e_{i}\\equiv {\\vec {e}}_{i}\\equiv \\mathbf {e} _{i}\\equiv {\\boldsymbol {\\partial }}_{i}}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Christoffel_symbols",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "6e374625e437d0909845ce1fe3c9930109236912475ac995af6e4ae70b505dd7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Christoffel_symbols&oldid=1381752933"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "christoffel-symbols-06-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Christoffel_symbols",
+      "familyId": "b4f80290618e664982ef352a1296364e89f33104fe488765b70cac27d9438984",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/christoffel-symbols-06-zoom-1.png",
+        "sha256": "54a4b294778ae9f37990f3196204fdafcad1cdef9aeaeb1cc1419272f1185ce9",
+        "width": 210,
+        "height": 48
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle X={\\vec {X}}=X^{i}\\partial _{i}=X^{i}{\\frac {\\partial }{\\partial x^{i}}}}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Christoffel_symbols",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "6e374625e437d0909845ce1fe3c9930109236912475ac995af6e4ae70b505dd7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Christoffel_symbols&oldid=1381752933"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "christoffel-symbols-07-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Christoffel_symbols",
+      "familyId": "67751f3c5578b1c1dfca5c41dfc2b972a437f0eaac258d95feec2b6bd55ed34b",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/christoffel-symbols-07-zoom-1.png",
+        "sha256": "bcc33f392a35a5636dd493b952f7fd7cabd35e6babe8a356d32388f32ce1071f",
+        "width": 227,
+        "height": 28
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle (\\varphi ^{1},\\ldots ,\\varphi ^{n})=(x^{1},\\ldots ,x^{n})}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Christoffel_symbols",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "6e374625e437d0909845ce1fe3c9930109236912475ac995af6e4ae70b505dd7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Christoffel_symbols&oldid=1381752933"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "christoffel-symbols-08-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Christoffel_symbols",
+      "familyId": "4a27c37bc77cc51f17c9c0883672f3c6ab7f394238dce114825d5e346102db26",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/christoffel-symbols-08-zoom-1.png",
+        "sha256": "d6ff593bcfca2f4c26569e440d4021b329f4bdf13f95945abed66c4573b59f1e",
+        "width": 84,
+        "height": 28
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle dx^{i}=d\\varphi ^{i}}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Christoffel_symbols",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "6e374625e437d0909845ce1fe3c9930109236912475ac995af6e4ae70b505dd7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Christoffel_symbols&oldid=1381752933"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "einstein-field-equations-01-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Einstein_field_equations",
+      "familyId": "17025f406fbf3d463e1270ef16559be915af387e56fc88bdffa6dc34c39926bb",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/einstein-field-equations-01-zoom-1.png",
+        "sha256": "406bddd1adace63cd7742a62732ae8be9c69a5a5b2424b27da03c2136f18509e",
+        "width": 143,
+        "height": 22
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle G_{\\mu \\nu }+\\Lambda g_{\\mu \\nu }={\\kappa }T_{\\mu \\nu }}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Einstein_field_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "d20a1bb8efdd7d9d562c6f49cdcb6f65e7c0a2ca81e1c3745c18810e49feae66",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Einstein_field_equations&oldid=1374672993"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "einstein-field-equations-02-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Einstein_field_equations",
+      "familyId": "27df726e337e6d3af804940beefb7bf37aea4edc2ea3d677ddc9d13a975b6448",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/einstein-field-equations-02-zoom-1.png",
+        "sha256": "d47e30a38716897e2d5f043d5a7a21cd4c064efa810a1806309b3ff0b68c4007",
+        "width": 168,
+        "height": 24
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle G_{\\mu \\nu }+\\Lambda g_{\\mu \\nu }=\\kappa T_{\\mu \\nu },}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Einstein_field_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "d20a1bb8efdd7d9d562c6f49cdcb6f65e7c0a2ca81e1c3745c18810e49feae66",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Einstein_field_equations&oldid=1374672993"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "einstein-field-equations-03-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Einstein_field_equations",
+      "familyId": "ad8caf19b90daedb931b4b765321d10ce367c38b31a082795c4177bdbd6e0727",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/einstein-field-equations-03-zoom-1.png",
+        "sha256": "bd470f46a0290fb22340f5c8f341c7bf96788656cbe9464b326e584b84ecd613",
+        "width": 178,
+        "height": 44
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle G_{\\mu \\nu }=R_{\\mu \\nu }-{\\frac {1}{2}}Rg_{\\mu \\nu },}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Einstein_field_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "d20a1bb8efdd7d9d562c6f49cdcb6f65e7c0a2ca81e1c3745c18810e49feae66",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Einstein_field_equations&oldid=1374672993"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "einstein-field-equations-04-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Einstein_field_equations",
+      "familyId": "3224e6a5fb314cba2ec5dcf62803d0a79067707419c90b23634b95cc8702fce2",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/einstein-field-equations-04-zoom-1.png",
+        "sha256": "d31b48ada057e4bc8acd397a6cf5bbd4f3ffbba384b1150e5d6dbbcddbe85520",
+        "width": 281,
+        "height": 48
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle \\kappa ={\\frac {8\\pi G}{c^{4}}}\\approx 2.07665\\times 10^{-43}\\,{\\textrm {N}}^{-1},}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Einstein_field_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "d20a1bb8efdd7d9d562c6f49cdcb6f65e7c0a2ca81e1c3745c18810e49feae66",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Einstein_field_equations&oldid=1374672993"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "einstein-field-equations-05-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Einstein_field_equations",
+      "familyId": "34f48fbb23ed030f0ab9878d5aab7cee7387a4b83dcd2e25438b3cbc54c2b5fe",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/einstein-field-equations-05-zoom-1.png",
+        "sha256": "45b60498c570c326ed26a1e11f1020eb6cb22811ec7730aaaf9b95a76b0ea330",
+        "width": 243,
+        "height": 44
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle R_{\\mu \\nu }-{\\frac {1}{2}}Rg_{\\mu \\nu }+\\Lambda g_{\\mu \\nu }=\\kappa T_{\\mu \\nu }}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Einstein_field_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "d20a1bb8efdd7d9d562c6f49cdcb6f65e7c0a2ca81e1c3745c18810e49feae66",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Einstein_field_equations&oldid=1374672993"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "einstein-field-equations-06-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Einstein_field_equations",
+      "familyId": "3946413319e3a63a39e53b77a94bf5e2c2aa6642722d5294d39fd1da5f84170b",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/einstein-field-equations-06-zoom-1.png",
+        "sha256": "f1a0627546a50958d85662e6acfcf3424f5005c4d69aa43d952ffd17f388fa93",
+        "width": 280,
+        "height": 48
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle R_{\\mu \\nu }-{\\frac {1}{2}}Rg_{\\mu \\nu }+\\Lambda g_{\\mu \\nu }={\\frac {8\\pi G}{c^{4}}}T_{\\mu \\nu }.}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Einstein_field_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "d20a1bb8efdd7d9d562c6f49cdcb6f65e7c0a2ca81e1c3745c18810e49feae66",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Einstein_field_equations&oldid=1374672993"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "einstein-field-equations-07-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Einstein_field_equations",
+      "familyId": "07d611cfa10e5d5269edec4204e7587b17f54fa736661ce771641db86a038689",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/einstein-field-equations-07-zoom-1.png",
+        "sha256": "d37beb9f19c4b783eb1601a2f26bf16b739f58da5be5bd8a2fc0c4d15d0992e2",
+        "width": 437,
+        "height": 116
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle {\\begin{aligned}g_{\\mu \\nu }&=[S1]\\times \\operatorname {diag} (-1,+1,+1,+1)\\\\[6pt]{R^{\\mu }}_{\\alpha \\beta \\gamma }&=[S2]\\times \\left(\\Gamma _{\\alpha \\gamma ,\\beta }^{\\mu }-\\Gamma _{\\alpha \\beta ,\\gamma }^{\\mu }+\\Gamma _{\\sigma \\beta }^{\\mu }\\Gamma _{\\gamma \\alpha }^{\\sigma }-\\Gamma _{\\sigma \\gamma }^{\\mu }\\Gamma _{\\beta \\alpha }^{\\sigma }\\right)\\\\[6pt]G_{\\mu \\nu }&=[S3]\\times \\kappa T_{\\mu \\nu }\\end{aligned}}}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Einstein_field_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "d20a1bb8efdd7d9d562c6f49cdcb6f65e7c0a2ca81e1c3745c18810e49feae66",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Einstein_field_equations&oldid=1374672993"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "einstein-field-equations-08-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Einstein_field_equations",
+      "familyId": "ebb02eefb5e3bd1db8a8f34b0cb7e9884d71bd5912e622271794bb272a08d932",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/einstein-field-equations-08-zoom-1.png",
+        "sha256": "0eac62f9a868e7111821d3a6bf1dc138aca9080b351665497748b6c4075db93c",
+        "width": 223,
+        "height": 26
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle R_{\\mu \\nu }=[S2]\\times [S3]\\times {R^{\\alpha }}_{\\mu \\alpha \\nu }}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Einstein_field_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "d20a1bb8efdd7d9d562c6f49cdcb6f65e7c0a2ca81e1c3745c18810e49feae66",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Einstein_field_equations&oldid=1374672993"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "navier-e2-80-93stokes-equations-01-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Navier%E2%80%93Stokes_equations",
+      "familyId": "a730c8b1cdc1a57e5ca12244dc9317020590b8c9d35061349065e870a1b094ba",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/navier-e2-80-93stokes-equations-01-zoom-1.png",
+        "sha256": "04d0576a0d1c8429a586a344d9bcf4577160bb843a52f2cc12147af6c61e5e39",
+        "width": 88,
+        "height": 41
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle J=-D{\\frac {d\\varphi }{dx}}}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "2d1b0c14cccb1795d681549f6253d689a6f157993614befee552ea75704ba099",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Navier%E2%80%93Stokes_equations&oldid=1382277581"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "navier-e2-80-93stokes-equations-02-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Navier%E2%80%93Stokes_equations",
+      "familyId": "d398a400dc1732bd0a372ff18b3050ee91233511dfa0cee095fbf761f6592014",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/navier-e2-80-93stokes-equations-02-zoom-1.png",
+        "sha256": "a9c0834e3ca57952649e2b482887f7b0523f3f9a308b3b60cc2c0b5845136b40",
+        "width": 161,
+        "height": 48
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle {\\frac {\\mathrm {D} \\mathbf {u} }{\\mathrm {D} t}}={\\frac {1}{\\rho }}\\nabla \\cdot {\\boldsymbol {\\sigma }}+\\mathbf {a} .}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "2d1b0c14cccb1795d681549f6253d689a6f157993614befee552ea75704ba099",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Navier%E2%80%93Stokes_equations&oldid=1382277581"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "navier-e2-80-93stokes-equations-03-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Navier%E2%80%93Stokes_equations",
+      "familyId": "56721b31d162b3e07af1dea5e82426f88f29991ff8084771edf26bfda010a082",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/navier-e2-80-93stokes-equations-03-zoom-1.png",
+        "sha256": "b09c73f52adeeb23c54f8c38cc436a82a998ab3638265d63ba2d33d8f8633bf4",
+        "width": 224,
+        "height": 43
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle \\rho {\\frac {\\mathrm {D} \\mathbf {u} }{\\mathrm {D} t}}=-\\nabla p+\\nabla \\cdot {\\boldsymbol {\\tau }}+\\rho \\,\\mathbf {a} }",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "2d1b0c14cccb1795d681549f6253d689a6f157993614befee552ea75704ba099",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Navier%E2%80%93Stokes_equations&oldid=1382277581"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "navier-e2-80-93stokes-equations-04-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Navier%E2%80%93Stokes_equations",
+      "familyId": "92194a5b891f876a6d1db958bc944f0749a38ee06e9811514a78f65268128274",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/navier-e2-80-93stokes-equations-04-zoom-1.png",
+        "sha256": "ab826e5dc8267fae19edaafbfd80d4356b5b63197f78e14c41f6244723dd6157",
+        "width": 86,
+        "height": 33
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\textstyle {\\frac {\\partial }{\\partial t}}+\\mathbf {u} \\cdot \\nabla }",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "2d1b0c14cccb1795d681549f6253d689a6f157993614befee552ea75704ba099",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Navier%E2%80%93Stokes_equations&oldid=1382277581"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "navier-e2-80-93stokes-equations-05-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Navier%E2%80%93Stokes_equations",
+      "familyId": "971e3f6a2ce77f56b0b6d9e345b706c4c5ea63743bbb2bf327027893882c65ab",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/navier-e2-80-93stokes-equations-05-zoom-1.png",
+        "sha256": "9bbf0470d05d5578e77fd3542c660766120e7461f82275a507fcfc1ee0bf26eb",
+        "width": 547,
+        "height": 122
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle {\\begin{aligned}&{\\frac {\\mathbf {D} m}{\\mathbf {Dt} }}=\\iiint \\limits _{V}\\left({\\frac {\\mathbf {D} \\rho }{\\mathbf {Dt} }}+\\rho (\\nabla \\cdot \\mathbf {u} )\\right)\\,dV\\\\[5pt]&{\\frac {\\mathbf {D} \\rho }{\\mathbf {Dt} }}+\\rho (\\nabla \\cdot \\mathbf {u} )={\\frac {\\partial \\rho }{\\partial t}}+(\\nabla \\rho )\\cdot \\mathbf {u} +\\rho (\\nabla \\cdot \\mathbf {u} )={\\frac {\\partial \\rho }{\\partial t}}+\\nabla \\cdot (\\rho \\mathbf {u} )=0\\end{aligned}}}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "2d1b0c14cccb1795d681549f6253d689a6f157993614befee552ea75704ba099",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Navier%E2%80%93Stokes_equations&oldid=1382277581"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "navier-e2-80-93stokes-equations-06-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Navier%E2%80%93Stokes_equations",
+      "familyId": "2fb5d5ca34c65dec5e3d515360c9d2b65d6bc1cf8b56c76c740a1f8531606645",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/navier-e2-80-93stokes-equations-06-zoom-1.png",
+        "sha256": "564a885d9a885f4989a564c46946e780be025f7eff10bff5126c3fbda5365ede",
+        "width": 197,
+        "height": 41
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\textstyle \\iiint \\limits _{V}{\\bigl (}F(x_{1},x_{2},x_{3},t){\\bigr )}\\,dV}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "2d1b0c14cccb1795d681549f6253d689a6f157993614befee552ea75704ba099",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Navier%E2%80%93Stokes_equations&oldid=1382277581"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "navier-e2-80-93stokes-equations-07-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Navier%E2%80%93Stokes_equations",
+      "familyId": "e9a422af542803e968167f63539013a2ddac46ceaa5dc255fda720793d69a7d9",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/navier-e2-80-93stokes-equations-07-zoom-1.png",
+        "sha256": "f4fff19aea2b8ad93ee27c0e7696c4c2a86f69dee58f2e5b0600daaeef90a891",
+        "width": 376,
+        "height": 47
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle {\\frac {\\partial }{\\partial t}}(\\rho \\,\\mathbf {u} )+\\nabla \\cdot (\\rho \\,\\mathbf {u} \\otimes \\mathbf {u} )=-\\nabla p+\\nabla \\cdot {\\boldsymbol {\\tau }}+\\rho \\,\\mathbf {a} }",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "2d1b0c14cccb1795d681549f6253d689a6f157993614befee552ea75704ba099",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Navier%E2%80%93Stokes_equations&oldid=1382277581"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "navier-e2-80-93stokes-equations-08-zoom-1",
+      "split": "heldout",
+      "documentId": "wikipedia-Navier%E2%80%93Stokes_equations",
+      "familyId": "d208e983096d3194de0cb9252b66b7a226e032b7f2c840ad4ee083791dec45e3",
+      "tags": [
+        "publisher",
+        "printed",
+        "fresh-source"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/navier-e2-80-93stokes-equations-08-zoom-1.png",
+        "sha256": "452a398386f76c6e8cf5dec7e3433b06aa2e00d0ef491e89c71905de530ab0a1",
+        "width": 111,
+        "height": 24
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle \\mathbf {u} \\otimes \\mathbf {u} =\\mathbf {u} \\mathbf {u} ^{\\mathsf {T}}}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": false,
+        "snapshotSha256": "2d1b0c14cccb1795d681549f6253d689a6f157993614befee552ea75704ba099",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Navier%E2%80%93Stokes_equations&oldid=1382277581"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "matrix-multiplication-01-zoom-1",
+      "split": "development",
+      "documentId": "wikipedia-Matrix_multiplication",
+      "familyId": "ce3c3639afacdbec1c6c56e52e51928547443912fd2684551ed05b5e72783844",
+      "tags": [
+        "publisher",
+        "printed",
+        "source-zoom"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/matrix-multiplication-01-zoom-1.png",
+        "sha256": "909f4ac09bf325327cffd2cf8e7610eea9c45933e16307d64c275dc41273c8ef",
+        "width": 528,
+        "height": 124
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle \\mathbf {A} ={\\begin{pmatrix}a_{11}&a_{12}&\\cdots &a_{1n}\\\\a_{21}&a_{22}&\\cdots &a_{2n}\\\\\\vdots &\\vdots &\\ddots &\\vdots \\\\a_{m1}&a_{m2}&\\cdots &a_{mn}\\\\\\end{pmatrix}},\\quad \\mathbf {B} ={\\begin{pmatrix}b_{11}&b_{12}&\\cdots &b_{1p}\\\\b_{21}&b_{22}&\\cdots &b_{2p}\\\\\\vdots &\\vdots &\\ddots &\\vdots \\\\b_{n1}&b_{n2}&\\cdots &b_{np}\\\\\\end{pmatrix}}}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Matrix_multiplication",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true,
+        "snapshotSha256": "1bb6aa9d315c262b1a2907e346e8ea82641ac1d33afe1f212a7d5dc40f89ceb7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Matrix_multiplication&oldid=1382409085"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "matrix-multiplication-01-zoom-2",
+      "split": "development",
+      "documentId": "wikipedia-Matrix_multiplication",
+      "familyId": "ce3c3639afacdbec1c6c56e52e51928547443912fd2684551ed05b5e72783844",
+      "tags": [
+        "publisher",
+        "printed",
+        "source-zoom"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/matrix-multiplication-01-zoom-2.png",
+        "sha256": "60ea15cba42347098515348a66bdf25192a1635113de3d1bc525ce0d81ac7566",
+        "width": 1054,
+        "height": 247
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle \\mathbf {A} ={\\begin{pmatrix}a_{11}&a_{12}&\\cdots &a_{1n}\\\\a_{21}&a_{22}&\\cdots &a_{2n}\\\\\\vdots &\\vdots &\\ddots &\\vdots \\\\a_{m1}&a_{m2}&\\cdots &a_{mn}\\\\\\end{pmatrix}},\\quad \\mathbf {B} ={\\begin{pmatrix}b_{11}&b_{12}&\\cdots &b_{1p}\\\\b_{21}&b_{22}&\\cdots &b_{2p}\\\\\\vdots &\\vdots &\\ddots &\\vdots \\\\b_{n1}&b_{n2}&\\cdots &b_{np}\\\\\\end{pmatrix}}}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Matrix_multiplication",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true,
+        "snapshotSha256": "1bb6aa9d315c262b1a2907e346e8ea82641ac1d33afe1f212a7d5dc40f89ceb7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Matrix_multiplication&oldid=1382409085"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 2
+      }
+    },
+    {
+      "id": "matrix-multiplication-02-zoom-1",
+      "split": "development",
+      "documentId": "wikipedia-Matrix_multiplication",
+      "familyId": "20adf8c46d17c490e77afdb4e26f0e73f8bb3efa69a47cebcd08b8e9da30614e",
+      "tags": [
+        "publisher",
+        "printed",
+        "source-zoom"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/matrix-multiplication-02-zoom-1.png",
+        "sha256": "e30ef3c0469a2e3f98bdc15591a71071a36e273ce1a2e20c9049aa9bf9cc211b",
+        "width": 253,
+        "height": 124
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle \\mathbf {C} ={\\begin{pmatrix}c_{11}&c_{12}&\\cdots &c_{1p}\\\\c_{21}&c_{22}&\\cdots &c_{2p}\\\\\\vdots &\\vdots &\\ddots &\\vdots \\\\c_{m1}&c_{m2}&\\cdots &c_{mp}\\\\\\end{pmatrix}}}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Matrix_multiplication",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true,
+        "snapshotSha256": "1bb6aa9d315c262b1a2907e346e8ea82641ac1d33afe1f212a7d5dc40f89ceb7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Matrix_multiplication&oldid=1382409085"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "matrix-multiplication-02-zoom-2",
+      "split": "development",
+      "documentId": "wikipedia-Matrix_multiplication",
+      "familyId": "20adf8c46d17c490e77afdb4e26f0e73f8bb3efa69a47cebcd08b8e9da30614e",
+      "tags": [
+        "publisher",
+        "printed",
+        "source-zoom"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/matrix-multiplication-02-zoom-2.png",
+        "sha256": "e7ce5b41861c2feecc39f2e359a5b59a7052098b48374deea77232b852137c33",
+        "width": 504,
+        "height": 248
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle \\mathbf {C} ={\\begin{pmatrix}c_{11}&c_{12}&\\cdots &c_{1p}\\\\c_{21}&c_{22}&\\cdots &c_{2p}\\\\\\vdots &\\vdots &\\ddots &\\vdots \\\\c_{m1}&c_{m2}&\\cdots &c_{mp}\\\\\\end{pmatrix}}}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Matrix_multiplication",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true,
+        "snapshotSha256": "1bb6aa9d315c262b1a2907e346e8ea82641ac1d33afe1f212a7d5dc40f89ceb7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Matrix_multiplication&oldid=1382409085"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 2
+      }
+    },
+    {
+      "id": "matrix-multiplication-03-zoom-1",
+      "split": "development",
+      "documentId": "wikipedia-Matrix_multiplication",
+      "familyId": "88188ad24093dc8e99c13a91f17a0f746bc349750418a691f835830378083787",
+      "tags": [
+        "publisher",
+        "printed",
+        "source-zoom"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/matrix-multiplication-03-zoom-1.png",
+        "sha256": "3fba1c0d299c6761de367677852fa7960408dd7e6e76630a6f4d2f3757b38424",
+        "width": 391,
+        "height": 57
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle c_{ij}=a_{i1}b_{1j}+a_{i2}b_{2j}+\\cdots +a_{in}b_{nj}=\\sum _{k=1}^{n}a_{ik}b_{kj},}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Matrix_multiplication",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true,
+        "snapshotSha256": "1bb6aa9d315c262b1a2907e346e8ea82641ac1d33afe1f212a7d5dc40f89ceb7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Matrix_multiplication&oldid=1382409085"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "matrix-multiplication-03-zoom-2",
+      "split": "development",
+      "documentId": "wikipedia-Matrix_multiplication",
+      "familyId": "88188ad24093dc8e99c13a91f17a0f746bc349750418a691f835830378083787",
+      "tags": [
+        "publisher",
+        "printed",
+        "source-zoom"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/matrix-multiplication-03-zoom-2.png",
+        "sha256": "04045bb276de38b94db54411bda69a3e13ef2e249ecc4e32eef685b4077ed510",
+        "width": 781,
+        "height": 114
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle c_{ij}=a_{i1}b_{1j}+a_{i2}b_{2j}+\\cdots +a_{in}b_{nj}=\\sum _{k=1}^{n}a_{ik}b_{kj},}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Matrix_multiplication",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true,
+        "snapshotSha256": "1bb6aa9d315c262b1a2907e346e8ea82641ac1d33afe1f212a7d5dc40f89ceb7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Matrix_multiplication&oldid=1382409085"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 2
+      }
+    },
+    {
+      "id": "matrix-multiplication-04-zoom-1",
+      "split": "development",
+      "documentId": "wikipedia-Matrix_multiplication",
+      "familyId": "b024879bf6d58fe327c815a2cc0dc1124a79888072bf3a542660c09331c526be",
+      "tags": [
+        "publisher",
+        "printed",
+        "source-zoom"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/matrix-multiplication-04-zoom-1.png",
+        "sha256": "4ced701649114d05ce5405473e6582a28b9af414e07093193a76fd197450872a",
+        "width": 711,
+        "height": 125
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle \\mathbf {C} ={\\begin{pmatrix}a_{11}b_{11}+\\cdots +a_{1n}b_{n1}&a_{11}b_{12}+\\cdots +a_{1n}b_{n2}&\\cdots &a_{11}b_{1p}+\\cdots +a_{1n}b_{np}\\\\a_{21}b_{11}+\\cdots +a_{2n}b_{n1}&a_{21}b_{12}+\\cdots +a_{2n}b_{n2}&\\cdots &a_{21}b_{1p}+\\cdots +a_{2n}b_{np}\\\\\\vdots &\\vdots &\\ddots &\\vdots \\\\a_{m1}b_{11}+\\cdots +a_{mn}b_{n1}&a_{m1}b_{12}+\\cdots +a_{mn}b_{n2}&\\cdots &a_{m1}b_{1p}+\\cdots +a_{mn}b_{np}\\\\\\end{pmatrix}}}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Matrix_multiplication",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true,
+        "snapshotSha256": "1bb6aa9d315c262b1a2907e346e8ea82641ac1d33afe1f212a7d5dc40f89ceb7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Matrix_multiplication&oldid=1382409085"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "matrix-multiplication-04-zoom-2",
+      "split": "development",
+      "documentId": "wikipedia-Matrix_multiplication",
+      "familyId": "b024879bf6d58fe327c815a2cc0dc1124a79888072bf3a542660c09331c526be",
+      "tags": [
+        "publisher",
+        "printed",
+        "source-zoom"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/matrix-multiplication-04-zoom-2.png",
+        "sha256": "917d7078eb2b585476407d69334af5df6aa4afaa3a58fb8bde65344ea3e57cce",
+        "width": 1421,
+        "height": 247
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle \\mathbf {C} ={\\begin{pmatrix}a_{11}b_{11}+\\cdots +a_{1n}b_{n1}&a_{11}b_{12}+\\cdots +a_{1n}b_{n2}&\\cdots &a_{11}b_{1p}+\\cdots +a_{1n}b_{np}\\\\a_{21}b_{11}+\\cdots +a_{2n}b_{n1}&a_{21}b_{12}+\\cdots +a_{2n}b_{n2}&\\cdots &a_{21}b_{1p}+\\cdots +a_{2n}b_{np}\\\\\\vdots &\\vdots &\\ddots &\\vdots \\\\a_{m1}b_{11}+\\cdots +a_{mn}b_{n1}&a_{m1}b_{12}+\\cdots +a_{mn}b_{n2}&\\cdots &a_{m1}b_{1p}+\\cdots +a_{mn}b_{np}\\\\\\end{pmatrix}}}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Matrix_multiplication",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true,
+        "snapshotSha256": "1bb6aa9d315c262b1a2907e346e8ea82641ac1d33afe1f212a7d5dc40f89ceb7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Matrix_multiplication&oldid=1382409085"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 2
+      }
+    },
+    {
+      "id": "matrix-multiplication-05-zoom-1",
+      "split": "development",
+      "documentId": "wikipedia-Matrix_multiplication",
+      "familyId": "af871053f5b096cfc7239ffc2754f80d90f2ed3789bb2c590431095a21d278d6",
+      "tags": [
+        "publisher",
+        "printed",
+        "source-zoom"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/matrix-multiplication-05-zoom-1.png",
+        "sha256": "372b1ff76bfb94485d2213abdcd5e63b3fb836a5fee0862b2d84f35ed7d5b0f7",
+        "width": 80,
+        "height": 21
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle \\mathbf {X} _{i1}=\\mathbf {x} _{i}.}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Matrix_multiplication",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true,
+        "snapshotSha256": "1bb6aa9d315c262b1a2907e346e8ea82641ac1d33afe1f212a7d5dc40f89ceb7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Matrix_multiplication&oldid=1382409085"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "matrix-multiplication-05-zoom-2",
+      "split": "development",
+      "documentId": "wikipedia-Matrix_multiplication",
+      "familyId": "af871053f5b096cfc7239ffc2754f80d90f2ed3789bb2c590431095a21d278d6",
+      "tags": [
+        "publisher",
+        "printed",
+        "source-zoom"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/matrix-multiplication-05-zoom-2.png",
+        "sha256": "662a818fa3e3499a6848ecfd279733ea4494d35c0cca1c30d0ce6aef131554ee",
+        "width": 160,
+        "height": 42
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle \\mathbf {X} _{i1}=\\mathbf {x} _{i}.}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Matrix_multiplication",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true,
+        "snapshotSha256": "1bb6aa9d315c262b1a2907e346e8ea82641ac1d33afe1f212a7d5dc40f89ceb7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Matrix_multiplication&oldid=1382409085"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 2
+      }
+    },
+    {
+      "id": "matrix-multiplication-06-zoom-1",
+      "split": "development",
+      "documentId": "wikipedia-Matrix_multiplication",
+      "familyId": "428eae505311be36cddfd4acc2e136606d1ab2a6fb34ef9802213fcf6d829327",
+      "tags": [
+        "publisher",
+        "printed",
+        "source-zoom"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/matrix-multiplication-06-zoom-1.png",
+        "sha256": "1e34c395a72be6bbfa82559ddaf4c29555e0843fcf732962b0f6841aaee139f2",
+        "width": 120,
+        "height": 60
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle y_{i}=\\sum _{j=1}^{n}a_{ij}x_{j}.}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Matrix_multiplication",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true,
+        "snapshotSha256": "1bb6aa9d315c262b1a2907e346e8ea82641ac1d33afe1f212a7d5dc40f89ceb7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Matrix_multiplication&oldid=1382409085"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "matrix-multiplication-06-zoom-2",
+      "split": "development",
+      "documentId": "wikipedia-Matrix_multiplication",
+      "familyId": "428eae505311be36cddfd4acc2e136606d1ab2a6fb34ef9802213fcf6d829327",
+      "tags": [
+        "publisher",
+        "printed",
+        "source-zoom"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/matrix-multiplication-06-zoom-2.png",
+        "sha256": "df7ea327a07814913077144dd57e4b509901f0d4e451ef778db3b9b88d9d2788",
+        "width": 240,
+        "height": 120
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle y_{i}=\\sum _{j=1}^{n}a_{ij}x_{j}.}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Matrix_multiplication",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true,
+        "snapshotSha256": "1bb6aa9d315c262b1a2907e346e8ea82641ac1d33afe1f212a7d5dc40f89ceb7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Matrix_multiplication&oldid=1382409085"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 2
+      }
+    },
+    {
+      "id": "matrix-multiplication-07-zoom-1",
+      "split": "development",
+      "documentId": "wikipedia-Matrix_multiplication",
+      "familyId": "86ff6def8a5f96a488eac61ab1b975310a335cc102c8d0a014a5bc15c688c187",
+      "tags": [
+        "publisher",
+        "printed",
+        "source-zoom"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/matrix-multiplication-07-zoom-1.png",
+        "sha256": "0a4ee2f1f1c58bcaef3e223866c48bf65fb7d48826679ec8173395847bedff15",
+        "width": 134,
+        "height": 27
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle \\mathbf {x} ^{\\mathrm {T} }\\mathbf {A} =(\\mathbf {A} ^{\\mathrm {T} }\\mathbf {x} )^{\\mathrm {T} }}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Matrix_multiplication",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true,
+        "snapshotSha256": "1bb6aa9d315c262b1a2907e346e8ea82641ac1d33afe1f212a7d5dc40f89ceb7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Matrix_multiplication&oldid=1382409085"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "matrix-multiplication-07-zoom-2",
+      "split": "development",
+      "documentId": "wikipedia-Matrix_multiplication",
+      "familyId": "86ff6def8a5f96a488eac61ab1b975310a335cc102c8d0a014a5bc15c688c187",
+      "tags": [
+        "publisher",
+        "printed",
+        "source-zoom"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/matrix-multiplication-07-zoom-2.png",
+        "sha256": "7bac0caa3c6253439b8554fc62ac62c7734bc894b3e77955c3c606e606a609c1",
+        "width": 267,
+        "height": 53
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle \\mathbf {x} ^{\\mathrm {T} }\\mathbf {A} =(\\mathbf {A} ^{\\mathrm {T} }\\mathbf {x} )^{\\mathrm {T} }}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Matrix_multiplication",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true,
+        "snapshotSha256": "1bb6aa9d315c262b1a2907e346e8ea82641ac1d33afe1f212a7d5dc40f89ceb7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Matrix_multiplication&oldid=1382409085"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 2
+      }
+    },
+    {
+      "id": "matrix-multiplication-08-zoom-1",
+      "split": "development",
+      "documentId": "wikipedia-Matrix_multiplication",
+      "familyId": "966d5253f55e82d5f9402ec4e186823ebe06b905a02b6ed76315c85e3818ee9c",
+      "tags": [
+        "publisher",
+        "printed",
+        "source-zoom"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/matrix-multiplication-08-zoom-1.png",
+        "sha256": "302a58173376163312d7ed13654eee00e85635d72f36dacd2ebdb657efa4d63b",
+        "width": 91,
+        "height": 26
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle \\mathbf {x} ^{\\mathrm {T} }\\mathbf {A} =\\mathbf {y} ^{\\mathrm {T} }}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Matrix_multiplication",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true,
+        "snapshotSha256": "1bb6aa9d315c262b1a2907e346e8ea82641ac1d33afe1f212a7d5dc40f89ceb7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Matrix_multiplication&oldid=1382409085"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 1
+      }
+    },
+    {
+      "id": "matrix-multiplication-08-zoom-2",
+      "split": "development",
+      "documentId": "wikipedia-Matrix_multiplication",
+      "familyId": "966d5253f55e82d5f9402ec4e186823ebe06b905a02b6ed76315c85e3818ee9c",
+      "tags": [
+        "publisher",
+        "printed",
+        "source-zoom"
+      ],
+      "image": {
+        "file": "tests/math-benchmark/images/matrix-multiplication-08-zoom-2.png",
+        "sha256": "5fce21799a0fea356d587c3af947a297a557b4ad2bd830ab8d5c2d1e737f5d48",
+        "width": 180,
+        "height": 51
+      },
+      "reference": {
+        "status": "source-checked",
+        "segments": [
+          {
+            "kind": "math",
+            "latex": "{\\displaystyle \\mathbf {x} ^{\\mathrm {T} }\\mathbf {A} =\\mathbf {y} ^{\\mathrm {T} }}",
+            "display": true
+          }
+        ]
+      },
+      "source": {
+        "url": "https://en.wikipedia.org/wiki/Matrix_multiplication",
+        "license": "CC-BY-SA-4.0",
+        "previouslyEvaluated": true,
+        "snapshotSha256": "1bb6aa9d315c262b1a2907e346e8ea82641ac1d33afe1f212a7d5dc40f89ceb7",
+        "revisionUrl": "https://en.wikipedia.org/w/index.php?title=Matrix_multiplication&oldid=1382409085"
+      },
+      "acquisition": {
+        "kind": "publisher",
+        "scale": 2
+      }
+    }
+  ]
+}

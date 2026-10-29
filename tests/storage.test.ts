@@ -100,6 +100,6 @@ describe('retained results', () => {
 
 describe('GPU availability', () => {
   it('explains unsupported devices without attempting a download or server fallback', async () => {
-    await expect(requireGpu(undefined, {})).rejects.toThrow('WebGPU is unavailable');
+    await expect(requireGpu(undefined)).rejects.toThrow('WebGPU is unavailable');
   });
 });

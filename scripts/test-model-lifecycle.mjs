@@ -7,8 +7,12 @@ import { openExtension, waitForPanel } from './browser.mjs';
 await mkdir('artifacts', { recursive: true });
 const report = { checks: [], result: null, runtimeErrors: [], error: null };
 let extension;
-const warningProbe = resolve('.output/chrome-mv3/gpu-warning-negative-control.js');
+const warningProbe = resolve(
+  process.env.TEXIMAGESCAN_TEST_BUILD ?? '.output/chrome-mv3',
+  'gpu-warning-negative-control.js',
+);
 async function observe(page) {
+  await waitForPanel(page);
   await page.evaluate(() => {
     window.__modelEvents = [];
     window.__modelPort = chrome.runtime.connect({ name: 'teximagescan-panel' });
@@ -22,9 +26,11 @@ async function observe(page) {
 try {
   // reuse the isolated verification profile and its model cache
 
-  extension = await openExtension({ profile: resolve('.cache/production-profile'), gpu: false });
+  extension = await openExtension({
+    profile: resolve(process.env.TEXIMAGESCAN_TEST_PROFILE ?? '.cache/production-profile'),
+  });
   let { page } = extension;
-  // inspect Chrome extension errors, including native ONNX worker warnings
+  // check Chrome extension errors and native WebGPU warnings
 
   const inspector = await extension.context.newPage();
   await inspector.goto('chrome://extensions/');
@@ -97,12 +103,12 @@ try {
   assert.equal(state.job.kind, 'idle', state.job.message);
   assert.equal(state.model, 'ready');
   assert.equal(state.result.name, 'energy.png');
-  assert.match(state.result.original, /E\s*=\s*mc\^(?:2|\{2\})/);
+  assert.match(state.result.original, /E\s*=\s*m\s*c\^(?:2|\{2\})/);
   report.runtimeErrors = await readErrors();
   assert.equal(
     report.runtimeErrors.filter((error) => /powerPreference.*ignored/i.test(error.message)).length,
     0,
-    'Production ONNX model loading emitted the Windows powerPreference warning',
+    'Production model loading emitted the Windows powerPreference warning',
   );
   report.checks.push(
     'Chrome recorded the deliberate negative-control warning, then recorded no powerPreference warning during real OCR model loading',

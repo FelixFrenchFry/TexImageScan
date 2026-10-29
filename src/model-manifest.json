@@ -1,102 +1,213 @@
 {
-  "displayName": "TeleOCR",
-  "sourceModel": "XingChen-AGI/TeleOCR",
-  "sourceRevision": "70a19ec6a3b036311af19ae5e762e650f41a5980",
-  "repository": "stefanj0/TeleOCR-ONNX",
-  "revision": "3bbc0e0f541b2ddd6f2c238f3ee0493c982cb0ac",
+  "displayName": "PaddleOCR-VL-1.6",
+  "sourceModel": "PaddlePaddle/PaddleOCR-VL-1.6",
+  "sourceRevision": "66317acc4c9fc17bd154591ce650735cd2855f3e",
+  "repository": "glebkudr/PaddleOCR-VL-1.6-WebGPU",
+  "revision": "5219606297d00bbd23b2ec193271af0c0b427dfc",
   "license": "Apache-2.0",
   "precision": {
-    "decoder_model_merged": "q4f16",
-    "embed_tokens": "q4f16",
-    "vision_encoder": "q4f16"
+    "vision": "FP16",
+    "projector": "FP16",
+    "decoder": "FP16",
+    "tokenEmbeddings": "FP32"
   },
-  "totalBytes": 1786520208,
+  "totalBytes": 2038301616,
   "files": [
     {
+      "path": "LICENSE",
+      "size": 11376,
+      "sha256": "b8c4d7deccd236af023af1c88c4d4e8f0fc2f41914e0fb23a3ec9678fb5a8456"
+    },
+    {
       "path": "README.md",
-      "size": 9948,
-      "sha256": "e28eafe0d26bab576d2aedac86fc20fc2bedd546893b57fbea7f64092619e366"
+      "size": 2640,
+      "sha256": "08e89ec1891feee294efa2bad936a1a65ecb7d2038ad6d2b94b2df8c6985dbcd"
     },
     {
-      "path": "added_tokens.json",
-      "size": 605,
-      "sha256": "58b54bbe36fc752f79a24a271ef66a0a0830054b4dfad94bde757d851968060b"
+      "path": "m6e10-vision-embed.safetensors",
+      "size": 6073632,
+      "sha256": "72bb55f67e9573a78aaac4063d634c755762a656b9ce24d543ce9394a27fab86"
     },
     {
-      "path": "chat_template.jinja",
-      "size": 1017,
-      "sha256": "a0bc6f6fc7a29a80017a433e8f03a1cc1236e838a944a2d034295a60c4f2fddb"
+      "path": "m6e9-embed-tokens.f32",
+      "size": 423624704,
+      "sha256": "1b8f72ac61ebc10efe920f3d61814886c096dbb9c068c050b13032c40a81eeed"
     },
     {
-      "path": "config.json",
-      "size": 3654,
-      "sha256": "81a537b10b81647108becd46861652b1251b20822c79e62a563c6cc4478873e6"
+      "path": "m6e9-embed-tokens.json",
+      "size": 389,
+      "sha256": "bb8698db484b241b6dcef9da55fb3ac1a9a6ff331bbcfceb0b3bc148abd5b055"
     },
     {
-      "path": "generation_config.json",
-      "size": 244,
-      "sha256": "50867494bddf9ddc8e289e6214be5a2263e68f16c127a3652c6eb9f17990e5d9"
+      "path": "m6e9-tokenizer.json",
+      "size": 11189060,
+      "sha256": "c8a215a59183d0d0781adc33bacd3ce6162716f7fd568fb30234a74d69803a7d"
     },
     {
-      "path": "merges.txt",
-      "size": 1671853,
-      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+      "path": "m7q1-decoder-stack-logits-fp16-official.pvlc",
+      "size": 722535168,
+      "sha256": "506cd5dda4a4e276efd36b8895a33977457691207079ef23d55d0831d9ac7884"
     },
     {
-      "path": "onnx/decoder_model_merged_q4f16.onnx",
-      "size": 475805,
-      "sha256": "a81bd63af7a83a6ac1b69c778910b163d88b36d1437d5a7e82744d0a9fc191f1"
+      "path": "m7u-vision-stack-full-fp16-input-major-official/checkpoint.json",
+      "size": 349,
+      "sha256": "b12e204ba0252d5e0bf25d1e267c6103665f99a5316b7e5aa778e460412aa4c5"
     },
     {
-      "path": "onnx/decoder_model_merged_q4f16.onnx_data",
-      "size": 352251904,
-      "sha256": "fbcb251af56f8c472834a3a0d98d28ac5f9ec82fb3e1c85537c0f71a175cf2ab"
+      "path": "m7u-vision-stack-full-fp16-input-major-official/manifest.json",
+      "size": 5258,
+      "sha256": "3693e8eb7be639f0e856ab030e112049e0570df87fd0580dfe77b85005368737"
     },
     {
-      "path": "onnx/embed_tokens_q4f16.onnx",
-      "size": 821,
-      "sha256": "a61bfa0bea37b17160b76f2ed6dc22a61395b981e36b799690bdc737543e0a80"
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.00.bin",
+      "size": 30479008,
+      "sha256": "da1ba2ae1307dd44d32e006b86c1555ec605c9be2c4aee052254b3d29a555b3e"
     },
     {
-      "path": "onnx/embed_tokens_q4f16.onnx_data",
-      "size": 89946112,
-      "sha256": "36ab8f232fa443b7a9784ce8d2bf9e89c217afa215ac15cccf5704f3398be6d0"
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.01.bin",
+      "size": 30479008,
+      "sha256": "5756fd8545e827a2216e0fb010b6d1596160345b36c7c376e61dd567299fa315"
     },
     {
-      "path": "onnx/vision_encoder_q4f16.onnx",
-      "size": 297713,
-      "sha256": "68f6a48e76e5fef3ea5f2a25fa73926a5b84cb6770174f002cbf390b1ca45c12"
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.02.bin",
+      "size": 30479008,
+      "sha256": "aa39d6301ddeaa026d0db7452cac809590c1dddef3f9b649ff4acd878435245c"
     },
     {
-      "path": "onnx/vision_encoder_q4f16.onnx_data",
-      "size": 1327654912,
-      "sha256": "8da7cf5d9a44328bbf09586a9e594b1eb3fb7b75103fd8ce2f56d058da418632"
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.03.bin",
+      "size": 30479008,
+      "sha256": "305e90562b74a5ff9f4d43beb1a80742c653755d8ed1c7653d4c0de241e1edb5"
     },
     {
-      "path": "preprocessor_config.json",
-      "size": 502,
-      "sha256": "b52d80bfd70f4a13398585000ed50e8c5543f5ab081231c99e07640d39853b4e"
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.04.bin",
+      "size": 30479008,
+      "sha256": "b263fd888882f146626c17f9bede82e0572710999142b5610b5e13a5a1ce0d31"
     },
     {
-      "path": "special_tokens_map.json",
-      "size": 613,
-      "sha256": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd"
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.05.bin",
+      "size": 30479008,
+      "sha256": "d50d51e21c69c36fcb577352b8e40fd056b17996955f324084f42390b8e45e6e"
     },
     {
-      "path": "tokenizer.json",
-      "size": 11421896,
-      "sha256": "9c5ae00e602b8860cbd784ba82a8aa14e8feecec692e7076590d014d7b7fdafa"
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.06.bin",
+      "size": 30479008,
+      "sha256": "005cc42868257a724370c6cf0f4cfc7236fd364c523298aff208d3f3f96887cb"
     },
     {
-      "path": "tokenizer_config.json",
-      "size": 5776,
-      "sha256": "846732e03e9a99dec47b6681b45c9d5d8bc1157f91e52bcc9e55ea8b851bb999"
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.07.bin",
+      "size": 30479008,
+      "sha256": "413e511240683b2f6cd8bec3c3af21e27a311f84ba5247b469f6e583f2cb197f"
     },
     {
-      "path": "vocab.json",
-      "size": 2776833,
-      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.08.bin",
+      "size": 30479008,
+      "sha256": "dfa3a9dc0fd1c26e480bd44ee125d5a5375f52c511414aaaa78e85c9571de847"
+    },
+    {
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.09.bin",
+      "size": 30479008,
+      "sha256": "b5ee51487f7b3822e9f1ffe1e3fe089d1d061ae437db8db7421ffb1800426f46"
+    },
+    {
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.10.bin",
+      "size": 30479008,
+      "sha256": "92207db27829dd624f8ab125073d63920952590d4a55271872c2004e51fe6da5"
+    },
+    {
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.11.bin",
+      "size": 30479008,
+      "sha256": "17b1fa9ed4b8c170725b08bf62b539da111447b532c61f0bdf27398f1820269b"
+    },
+    {
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.12.bin",
+      "size": 30479008,
+      "sha256": "0198722e35fb015305eb6a80a44f9aad6088b98342c0770e2fe0f89444f8baf4"
+    },
+    {
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.13.bin",
+      "size": 30479008,
+      "sha256": "96756313318a0eb14aa71e1f74a515ff72db9ca280d2147c1b0e20e5fb111368"
+    },
+    {
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.14.bin",
+      "size": 30479008,
+      "sha256": "d254a5b518ac764724602d248296844f484e6160fe17f2e897de5f79f44bd4c2"
+    },
+    {
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.15.bin",
+      "size": 30479008,
+      "sha256": "022319de4164794bbd1d0748ec2c6378dcbec9e3038ca74c96302ebe1454f42f"
+    },
+    {
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.16.bin",
+      "size": 30479008,
+      "sha256": "7eb82f8d5ab2d2295dad9cae9d646c2d9c4d11edc953202fe54fd33112021bf9"
+    },
+    {
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.17.bin",
+      "size": 30479008,
+      "sha256": "464acd483f2ddafb126107188e002160e882aa3bf98d85d316f01b1cd6ad71b9"
+    },
+    {
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.18.bin",
+      "size": 30479008,
+      "sha256": "1b6ede094ac4f54099afd8f1e55fa45b963e676a42b4315406590defb24fe63a"
+    },
+    {
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.19.bin",
+      "size": 30479008,
+      "sha256": "7e529e83b8620a1f623d84d4312047e3f662a199685ea8d760206fdcdf75a244"
+    },
+    {
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.20.bin",
+      "size": 30479008,
+      "sha256": "fe070e3458fc893c5a53a0a2a4136a90d9883743a39129d5a249aadea9bc3905"
+    },
+    {
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.21.bin",
+      "size": 30479008,
+      "sha256": "f564cfb7137c9925ddd4a1f3b650559916786e43cf293250dae9d81d91a76f35"
+    },
+    {
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.22.bin",
+      "size": 30479008,
+      "sha256": "05371d46765ce97295ecc9f4ad446753c65c73c90b2a912f90971c8ccf7c0941"
+    },
+    {
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.23.bin",
+      "size": 30479008,
+      "sha256": "c5cd3bffcf75e375f13b40a971d5878b231f32a1f02a50af1f1f5f3bed043a22"
+    },
+    {
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.24.bin",
+      "size": 30479008,
+      "sha256": "b691477b2aa21a24f1a63bfa9b9b16f463e752938a1d037fe610ba4737bde531"
+    },
+    {
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.25.bin",
+      "size": 30479008,
+      "sha256": "187faa4f2319eb74f1c247ce58911b05c71f3685d8d50bcfde9e19ac6c6b2610"
+    },
+    {
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_layer.26.bin",
+      "size": 30479008,
+      "sha256": "5a1983f6af7e77d0a0aeff3f11f8b8ad8300913a3763631ffd3f6e151f82c1f1"
+    },
+    {
+      "path": "m7u-vision-stack-full-fp16-input-major-official/weights.vision_post_norm.bin",
+      "size": 4608,
+      "sha256": "291ba460e4df14ab176d4ca04d5914ea5fc0c856d32b6ce813dac33ad8a505fd"
+    },
+    {
+      "path": "m7v-projector-full-fp16-input-major-official/manifest.json",
+      "size": 832,
+      "sha256": "beb954773b902a1b95e50ca4e8e96ffef843247256530e0d291c7fc33118df32"
+    },
+    {
+      "path": "m7v-projector-full-fp16-input-major-official/weights.projector.bin",
+      "size": 51920384,
+      "sha256": "1b49f9efac6225059c2385819c4c630b95172748abf88871da0ca5b3d1f9e03d"
     }
   ],
-  "provenance": "Community ONNX conversion of TeleOCR. q4f16 uses 4-bit decoder and embeddings, FP16 KV cache, and FP16 vision weights. Source revision records the inspected original checkpoint; native parity claims are from the converter and need local evaluation."
+  "provenance": "Third-party FP16 WebGPU conversion of PaddleOCR-VL-1.6, using the pinned Apache-2.0 browser runtime. Major model tensors use FP16 and token embeddings use FP32. Each asset is checked against the published SHA256SUMS at the immutable revision."
 }

@@ -1,5 +1,5 @@
 import { createRequire } from 'node:module';
-import { mkdir, readFile, readdir, realpath, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, realpath, rm, writeFile } from 'node:fs/promises';
 import { dirname, join, parse, resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
@@ -7,8 +7,6 @@ const output = join(root, 'public/licenses');
 const app = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
 const visited = new Set();
 const records = [];
-// Transformers excludes native Node backends from browser builds
-const excluded = new Set(['onnxruntime-node', 'sharp']);
 
 async function packageDirectory(name, from) {
   const require = createRequire(join(from, 'package.json'));
@@ -31,7 +29,6 @@ async function packageDirectory(name, from) {
 }
 
 async function collect(name, from, includeDependencies = true) {
-  if (excluded.has(name)) return;
   const directory = await packageDirectory(name, from);
   if (visited.has(directory)) return;
   visited.add(directory);
@@ -40,12 +37,6 @@ async function collect(name, from, includeDependencies = true) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
     if (entry.isFile() && /^(licen[cs]e|copying|notice|third.*notice)/i.test(entry.name)) {
       files.push({ name: entry.name, text: await readFile(join(directory, entry.name), 'utf8') });
-    }
-  }
-  // ONNX development packages omit licenses, so use the local upstream copies
-  if (!files.length && name.startsWith('onnxruntime-')) {
-    for (const file of ['onnxruntime-LICENSE', 'onnxruntime-ThirdPartyNotices.txt']) {
-      files.push({ name: file, text: await readFile(join(output, file), 'utf8') });
     }
   }
   // MathJax font archives declare the renderer license but omit its text
@@ -91,10 +82,15 @@ if (missing.length)
 records.sort((a, b) => a.name.localeCompare(b.name));
 let notice = '# Third-party notices\n\n';
 notice +=
-  'TeleOCR and ONNX conversion: see TeleOCR-NOTICE.md. Resize helper: see teleocr-resize-LICENSE and Pillow-LICENSE.\n\n';
+  'PaddleOCR-VL model and local WebGPU runtime: see PaddleOCR-NOTICE.md, PaddleOCR-LICENSE, PaddleOCR-upstream-NOTICE, PaddleOCR-upstream-THIRD_PARTY_NOTICES.md, and PaddleOCR-Rust-NOTICES.md. Attribution sources: SOURCES.md.\n\n';
 for (const record of records) {
   notice += `## ${record.name} ${record.version}\n\nLicense: ${record.license}\n\n`;
   for (const file of record.files) notice += `### ${file.name}\n\n${file.text}\n\n`;
 }
 await writeFile(join(output, 'NOTICE.md'), notice);
+// remove retired inference notices and keep the license fallbacks used above
+for (const file of [
+  'TeleOCR-NOTICE.md', 'teleocr-resize-LICENSE', 'Pillow-LICENSE',
+  'onnxruntime-LICENSE', 'onnxruntime-ThirdPartyNotices.txt', 'guid-typescript-LICENSE',
+]) await rm(join(output, file), { force: true });
 console.log(`Collected license texts for ${records.length} browser dependencies`);

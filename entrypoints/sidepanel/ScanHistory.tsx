@@ -1,7 +1,62 @@
-import { useEffect, useState, type ReactElement } from 'react';
-import { AlertDialog, Callout, Checkbox, Flex, Select } from '@radix-ui/themes';
-import { AlertCircle, Check, Copy, History, Trash2 } from 'lucide-react';
+import { useLayoutEffect, useMemo, useRef, useState, type ReactElement } from 'react';
+import { AlertDialog, Flex } from '@radix-ui/themes';
+import { History, Trash2 } from 'lucide-react';
 import { type HistoryEntry } from '../../src/protocol';
+import { renderMath, splitMath } from '../../src/preview';
+
+const historyDate = new Intl.DateTimeFormat('de-DE', {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric',
+});
+const historyTime = new Intl.DateTimeFormat('de-DE', {
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+  hour12: false,
+});
+
+function HistoryPreview({ source }: { source: string }) {
+  const content = useRef<HTMLSpanElement>(null);
+  const rendered = useMemo(() => {
+    const math = splitMath(source).find((part) => part.kind === 'math');
+    if (math?.kind === 'math') return renderMath(math.source, false);
+    // older scans and edits may contain bare LaTeX
+    return /^\s*\\/.test(source) ? renderMath(source, false) : null;
+  }, [source]);
+
+  useLayoutEffect(() => {
+    const node = content.current;
+    const viewport = node?.parentElement;
+    if (!node || !viewport) return;
+    const fit = () => {
+      if (node.offsetHeight && viewport.clientHeight)
+        node.style.setProperty(
+          '--history-math-scale',
+          String(Math.min(1, viewport.clientHeight / node.offsetHeight)),
+        );
+    };
+    const observer = new ResizeObserver(fit);
+    observer.observe(node);
+    observer.observe(viewport);
+    fit();
+    return () => observer.disconnect();
+  }, [rendered]);
+
+  return (
+    <span className="history-preview">
+      {rendered?.kind === 'html' ? (
+        <span
+          ref={content}
+          className="history-preview-content"
+          dangerouslySetInnerHTML={{ __html: rendered.html }}
+        />
+      ) : (
+        <span className="history-preview-text">{source || 'Empty source'}</span>
+      )}
+    </span>
+  );
+}
 
 function ConfirmDelete({
   children,
@@ -50,7 +105,6 @@ export function ScanHistory({
   onOpen,
   onDelete,
   onClear,
-  onExport,
 }: {
   entries: HistoryEntry[];
   activeId: string | undefined;
@@ -58,39 +112,8 @@ export function ScanHistory({
   onOpen: (id: string) => void;
   onDelete: (ids: string[]) => void;
   onClear: () => void;
-  onExport: (ids: string[], format: 'markdown' | 'latex') => Promise<string>;
 }) {
-  const [selected, setSelected] = useState<string[]>([]);
   const [limit, setLimit] = useState(20);
-  const [format, setFormat] = useState<'markdown' | 'latex'>('markdown');
-  const [copying, setCopying] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const [error, setError] = useState('');
-  useEffect(() => {
-    const available = new Set(entries.map((entry) => entry.id));
-    setSelected((previous) =>
-      previous.every((id) => available.has(id))
-        ? previous
-        : previous.filter((id) => available.has(id)),
-    );
-    setCopied(false);
-  }, [entries]);
-  const busy = disabled || copying;
-
-  async function copy() {
-    setCopying(true);
-    setCopied(false);
-    setError('');
-    try {
-      const text = await onExport(selected, format);
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-    } catch (error) {
-      setError(error instanceof Error ? error.message : 'Could not copy the selected scans.');
-    } finally {
-      setCopying(false);
-    }
-  }
 
   return (
     <section id="scan-history" aria-label="Scan history">
@@ -110,29 +133,14 @@ export function ScanHistory({
             {entries.length} saved {entries.length === 1 ? 'scan' : 'scans'} · Stored on this device
           </p>
           <Flex gap="3" align="center" wrap="wrap" mb="3">
-            <button
-              className="secondary-action"
-              disabled={busy}
-              onClick={() => {
-                setSelected(
-                  selected.length === entries.length ? [] : entries.map((entry) => entry.id),
-                );
-                setCopied(false);
-              }}
-            >
-              {selected.length === entries.length ? 'Clear selection' : 'Select all'}
-            </button>
-            <span className="hint" role="status">
-              {selected.length} selected
-            </span>
             <ConfirmDelete
               title="Clear scan history?"
               description={`Delete all ${entries.length} saved scans and their crops?`}
               action="Clear history"
-              disabled={busy}
+              disabled={disabled}
               onConfirm={onClear}
             >
-              <button className="text-link" disabled={busy}>
+              <button className="text-link" disabled={disabled}>
                 <Trash2 size={13} aria-hidden="true" />
                 Clear history
               </button>
@@ -141,45 +149,36 @@ export function ScanHistory({
           <ul className="history-list">
             {entries.slice(0, limit).map((entry) => (
               <li key={entry.id} className={entry.id === activeId ? 'active' : ''}>
-                <Checkbox
-                  aria-label={`Select ${entry.name}`}
-                  checked={selected.includes(entry.id)}
-                  disabled={busy}
-                  onCheckedChange={(checked) => {
-                    setSelected((previous) =>
-                      checked === true
-                        ? [...previous, entry.id]
-                        : previous.filter((id) => id !== entry.id),
-                    );
-                    setCopied(false);
-                  }}
-                />
                 <button
                   className="history-open"
                   aria-label={`Open ${entry.name}`}
-                  disabled={busy}
+                  disabled={disabled}
                   onClick={() => onOpen(entry.id)}
                 >
-                  <strong>{entry.name}</strong>
-                  <span className="history-excerpt">{entry.preview || 'Empty source'}</span>
-                  <small>
-                    {new Date(entry.createdAt).toLocaleString()}
+                  <HistoryPreview source={entry.preview} />
+                  <span className="history-name">
+                    {entry.name}
                     {entry.edited ? ' · Edited' : ''}
                     {entry.truncated ? ' · Incomplete' : ''}
                     {entry.id === activeId ? ' · Open' : ''}
-                  </small>
+                  </span>
+                  <time className="history-timestamp" dateTime={entry.createdAt}>
+                    {historyDate.format(new Date(entry.createdAt))}
+                    {' · '}
+                    {historyTime.format(new Date(entry.createdAt))}
+                  </time>
                 </button>
                 <ConfirmDelete
                   title="Delete scan?"
                   description={`Delete ${entry.name} and its saved crop?`}
                   action="Delete scan"
-                  disabled={busy}
+                  disabled={disabled}
                   onConfirm={() => onDelete([entry.id])}
                 >
                   <button
                     className="icon-action"
                     aria-label={`Delete ${entry.name}`}
-                    disabled={busy}
+                    disabled={disabled}
                   >
                     <Trash2 size={15} aria-hidden="true" />
                   </button>
@@ -190,51 +189,11 @@ export function ScanHistory({
           {limit < entries.length && (
             <button
               className="text-link history-more"
-              disabled={busy}
+              disabled={disabled}
               onClick={() => setLimit((value) => value + 20)}
             >
               Show more scans
             </button>
-          )}
-          <Flex className="history-export" gap="2" align="center" wrap="wrap" mt="3">
-            <Select.Root
-              value={format}
-              disabled={busy}
-              onValueChange={(value) => {
-                if (value === 'markdown' || value === 'latex') setFormat(value);
-                setCopied(false);
-              }}
-            >
-              <Select.Trigger aria-label="History copy format" />
-              <Select.Content>
-                <Select.Item value="markdown">Markdown with math</Select.Item>
-                <Select.Item value="latex">LaTeX / mixed source</Select.Item>
-              </Select.Content>
-            </Select.Root>
-            <button
-              className="secondary-action"
-              disabled={busy || selected.length === 0}
-              onClick={() => void copy()}
-            >
-              {copied ? (
-                <Check size={15} aria-hidden="true" />
-              ) : (
-                <Copy size={15} aria-hidden="true" />
-              )}
-              {copying ? 'Copying…' : copied ? 'Copied selection' : 'Copy selected'}
-            </button>
-          </Flex>
-          <p className="hint">
-            Selected scans are combined oldest first, using your edits. LaTeX removes wrappers
-            around standalone equations. Mixed passages keep their source.
-          </p>
-          {error && (
-            <Callout.Root color="red" role="alert">
-              <Callout.Icon>
-                <AlertCircle size={17} aria-hidden="true" />
-              </Callout.Icon>
-              <Callout.Text>{error}</Callout.Text>
-            </Callout.Root>
           )}
         </>
       )}

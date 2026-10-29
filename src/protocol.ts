@@ -2,8 +2,9 @@ import { z } from 'zod';
 
 export const PORT_NAME = 'teximagescan-panel';
 export const MAX_IMAGE_BYTES = 12_000_000;
-export const recognitionModeSchema = z.enum(['auto', 'equation', 'mixed']);
-export type RecognitionMode = z.infer<typeof recognitionModeSchema>;
+export const MAX_HISTORY_PREVIEW_LENGTH = 4096;
+// keep legacy modes for stored scans
+const legacyRecognitionModeSchema = z.enum(['auto', 'equation', 'mixed']);
 export const imageSchema = z
   .string()
   .max(16_000_100)
@@ -33,7 +34,6 @@ export const commandSchema = z.discriminatedUnion('type', [
     image: imageSchema,
     name: z.string().max(200),
     maxTokens: z.number().int().min(32).max(4096),
-    task: recognitionModeSchema.default('auto'),
   }),
   z.object({ type: z.literal('cancel') }),
   z.object({ type: z.literal('save'), id: z.string(), text: z.string().max(100_000) }),
@@ -43,10 +43,9 @@ export const commandSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('delete-scans'), ids: z.array(z.string()).min(1) }),
   z.object({ type: z.literal('clear-history') }),
   z.object({
-    type: z.literal('export-history'),
+    type: z.literal('read-result'),
     id: z.string(),
-    ids: z.array(z.string()).min(1),
-    format: z.enum(['markdown', 'latex']),
+    resultId: z.string(),
   }),
   z.object({ type: z.literal('remove-model') }),
 ]);
@@ -57,6 +56,7 @@ export const resultSchema = z.object({
   name: z.string(),
   image: imageSchema,
   original: z.string(),
+  raw: z.string().optional(),
   edited: z.string(),
   createdAt: z.string(),
   elapsedMs: z.number(),
@@ -65,25 +65,25 @@ export const resultSchema = z.object({
   truncated: z.boolean(),
   gpu: z.string(),
   modelRevision: z.string(),
-  // legacy scans can record a native task while Auto uses one pass
+  // retain metadata from older scans
   task: z.enum(['equation', 'mixed']).optional(),
-  mode: recognitionModeSchema.optional(),
+  mode: legacyRecognitionModeSchema.optional(),
 });
 export type RecognitionResult = z.infer<typeof resultSchema>;
 export const scanMetadataSchema = resultSchema.omit({ image: true });
 export const historyEntrySchema = resultSchema
   .pick({ id: true, name: true, createdAt: true, truncated: true })
-  .extend({ preview: z.string().max(160), edited: z.boolean() });
+  .extend({ preview: z.string().max(MAX_HISTORY_PREVIEW_LENGTH), edited: z.boolean() });
 export type HistoryEntry = z.infer<typeof historyEntrySchema>;
-export const historyExportReplySchema = z.object({
-  type: z.literal('history-exported'),
+export const resultTextReplySchema = z.object({
+  type: z.literal('result-text'),
   id: z.string(),
   outcome: z.discriminatedUnion('ok', [
     z.object({ ok: z.literal(true), text: z.string() }),
     z.object({ ok: z.literal(false), message: z.string() }),
   ]),
 });
-export type HistoryExportReply = z.infer<typeof historyExportReplySchema>;
+export type ResultTextReply = z.infer<typeof resultTextReplySchema>;
 const phaseSchema = z.enum(['downloading', 'loading', 'recognizing']);
 export const stateSchema = z.object({
   model: z.enum(['missing', 'cached', 'ready']),
@@ -138,7 +138,6 @@ export const workerCommandSchema = z.discriminatedUnion('type', [
     image: imageSchema,
     name: z.string().max(200),
     maxTokens: z.number().int().min(32).max(4096),
-    task: recognitionModeSchema.default('auto'),
   }),
 ]);
 export type WorkerCommand = z.infer<typeof workerCommandSchema>;

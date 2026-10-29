@@ -7,7 +7,6 @@ import {
   saveWorkspace,
   loadScan,
   deleteScans,
-  exportScans,
 } from '../src/storage';
 import { initialState } from '../src/state';
 import { removeScans } from '../src/history';
@@ -38,17 +37,6 @@ const second = {
 };
 beforeEach(() => deleteDB('teximagescan-prototype'));
 
-it('exports the current result without opening storage when no other scans are selected', async () => {
-  const unavailable = vi.spyOn(indexedDB, 'open').mockImplementation(() => {
-    throw new Error('Storage unavailable');
-  });
-  try {
-    expect(await exportScans([first.id, first.id], 'latex', first)).toBe('x=2');
-  } finally {
-    unavailable.mockRestore();
-  }
-});
-
 it('migrates the retained v1 result once and preserves its edits and crop', async () => {
   const db = await openDB('teximagescan-prototype', 1, {
     upgrade(db) {
@@ -64,14 +52,13 @@ it('migrates the retained v1 result once and preserves its edits and crop', asyn
   expect((await loadState()).history).toEqual([]);
 });
 
-it('keeps multiple scans and edits without duplicating entries, and exports selected text', async () => {
+it('keeps multiple scans and edits without duplicating entries', async () => {
   await saveScan({ ...initialState(), result: first });
   await saveScan({ ...initialState(), result: second });
   await saveScan({ ...initialState(), result: { ...first, edited: '$x=99$' } });
   expect((await loadState()).history.map((entry) => entry.id)).toEqual(['second', 'first']);
   expect((await loadScan('first'))?.edited).toBe('$x=99$');
   expect((await loadScan('second'))?.image).toBe(second.image);
-  expect(await exportScans(['second', 'first'], 'latex')).toBe('x=99\n\ny=3');
   await saveWorkspace(initialState());
   expect((await loadState()).history).toHaveLength(2);
 });
@@ -85,7 +72,6 @@ it('deletes metadata and image atomically and never recreates a removed scan on 
   await saveWorkspace(next);
   expect(await loadScan('second')).toBeUndefined();
   expect((await loadState()).history.map((entry) => entry.id)).toEqual(['first']);
-  await expect(exportScans(['second'], 'markdown')).rejects.toThrow('no longer available');
   const db = await openDB('teximagescan-prototype');
   expect(await db.get('images', 'second')).toBeUndefined();
   db.close();
@@ -137,7 +123,7 @@ it('rolls back the current result when a scan transaction aborts and reports one
   expect(await loadScan('second')).toBeUndefined();
 });
 
-it('updates edits without rewriting the stored crop and exports without reading images', async () => {
+it('updates edits without rewriting or rereading the stored crop', async () => {
   await saveScan({ ...initialState(), result: first });
   const put = IDBObjectStore.prototype.put;
   const get = IDBObjectStore.prototype.get;
@@ -153,12 +139,11 @@ it('updates edits without rewriting the stored crop and exports without reading 
     this: IDBObjectStore,
     key: IDBValidKey | IDBKeyRange,
   ) {
-    if (this.name === 'images') throw new Error('Bulk export must not load crops');
+    if (this.name === 'images') throw new Error('Editing must not load crops');
     return get.call(this, key);
   });
   try {
     await saveScan({ ...initialState(), result: { ...first, edited: '$x=77$' } });
-    expect(await exportScans(['first'], 'latex')).toBe('x=77');
   } finally {
     preventImageWrite.mockRestore();
     preventImageRead.mockRestore();
@@ -193,7 +178,7 @@ it('deleting another scan does not save surviving unsaved edits or create a new 
   const unsaved = { ...(await loadState()), result: { ...first, edited: '$x=88$' } };
   await deleteScans(removeScans(unsaved, ['second']), ['second']);
   expect((await loadState()).result?.edited).toBe('$x=2$');
-  expect(await exportScans(['first'], 'latex')).toBe('x=2');
+  expect((await loadScan('first'))?.edited).toBe('$x=2$');
   const newest = { ...second, id: 'new-result', edited: '$y=99$' };
   await deleteScans(removeScans({ ...(await loadState()), result: newest }, ['first']), ['first']);
   expect((await loadState()).history).toEqual([]);

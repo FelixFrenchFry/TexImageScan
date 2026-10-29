@@ -79,13 +79,3 @@ export function checkImportedCase(sample, parent, parentSha256) {
   assert.deepEqual(sample.image, parent.image, 'Imported image/pixels changed');
   assert.deepEqual(sample.reference, parent.reference, 'Imported reference changed');
 }
-
-export function evaluationSplit(version, requested, allowValidation = false) {
-  const split = requested ?? (version === 2 ? 'development' : 'all');
-  assert.ok(['all', 'development', 'heldout'].includes(split), 'Invalid evaluation split');
-  assert.ok(
-    version !== 2 || split === 'development' || allowValidation,
-    'Fresh validation requires --allow-validation after the prompt is fixed',
-  );
-  return split;
-}

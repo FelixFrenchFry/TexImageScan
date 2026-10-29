@@ -4,17 +4,16 @@ import {
   openSavedScan,
   backToScan,
   editSource,
-  currentMode,
-  setMode,
+
 } from '../../scripts/lib/panel.mjs';
 import { readFile } from 'node:fs/promises';
 import { test, expect } from '@playwright/test';
 import { openExtension, waitForPanel } from '../../scripts/browser.mjs';
 
-async function seed(extension, count = 2, duplicateNames = false) {
+async function seed(extension, count = 2, duplicateNames = false, sources = []) {
   const image = `data:image/png;base64,${(await readFile('tests/fixtures/samples/energy.png')).toString('base64')}`;
   await extension.page.evaluate(
-    async ({ image, count, duplicateNames }) => {
+    async ({ image, count, duplicateNames, sources }) => {
       const request = indexedDB.open('teximagescan-prototype');
       const db = await new Promise((resolve, reject) => {
         request.onsuccess = () => resolve(request.result);
@@ -55,7 +54,8 @@ async function seed(extension, count = 2, duplicateNames = false) {
         edited: `$z=${index + 3}$`,
         createdAt: `2026-10-24T12:${String(index).padStart(2, '0')}:00Z`,
       }));
-      for (const scan of [result, second, ...extra]) {
+      for (const [index, scan] of [result, second, ...extra].entries()) {
+        if (sources[index] !== undefined) scan.original = scan.edited = sources[index];
         const { image, ...metadata } = scan;
         tx.objectStore('scans').put(metadata, scan.id);
         tx.objectStore('images').put(image, scan.id);
@@ -79,7 +79,7 @@ async function seed(extension, count = 2, duplicateNames = false) {
       db.close();
       await chrome.offscreen.closeDocument();
     },
-    { image, count, duplicateNames },
+    { image, count, duplicateNames, sources },
   );
   await extension.page.reload();
   await waitForPanel(extension.page);
@@ -88,40 +88,98 @@ async function seed(extension, count = 2, duplicateNames = false) {
   ).toBeVisible();
 }
 
-test('smoke setup reopens the retained scan by ID among duplicate filenames and restores Auto', async () => {
+test('renders wider history previews with a precise timestamp below the filename', async ({}, testInfo) => {
   const extension = await openExtension({ gpu: false });
   try {
     const { page } = extension;
-    await seed(extension, 25, true);
-    expect(await currentMode(page)).toBe('Auto');
-    await expect(openSavedScan(page, 'first.png', 'missing')).rejects.toThrow('no longer available');
-    await openSavedScan(page, 'first.png', 'first');
+    const matrix = String.raw`\[\begin{array}{ll}${Array.from({ length: 8 }, (_, i) =>
+      String.raw`\boldsymbol{\Upsilon}^{(${i})} & = \boldsymbol{A}\boldsymbol{x}`,
+    ).join(String.raw` \\ `)}\end{array}\]`;
+    await seed(extension, 7, false, [
+      matrix, 'Energy $E=mc^2$.', '$\\frac{$', '',
+      '$$' + Array.from({ length: 40 }, (_, i) => `x_{${i}}`).join('+') + '$$',
+      '```latex\nx=1\n```', '<script>alert(1)</script>',
+    ]);
+    await openHistory(page);
+    const history = page.getByRole('region', { name: 'Scan history' });
+    const first = history.getByRole('button', { name: 'Open first.png', exact: true });
+    await expect(first.locator('.history-preview .katex')).toBeVisible();
+    await expect(first.locator('annotation')).toContainText('Upsilon');
+    await expect(first.locator('.history-name')).toContainText('first.png');
+    const expected = await page.evaluate(() => {
+      const date = new Date('2026-10-24T10:00:00Z');
+      return {
+        date: date.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' }),
+        time: date.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }),
+      };
+    });
+    await expect(first.locator('.history-timestamp')).toHaveText(`${expected.date} · ${expected.time}`);
+    await expect(first.locator('time').first()).toHaveAttribute('datetime', '2026-10-24T10:00:00Z');
+    await expect(history.locator('[title]')).toHaveCount(0);
+    await expect(history.getByRole('button', { name: 'Open second.png' }).locator('.katex')).toBeVisible();
+    const invalid = history.getByRole('button', { name: 'Open scan-3.png' });
+    await expect(invalid.locator('.history-preview')).toContainText('$\\frac{$');
+    await expect(invalid.locator('.katex')).toHaveCount(0);
+    await expect(history.getByRole('button', { name: 'Open scan-4.png' })).toContainText('Empty source');
+    await expect(history.getByRole('button', { name: 'Open scan-6.png' }).locator('.katex')).toBeVisible();
+    await expect(history.getByRole('button', { name: 'Open scan-7.png' })).toContainText('<script>alert(1)</script>');
+    await expect(history.locator('script')).toHaveCount(0);
+    for (const width of [430, 320]) {
+      await page.setViewportSize({ width, height: 1000 });
+      const geometry = await first.evaluate(button => {
+        const timestamp = button.querySelector('.history-timestamp').getBoundingClientRect();
+        const name = button.querySelector('.history-name').getBoundingClientRect();
+        const formula = button.querySelector('.katex').getBoundingClientRect();
+        const preview = button.querySelector('.history-preview').getBoundingClientRect();
+        return {
+          timestampBelowName: timestamp.top >= name.bottom,
+          nameBelowPreview: name.top >= preview.bottom,
+          fullWidthPreview: Math.abs(preview.width - button.clientWidth) < 1,
+          previewHeight: preview.height,
+          formulaFits: formula.top >= preview.top - 1 && formula.bottom <= preview.bottom + 1,
+          maxRowHeight: Math.max(...Array.from(document.querySelectorAll('.history-list li'), row => row.getBoundingClientRect().height)),
+          overflow: document.documentElement.scrollWidth > innerWidth,
+        };
+      });
+      expect(geometry).toMatchObject({ timestampBelowName: true, nameBelowPreview: true, fullWidthPreview: true, formulaFits: true, overflow: false });
+      expect(geometry.previewHeight).toBeGreaterThanOrEqual(40);
+      expect(geometry.maxRowHeight).toBeLessThanOrEqual(110);
+      await page.screenshot({ path: testInfo.outputPath(`rendered-history-${width}.png`) });
+    }
+    await first.click();
     await editSource(page);
-    await expect(page.getByLabel('Editable source')).toHaveValue('$x=2$');
-    expect(await currentMode(page)).toBe('Equation');
-    await editSource(page);
-    await page.getByLabel('Editable source').fill('$preserved=321$');
-    await setMode(page, 'Auto');
-    await page
-      .getByLabel('Choose image file')
-      .setInputFiles('tests/fixtures/generated/bold-vectors.png');
-    await expect(page.getByRole('heading', { name: 'Ready to recognize' })).toBeVisible();
-    expect(await currentMode(page)).toBe('Auto');
+    await expect(page.getByLabel('Editable source')).toHaveValue(matrix);
   } finally {
     await extension.close();
   }
 });
 
-test('opens, edits, combines and persists scans while keeping original OCR and crop', async () => {
+test('reopens the retained scan by ID among duplicate filenames in the math workflow', async () => {
   const extension = await openExtension({ gpu: false });
   try {
     const { page } = extension;
-    await extension.context.grantPermissions(['clipboard-read']);
+    await seed(extension, 25, true);
+    await expect(openSavedScan(page, 'first.png', 'missing')).rejects.toThrow('no longer available');
+    await openSavedScan(page, 'first.png', 'first');
+    await editSource(page);
+    await expect(page.getByLabel('Editable source')).toHaveValue('$x=2$');
+    await editSource(page);
+    await page.getByLabel('Editable source').fill('$preserved=321$');
+    await page
+      .getByLabel('Choose image file')
+      .setInputFiles('tests/fixtures/generated/bold-vectors.png');
+    await expect(page.getByRole('heading', { name: 'Ready to recognize' })).toBeVisible();
+  } finally {
+    await extension.close();
+  }
+});
+
+test('opens, edits and persists scans without bulk selection controls', async () => {
+  const extension = await openExtension({ gpu: false });
+  try {
+    const { page } = extension;
     await seed(extension);
     await openSettings(page);
-    await expect(
-      page.getByRole('combobox', { name: 'Recognition mode', exact: true }),
-    ).toContainText('Auto');
     await openHistory(page);
     await page.getByRole('button', { name: 'Open first.png' }).click();
     await editSource(page);
@@ -129,54 +187,26 @@ test('opens, edits, combines and persists scans while keeping original OCR and c
     await backToScan(page);
     await expect(page.getByRole('img', { name: 'Source: first.png' })).toBeVisible();
     await openSettings(page);
-    await expect(
-      page.getByRole('combobox', { name: 'Recognition mode', exact: true }),
-    ).toContainText('Auto');
     await editSource(page);
     await page.getByLabel('Editable source').fill('$x=99$');
     await openHistory(page);
-    await expect(page.getByRole('region', { name: 'Scan history' })).toContainText('$x=99$');
+    await expect(page.getByRole('button', { name: 'Open first.png' }).locator('.katex annotation')).toHaveText('x=99');
     await openHistory(page);
-    await page.getByLabel('Select first.png').check();
-    await page.getByLabel('Select second.png').check();
-    await openHistory(page);
-    await page.getByRole('button', { name: 'Copy selected', exact: true }).click();
-    await openHistory(page);
-    await expect(page.getByRole('button', { name: 'Copied selection' })).toBeVisible();
-    expect(
-      await page.evaluate(async () =>
-        (await navigator.clipboard.readText()).replace(/\r\n/g, '\n'),
-      ),
-    ).toBe('$x=99$\n\nEnergy $E=mc^2$.');
-    await openHistory(page);
-    await page.getByLabel('History copy format').click();
-    await page.getByRole('option', { name: 'LaTeX / mixed source', exact: true }).click();
-    await page.getByRole('button', { name: /Copy selected|Copied selection/ }).click();
-    await expect
-      .poll(() =>
-        page.evaluate(async () => (await navigator.clipboard.readText()).replace(/\r\n/g, '\n')),
-      )
-      .toBe('x=99\n\nEnergy $E=mc^2$.');
+    const history = page.getByRole('region', { name: 'Scan history' });
+    await expect(history.getByRole('checkbox')).toHaveCount(0);
+    await expect(history.getByRole('button', { name: /Copy|Select all|Clear selection/ })).toHaveCount(0);
     const second = await extension.context.newPage();
     await second.goto(page.url());
     await openSavedScan(second, 'first.png');
     await editSource(second);
     await expect(second.getByLabel('Editable source')).toHaveValue('$x=99$');
     await openSettings(second);
-    await expect(
-      second.getByRole('combobox', { name: 'Recognition mode', exact: true }),
-    ).toContainText('Auto');
     await openSettings(second);
-    await second.getByRole('combobox', { name: 'Recognition mode', exact: true }).click();
-    await second.getByRole('option', { name: 'Equation', exact: true }).click();
     await editSource(second);
     await second.getByLabel('Editable source').fill('$x=100$');
     await editSource(page);
     await expect(page.getByLabel('Editable source')).toHaveValue('$x=100$');
     await openSettings(second);
-    await expect(
-      second.getByRole('combobox', { name: 'Recognition mode', exact: true }),
-    ).toContainText('Equation');
     await editSource(page);
     await page.reload();
     await openSavedScan(page, 'first.png');
@@ -185,9 +215,6 @@ test('opens, edits, combines and persists scans while keeping original OCR and c
     await openHistory(page);
     await page.getByRole('button', { name: 'Open second.png' }).click();
     await openSettings(page);
-    await expect(
-      page.getByRole('combobox', { name: 'Recognition mode', exact: true }),
-    ).toContainText('Text with math');
     await openHistory(page);
     await page.getByRole('button', { name: 'Open first.png' }).click();
     await editSource(page);
@@ -204,35 +231,24 @@ test('opens, edits, combines and persists scans while keeping original OCR and c
   }
 });
 
-test('paginates larger histories and copies selected scans beyond the visible page', async () => {
+test('paginates larger histories and reopens scans beyond the first page', async () => {
   const extension = await openExtension({ gpu: false });
   try {
     const { page } = extension;
-    await extension.context.grantPermissions(['clipboard-read']);
     await seed(extension, 25);
     await openHistory(page);
     const history = page.getByRole('region', { name: 'Scan history' });
     await openHistory(page);
-    await expect(history.getByRole('checkbox')).toHaveCount(20);
-    await openHistory(page);
-    await history.getByRole('button', { name: 'Select all', exact: true }).click();
-    await openHistory(page);
-    await expect(history.getByRole('status')).toHaveText('25 selected');
-    await openHistory(page);
-    await history.getByRole('button', { name: 'Copy selected', exact: true }).click();
-    await openHistory(page);
-    await expect(
-      history.getByRole('button', { name: 'Copied selection', exact: true }),
-    ).toBeVisible();
-    const text = await page.evaluate(async () =>
-      (await navigator.clipboard.readText()).replace(/\r\n/g, '\n'),
-    );
-    expect(text.split('\n\n')).toHaveLength(25);
-    expect(text.startsWith('$x=2$\n\nEnergy $E=mc^2$.')).toBe(true);
+    await expect(history.getByRole('listitem')).toHaveCount(20);
+    await expect(history.getByRole('button', { name: 'Open first.png' })).toHaveCount(0);
     await openHistory(page);
     await history.getByRole('button', { name: 'Show more scans', exact: true }).click();
     await openHistory(page);
-    await expect(history.getByRole('checkbox')).toHaveCount(25);
+    await expect(history.getByRole('listitem')).toHaveCount(25);
+    await expect(history.getByRole('button', { name: 'Show more scans' })).toHaveCount(0);
+    await history.getByRole('button', { name: 'Open first.png' }).click();
+    await editSource(page);
+    await expect(page.getByLabel('Editable source')).toHaveValue('$x=2$');
   } finally {
     await extension.close();
   }
@@ -303,11 +319,12 @@ for (const input of ['integral', 'energy']) {
   });
 }
 
-test('closing the requesting panel during a delayed export does not fail the shared host', async () => {
+test('closing the requesting panel during a queued result read does not fail the shared host', async () => {
   const extension = await openExtension({ gpu: false });
   try {
     const { page } = extension;
     await seed(extension);
+    await openSavedScan(page, 'first.png');
     await page.evaluate(async () => {
       const request = indexedDB.open('teximagescan-prototype');
       const db = await new Promise((resolve, reject) => {
@@ -316,10 +333,10 @@ test('closing the requesting panel during a delayed export does not fail the sha
       });
       const tx = db.transaction('scans', 'readwrite');
       let hold = true;
-      window.__releaseExportLock = () => {
+      window.__releaseResultLock = () => {
         hold = false;
       };
-      window.__exportLockDone = new Promise((resolve, reject) => {
+      window.__resultLockDone = new Promise((resolve, reject) => {
         tx.oncomplete = () => {
           db.close();
           resolve();
@@ -335,25 +352,25 @@ test('closing the requesting panel during a delayed export does not fail the sha
       keepAlive();
       window.__closingPort = chrome.runtime.connect({ name: 'teximagescan-panel' });
       await new Promise((resolve) => window.__closingPort.onMessage.addListener(resolve));
+      window.__closingPort.postMessage({ type: 'save', id: 'first', text: '$queued=1$' });
       window.__closingPort.postMessage({
-        type: 'export-history',
+        type: 'read-result',
         id: 'closed-request',
-        ids: ['first'],
-        format: 'markdown',
+        resultId: 'first',
       });
     });
     await openHistory(page);
     await page.getByRole('button', { name: 'Open first.png' }).isEnabled();
     await page.evaluate(() => {
       window.__closingPort.disconnect();
-      window.__releaseExportLock();
-      return window.__exportLockDone;
+      window.__releaseResultLock();
+      return window.__resultLockDone;
     });
     await openSavedScan(page, 'second.png');
     await editSource(page);
     await page.getByLabel('Editable source').fill('$healthy=1$');
     await openHistory(page);
-    await expect(page.getByRole('region', { name: 'Scan history' })).toContainText('$healthy=1$');
+    await expect(page.getByRole('button', { name: 'Open second.png' }).locator('.katex annotation')).toHaveText('healthy=1');
     await expect(page.getByRole('alert')).toHaveCount(0);
   } finally {
     await extension.close();

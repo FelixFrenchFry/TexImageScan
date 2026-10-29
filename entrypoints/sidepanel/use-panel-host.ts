@@ -3,7 +3,7 @@ import { browser, type Browser } from 'wxt/browser';
 import {
   PORT_NAME,
   stateSchema,
-  historyExportReplySchema,
+  resultTextReplySchema,
   type AppState,
   type PanelCommand,
 } from '../../src/protocol';
@@ -16,7 +16,7 @@ export function usePanelHost(options: {
   const callbacks = useRef(options);
   callbacks.current = options;
   const port = useRef<Browser.runtime.Port | null>(null);
-  const pendingExports = useRef(
+  const pendingReads = useRef(
     new Map<string, { resolve: (text: string) => void; reject: (error: Error) => void }>(),
   );
 
@@ -43,11 +43,11 @@ export function usePanelHost(options: {
             callbacks.current.onState(parsed.data);
             setConnection('');
           } else {
-            const reply = historyExportReplySchema.safeParse(message);
+            const reply = resultTextReplySchema.safeParse(message);
             if (!reply.success) return;
-            const request = pendingExports.current.get(reply.data.id);
+            const request = pendingReads.current.get(reply.data.id);
             if (!request) return;
-            pendingExports.current.delete(reply.data.id);
+            pendingReads.current.delete(reply.data.id);
             if (reply.data.outcome.ok) request.resolve(reply.data.outcome.text);
             else request.reject(new Error(reply.data.outcome.message));
           }
@@ -56,11 +56,11 @@ export function usePanelHost(options: {
           if (stopped || port.current !== next) return;
           port.current = null;
           callbacks.current.onDisconnect();
-          for (const request of pendingExports.current.values())
+          for (const request of pendingReads.current.values())
             request.reject(
               new Error('The local host disconnected. Retry copying when it reconnects.'),
             );
-          pendingExports.current.clear();
+          pendingReads.current.clear();
           setConnection('Reconnecting to local model host…');
           timer = setTimeout(() => void connect(), 1000);
         });
@@ -76,9 +76,9 @@ export function usePanelHost(options: {
       clearTimeout(timer);
       port.current?.disconnect();
       port.current = null;
-      for (const request of pendingExports.current.values())
+      for (const request of pendingReads.current.values())
         request.reject(new Error('The panel closed.'));
-      pendingExports.current.clear();
+      pendingReads.current.clear();
     };
   }, []);
 
@@ -88,7 +88,7 @@ export function usePanelHost(options: {
     port.current.postMessage(command);
   }
 
-  function exportHistory(ids: string[], format: 'markdown' | 'latex'): Promise<string> {
+  function readResult(resultId: string): Promise<string> {
     return new Promise((resolve, reject) => {
       if (!port.current || connection) {
         reject(new Error('The local host is reconnecting. Try again in a moment.'));
@@ -96,8 +96,8 @@ export function usePanelHost(options: {
       }
       const id = crypto.randomUUID();
       const timer = setTimeout(() => {
-        pendingExports.current.delete(id);
-        reject(new Error('Copying timed out. Select fewer scans and retry.'));
+        pendingReads.current.delete(id);
+        reject(new Error('Copying timed out. Retry when the host is ready.'));
       }, 30_000);
       const request = {
         resolve: (text: string) => {
@@ -109,15 +109,15 @@ export function usePanelHost(options: {
           reject(error);
         },
       };
-      pendingExports.current.set(id, request);
+      pendingReads.current.set(id, request);
       try {
-        port.current.postMessage({ type: 'export-history', id, ids, format } satisfies PanelCommand);
+        port.current.postMessage({ type: 'read-result', id, resultId } satisfies PanelCommand);
       } catch (error) {
-        pendingExports.current.delete(id);
-        request.reject(error instanceof Error ? error : new Error('Could not copy selected scans.'));
+        pendingReads.current.delete(id);
+        request.reject(error instanceof Error ? error : new Error('Could not read the current result.'));
       }
     });
   }
 
-  return { connection, send, exportHistory };
+  return { connection, send, readResult };
 }

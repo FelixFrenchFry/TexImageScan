@@ -10,7 +10,7 @@ import {
   type HistoryEntry,
 } from './protocol';
 import { initialState, recoverState } from './state';
-import { historyEntry, combineScans, removeScans } from './history';
+import { historyEntry, removeScans } from './history';
 
 // save errors belong to the live workspace, not a restored record
 const workspaceSchema = stateSchema
@@ -193,31 +193,4 @@ export async function loadScan(id: string): Promise<RecognitionResult | undefine
 
 export async function deleteScans(state: AppState, ids: readonly string[]): Promise<void> {
   await writeState(state, undefined, ids);
-}
-
-export async function exportScans(
-  ids: readonly string[],
-  format: 'markdown' | 'latex',
-  current?: Pick<RecognitionResult, 'id' | 'createdAt' | 'edited'>,
-): Promise<string> {
-  const selected = [...new Set(ids)];
-  const scans = current && selected.includes(current.id) ? [current] : [];
-  const storedIds = selected.filter((id) => id !== current?.id);
-  if (!storedIds.length) return combineScans(scans, format);
-  const db = await database();
-  try {
-    scans.push(
-      ...(await Promise.all(
-        storedIds.map(async (id) => {
-          const value = await db.get('scans', id);
-          if (!value)
-            throw new Error('A selected scan is no longer available. Select the scans again.');
-          return scanMetadataSchema.parse(value);
-        }),
-      )),
-    );
-    return combineScans(scans, format);
-  } finally {
-    db.close();
-  }
 }

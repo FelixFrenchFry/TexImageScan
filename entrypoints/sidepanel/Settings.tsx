@@ -5,9 +5,7 @@ import { z } from 'zod';
 import { CircleHelp, Download, Trash2 } from 'lucide-react';
 import manifest from '../../src/model-manifest.json';
 import {
-  recognitionModeSchema,
   type AppState,
-  type RecognitionMode,
   type PanelCommand,
 } from '../../src/protocol';
 
@@ -132,7 +130,7 @@ export function CaptureAccess({ disabled, setup = false }: { disabled: boolean; 
       <section className="capture-access-setup" aria-label="Capture setup">
         <strong>Capture across tabs</strong>
         <p className="hint">
-          Recommended. Capture text and math across websites without clicking the toolbar icon on
+          Recommended. Capture equations across websites without clicking the toolbar icon on
           every tab.
         </p>
         <p className="hint">
@@ -241,18 +239,14 @@ export function ModelSetup({
 export function Settings({
   state,
   disabled,
-  task,
   tokens,
-  onTask,
   onTokens,
   onCommand,
   onClear,
 }: {
   state: AppState | null;
   disabled: boolean;
-  task: RecognitionMode;
   tokens: string;
-  onTask: (value: RecognitionMode) => void;
   onTokens: (value: string) => void;
   onCommand: (command: PanelCommand) => void;
   onClear: () => void;
@@ -260,37 +254,6 @@ export function Settings({
   return (
     <section className="settings-view" aria-label="Settings">
       <h2 className="view-title">Settings</h2>
-      <div className="settings-field">
-        <div className="settings-field-label">
-          <label htmlFor="recognition-mode">Recognition mode</label>
-          <Tooltip
-            className="help-tooltip"
-            content={
-              <>
-                Choose how to read your image. <strong>Auto</strong> reads text and equations in one
-                pass. <strong>Equation</strong> is for standalone formulas.{' '}
-                <strong>Text with math</strong> is for text and equations together.
-              </>
-            }
-          >
-            <button type="button" className="field-help" aria-label="About recognition mode">
-              <CircleHelp size={14} aria-hidden="true" />
-            </button>
-          </Tooltip>
-        </div>
-        <Select.Root
-          value={task}
-          disabled={disabled}
-          onValueChange={(value) => onTask(recognitionModeSchema.parse(value))}
-        >
-          <Select.Trigger id="recognition-mode" aria-label="Recognition mode" />
-          <Select.Content>
-            <Select.Item value="auto">Auto</Select.Item>
-            <Select.Item value="equation">Equation</Select.Item>
-            <Select.Item value="mixed">Text with math</Select.Item>
-          </Select.Content>
-        </Select.Root>
-      </div>
       <div className="settings-field">
         <div className="settings-field-label">
           <label htmlFor="token-limit">Output limit</label>
@@ -341,7 +304,7 @@ export function Settings({
           <dt>GPU</dt>
           <dd>{state?.gpu ?? 'Checked when loading the model'}</dd>
           <dt>Precision</dt>
-          <dd>4-bit decoder and embeddings · FP16 vision</dd>
+          <dd>FP16 decoder and vision · FP32 token embeddings</dd>
           <dt>Storage</dt>
           <dd>
             Scans, crops and edits stay on this device. Clear result empties the workspace. Scan

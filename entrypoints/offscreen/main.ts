@@ -6,7 +6,7 @@ import {
   workerEventSchema,
   type PanelCommand,
   type WorkerCommand,
-  type HistoryExportReply,
+  type ResultTextReply,
 } from '../../src/protocol';
 import { initialState, reduceWorkerEvent, reduceCaptureEvent } from '../../src/state';
 import {
@@ -15,7 +15,6 @@ import {
   saveScan,
   loadScan,
   deleteScans,
-  exportScans,
 } from '../../src/storage';
 import { upsertHistory, removeScans } from '../../src/history';
 import { cacheReady, removeModelCaches } from '../../src/model-cache';
@@ -151,7 +150,7 @@ async function handle(command: PanelCommand): Promise<void> {
   )
     await saveResult();
   switch (command.type) {
-    case 'export-history':
+    case 'read-result':
       return;
     case 'open-scan': {
       const result = state.result?.id === command.id ? state.result : await loadScan(command.id);
@@ -310,24 +309,18 @@ browser.runtime.onConnect.addListener((port) => {
     if (!parsed.success) return;
     void enqueue(async () => {
       const command = parsed.data;
-      if (command.type === 'export-history') {
-        let outcome: HistoryExportReply['outcome'];
-        try {
-          const text = await exportScans(command.ids, command.format, state.result ?? undefined);
-          outcome = { ok: true, text };
-        } catch (error) {
-          outcome = {
-            ok: false,
-            message: error instanceof Error ? error.message : 'Could not copy selected scans.',
-          };
-        }
+      if (command.type === 'read-result') {
+        const result = state.result;
+        const outcome: ResultTextReply['outcome'] = result?.id === command.resultId
+          ? { ok: true, text: result.edited }
+          : { ok: false, message: 'This result is no longer active. Reopen it before copying.' };
         if (!ports.has(port)) return;
         try {
           port.postMessage({
-            type: 'history-exported',
+            type: 'result-text',
             id: command.id,
             outcome,
-          } satisfies HistoryExportReply);
+          } satisfies ResultTextReply);
         } catch {
           ports.delete(port);
         }

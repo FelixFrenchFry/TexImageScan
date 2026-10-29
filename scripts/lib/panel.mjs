@@ -4,7 +4,7 @@ export async function openSettings(page) {
   if (!(await page.getByRole('region', { name: 'Settings', exact: true }).isVisible())) {
     await page.getByRole('button', { name: 'Settings', exact: true }).click();
   }
-  await page.getByRole('combobox', { name: 'Recognition mode', exact: true }).waitFor();
+  await page.getByRole('combobox', { name: 'Output token limit', exact: true }).waitFor();
 }
 export async function openHistory(page) {
   if (!(await page.getByRole('region', { name: 'Scan history', exact: true }).isVisible())) {
@@ -66,21 +66,6 @@ export async function editSource(page) {
     await page.getByRole('button', { name: 'Edit source', exact: true }).click();
   await field.waitFor();
 }
-export async function currentMode(page) {
-  await openSettings(page);
-  const value = await page
-    .getByRole('combobox', { name: 'Recognition mode', exact: true })
-    .innerText();
-  await backToScan(page);
-  return value;
-}
-export async function setMode(page, label) {
-  await openSettings(page);
-  await page.getByRole('combobox', { name: 'Recognition mode', exact: true }).click();
-  await page.getByRole('option', { name: label, exact: true }).click();
-  await backToScan(page);
-}
-
 export async function startRecognition(page) {
   await backToScan(page);
   const staged = page.getByRole('button', { name: 'Recognize image', exact: true });

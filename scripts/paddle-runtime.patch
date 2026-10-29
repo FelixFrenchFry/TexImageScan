@@ -1,0 +1,329 @@
+diff --git a/public/paddle/browser_ocr_runtime.mjs b/public/paddle/browser_ocr_runtime.mjs
+index 4a0dbd2..69cc238 100644
+--- a/public/paddle/browser_ocr_runtime.mjs
++++ b/public/paddle/browser_ocr_runtime.mjs
+@@ -1,9 +1,10 @@
++// TexImageScan changes, 2026-10-28: verified cache reads, streaming and sequential jobs
++// report GPU device loss through the app
+ import * as runtimeWasmModule from "./pkg/pvlc_runtime_web.js";
+ import { runGreedyGeneration } from "./greedy_generation.mjs";
+ import {
+   AdaptiveOcrConcurrency,
+   BrowserRuntimePool,
+-  recommendOcrParallelism,
+ } from "./ocr_concurrency.mjs";
+ import {
+   PADDLEOCR_VL_TASKS,
+@@ -50,106 +51,30 @@ const ASSETS = Object.freeze({
+   tokenizerUrl: `${MODEL_BASE_URL}/m6e9-tokenizer.json`,
+ });
+ 
+-const completedAssetUrls = new Set();
+-const assetDownloadBytes = new Map();
+-const MODEL_CACHE_NAME = `sotaocr-free-ocr-${MODEL_REVISION}`;
+-
+ function emitProgress(onProgress, update) {
+   if (typeof onProgress === "function") {
+     onProgress(update);
+   }
+ }
+ 
+-function modelLoadedBytes() {
+-  let total = 0;
+-  for (const value of assetDownloadBytes.values()) {
+-    total += value;
+-  }
+-  return Math.min(total, MODEL_DOWNLOAD_BYTES);
+-}
+-
+-async function fetchBytes(url, label, onProgress) {
+-  let modelCache = null;
+-  let response = null;
+-  let fromPersistentCache = false;
+-  if ("caches" in globalThis) {
+-    try {
+-      modelCache = await caches.open(MODEL_CACHE_NAME);
+-      response = await modelCache.match(url);
+-      fromPersistentCache = response !== undefined;
+-    } catch {
+-      modelCache = null;
+-      response = null;
+-    }
+-  }
+-  if (!response) {
+-    response = await fetch(url, { cache: "force-cache" });
+-  }
++async function fetchBytes(url, label, onProgress, fetchAsset) {
++  // use the app's downloads, integrity checks and model cache
++  const response = await fetchAsset(url);
+   if (!response.ok) {
+     throw new Error(`${label} fetch failed: HTTP ${response.status}`);
+   }
+-  const cacheWrite = modelCache && !fromPersistentCache
+-    ? modelCache.put(url, response.clone()).catch(() => {})
+-    : Promise.resolve();
+-
+-  const totalBytes = Number(response.headers.get("content-length")) || null;
+-  if (!response.body) {
+-    const bytes = new Uint8Array(await response.arrayBuffer());
+-    await cacheWrite;
+-    if (!completedAssetUrls.has(url)) {
+-      assetDownloadBytes.set(url, bytes.byteLength);
+-      completedAssetUrls.add(url);
+-    }
+-    emitProgress(onProgress, {
+-      kind: "download",
+-      asset: label,
+-      assetLoadedBytes: bytes.byteLength,
+-      assetTotalBytes: totalBytes,
+-      modelLoadedBytes: modelLoadedBytes(),
+-      modelTotalBytes: MODEL_DOWNLOAD_BYTES,
+-      fromPersistentCache,
+-    });
+-    return bytes;
+-  }
+-
+-  const reader = response.body.getReader();
+-  const chunks = [];
+-  let loadedBytes = 0;
+-  while (true) {
+-    const { done, value } = await reader.read();
+-    if (done) break;
+-    chunks.push(value);
+-    loadedBytes += value.byteLength;
+-    if (!completedAssetUrls.has(url)) {
+-      assetDownloadBytes.set(url, loadedBytes);
+-    }
+-    emitProgress(onProgress, {
+-      kind: "download",
+-      asset: label,
+-      assetLoadedBytes: loadedBytes,
+-      assetTotalBytes: totalBytes,
+-      modelLoadedBytes: modelLoadedBytes(),
+-      modelTotalBytes: MODEL_DOWNLOAD_BYTES,
+-      fromPersistentCache,
+-    });
+-  }
+-
+-  const bytes = new Uint8Array(loadedBytes);
+-  let offset = 0;
+-  for (const chunk of chunks) {
+-    bytes.set(chunk, offset);
+-    offset += chunk.byteLength;
+-  }
+-  if (!completedAssetUrls.has(url)) {
+-    assetDownloadBytes.set(url, loadedBytes);
+-    completedAssetUrls.add(url);
+-  }
+-  await cacheWrite;
++  const bytes = new Uint8Array(await response.arrayBuffer());
++  emitProgress(onProgress, { kind: "loading", asset: label });
+   return bytes;
+ }
+ 
+ class BrowserModelAssets {
+   #memoized = new Map();
++  #fetchAsset;
++
++  constructor(fetchAsset) {
++    this.#fetchAsset = fetchAsset;
++  }
+ 
+   #once(key, loader) {
+     if (!this.#memoized.has(key)) {
+@@ -167,10 +92,14 @@ class BrowserModelAssets {
+   bytes(url, label, onProgress) {
+     return this.#once(
+       `bytes:${url}`,
+-      () => fetchBytes(url, label, onProgress),
++      () => this.read(url, label, onProgress),
+     );
+   }
+ 
++  read(url, label, onProgress) {
++    return fetchBytes(url, label, onProgress, this.#fetchAsset);
++  }
++
+   visionEmbed(onProgress) {
+     return this.#once("parsed:vision-embed", async () =>
+       readMultimodalSafetensors(
+@@ -306,6 +235,8 @@ async function runCanvasInference(
+     rgb,
+     canvas.height,
+     canvas.width,
++    3,
++    options.preprocessing,
+   );
+   const tokens = gridThw[0] * gridThw[1] * gridThw[2];
+   mark("preprocess", `${tokens} vision tokens`);
+@@ -323,7 +254,7 @@ async function runCanvasInference(
+   const layerSuffix = officialManifest.matrix_weight_storage === "f16"
+     ? ".bin"
+     : ".f32";
+-  const loadShard = (id) => fetchBytes(
++  const loadShard = (id) => assets.read(
+     `${ASSETS.stackBase}/${id}${layerSuffix}`,
+     `Vision ${id}`,
+     onProgress,
+@@ -357,7 +288,7 @@ async function runCanvasInference(
+   if (!runtime.has_projector_f16_resident_weights(projectorDescriptorJson)) {
+     runtime.prepare_projector_f16_resident_weights(
+       projectorDescriptorJson,
+-      await fetchBytes(
++      await assets.read(
+         `${ASSETS.projectorBase}/weights.projector.bin`,
+         "Projector weights",
+         onProgress,
+@@ -519,12 +450,20 @@ async function runCanvasInference(
+     mark("decoder_prefill", "Decoder prefill complete");
+ 
+     const generationStartedAt = performance.now();
++    const tokenizer = await preloaded.tokenizer;
++    const streamedIds = [];
+     const greedy = await runGreedyGeneration(runtime, {
+       embedding: embedTokens,
+       eosTokenId: 2,
+       maxSteps: options.maxGeneratedTokens,
+       cacheCapacity: capacity,
+       initialCacheTokens: promptTokens,
++      onStep: options.onToken ? ({ selectedTokenId }) => {
++        if (selectedTokenId !== 2) {
++          streamedIds.push(selectedTokenId);
++          options.onToken(tokenizer.detokenize(streamedIds), streamedIds.length);
++        }
++      } : null,
+     });
+     const generationMs = performance.now() - generationStartedAt;
+     const tokensPerSecond = generationMs === 0
+@@ -532,7 +471,6 @@ async function runCanvasInference(
+       : greedy.tokenIds.length * 1000 / generationMs;
+     mark("generation", `${greedy.tokenIds.length} generated tokens`);
+ 
+-    const tokenizer = await preloaded.tokenizer;
+     return {
+       greedy,
+       text: tokenizer.detokenize([...greedy.tokenIds]),
+@@ -569,10 +507,11 @@ export class PaddleOcrVlEngine {
+   #assets;
+   #disposed = false;
+ 
+-  constructor(runtimes, concurrency) {
++  constructor(runtimes, concurrency, fetchAsset, capabilities) {
+     this.#runtimePool = new BrowserRuntimePool(runtimes);
+     this.#concurrency = concurrency;
+-    this.#assets = new BrowserModelAssets();
++    this.#assets = new BrowserModelAssets(fetchAsset);
++    this.capabilities = capabilities;
+   }
+ 
+   recognitionConcurrency(remaining = Number.POSITIVE_INFINITY) {
+@@ -594,8 +533,10 @@ export class PaddleOcrVlEngine {
+     {
+       task = "ocr",
+       promptSuffixIds,
++      preprocessing,
+       maxGeneratedTokens = 512,
+       onProgress = () => {},
++      onToken,
+     } = {},
+   ) {
+     if (this.#disposed) {
+@@ -621,6 +562,8 @@ export class PaddleOcrVlEngine {
+         canvas,
+         {
+           ...taskOptions,
++          preprocessing,
++          onToken,
+           promptSuffixIds:
+             promptSuffixIds ?? taskOptions.promptSuffixIds,
+         },
+@@ -655,19 +598,17 @@ export class PaddleOcrVlEngine {
+   }
+ }
+ 
+-export async function createPaddleOcrVlEngine() {
++export async function createPaddleOcrVlEngine({ fetchAsset, onDeviceLost } = {}) {
++  if (typeof fetchAsset !== "function") throw new TypeError("A verified asset loader is required");
++  runtimeWasmModule.setDeviceLostHandler(onDeviceLost);
+   await init();
+   const primaryRuntime = await WebRuntime.create();
+   const capabilities = JSON.parse(primaryRuntime.capabilities_json());
+-  const profile = recommendOcrParallelism(capabilities);
+-  const extraRuntimes = await Promise.all(
+-    Array.from(
+-      { length: profile.maxParallelism - 1 },
+-      () => WebRuntime.create(),
+-    ),
+-  );
++  const profile = { maxParallelism: 1, initialParallelism: 1 };
+   return new PaddleOcrVlEngine(
+-    [primaryRuntime, ...extraRuntimes],
++    [primaryRuntime],
+     new AdaptiveOcrConcurrency(profile),
++    fetchAsset,
++    capabilities,
+   );
+ }
+diff --git a/public/paddle/multimodal_ocr.mjs b/public/paddle/multimodal_ocr.mjs
+index e625fb1..e73068e 100644
+--- a/public/paddle/multimodal_ocr.mjs
++++ b/public/paddle/multimodal_ocr.mjs
+@@ -1,3 +1,4 @@
++// TexImageScan changes, 2026-10-28: bounded image resize options
+ // PVLC M6e10 caller-owned multimodal assembly pipeline
+ // (docs/m6e10_browser_multimodal_assembly_contract.md).
+ //
+@@ -586,7 +587,7 @@ export function bicubicResizeF32(input, sourceHeight, sourceWidth, targetHeight,
+ // smart_resize → bicubic → rescale 1/255 → normalize (x - 0.5) / 0.5 →
+ // patch extraction [T·gh·gw, 588] with the pinned (t, h, w) patch order and
+ // (channel, y, x) element order inside a patch.
+-export function preprocessImage(pixels, sourceHeight, sourceWidth, channels = 3) {
++export function preprocessImage(pixels, sourceHeight, sourceWidth, channels = 3, resizeOptions = {}) {
+   if (!Number.isSafeInteger(sourceHeight) || sourceHeight <= 0 ||
+       !Number.isSafeInteger(sourceWidth) || sourceWidth <= 0) {
+     fail("preprocess image dimensions must be positive integers");
+@@ -605,7 +606,7 @@ export function preprocessImage(pixels, sourceHeight, sourceWidth, channels = 3)
+     }
+     input[index] = value;
+   }
+-  const { height, width, gridThw } = smartResize(sourceHeight, sourceWidth);
++  const { height, width, gridThw } = smartResize(sourceHeight, sourceWidth, resizeOptions);
+   const resized = bicubicResizeF32(input, sourceHeight, sourceWidth, height, width, channels);
+   const [, gridH, gridW] = gridThw;
+   const patchCount = gridThw[0] * gridH * gridW;
+diff --git a/public/paddle/pkg/pvlc_runtime_web.js b/public/paddle/pkg/pvlc_runtime_web.js
+index 984cb64..35f1576 100644
+--- a/public/paddle/pkg/pvlc_runtime_web.js
++++ b/public/paddle/pkg/pvlc_runtime_web.js
+@@ -1,5 +1,11 @@
++// TexImageScan changes, 2026-10-28: GPU loss reports and Windows adapter options
+ import { own_pvlc_uint8array_bridge_input } from './snippets/pvlc-runtime-web-2887d2e0146ca1ca/inline0.js';
+ 
++// report loss from the runtime's device
++let deviceLostHandler;
++export function setDeviceLostHandler(handler) {
++    deviceLostHandler = handler;
++}
+ 
+ export class WebRuntime {
+     static __wrap(ptr) {
+@@ -1757,11 +1763,18 @@ function __wbg_get_imports() {
+             return ret;
+         },
+         __wbg_requestAdapter_2e6718811c735a57: function(arg0, arg1) {
+-            const ret = arg0.requestAdapter(arg1);
++            const options = { ...arg1 };
++            if (/\bWindows\b/i.test(globalThis.navigator?.userAgent ?? '')) delete options.powerPreference;
++            const ret = arg0.requestAdapter(options);
+             return ret;
+         },
+         __wbg_requestDevice_ab46d0519ea1cc34: function(arg0, arg1) {
+             const ret = arg0.requestDevice(arg1);
++            ret.then((device) => {
++                if (typeof deviceLostHandler === 'function') {
++                    void device.lost.then((info) => deviceLostHandler?.(info));
++                }
++            }, () => {});
+             return ret;
+         },
+         __wbg_resolve_2191a4dfe481c25b: function(arg0) {

@@ -58,7 +58,7 @@ describe('pinned model assets', () => {
         ),
       ).rejects.toThrow('checksum');
       expect(await cacheReady()).toBe(false);
-      expect(entries.has(base + 'config.json')).toBe(true);
+      expect(entries.has(base + 'LICENSE')).toBe(true);
     } finally {
       vi.unstubAllGlobals();
     }
@@ -66,9 +66,9 @@ describe('pinned model assets', () => {
 
   it('serves only the pinned repository and revision, never a matching filename from another model', () => {
     const base = `https://huggingface.co/${manifest.repository}/resolve/${manifest.revision}`;
-    expect(modelFile(`${base}/config.json?download=true`)).toBe('config.json');
+    expect(modelFile(`${base}/README.md?download=true`)).toBe('README.md');
     expect(
-      modelFile(`${base.replace(manifest.revision, 'old-revision')}/config.json`),
+      modelFile(`${base.replace(manifest.revision, 'old-revision')}/README.md`),
     ).toBeUndefined();
     expect(modelFile('https://example.com/another-model/config.json')).toBeUndefined();
   });

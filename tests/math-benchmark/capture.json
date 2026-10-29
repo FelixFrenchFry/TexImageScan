@@ -1,0 +1,11 @@
+{
+  "capturedAt": "2026-10-28T19:48:09.155Z",
+  "browser": "Chrome",
+  "scriptSha256": "a555880b6c8bed02df69e70656157d8cc5fd1ff34333d2d7b19a7e7938f7b3a6",
+  "exclusions": [
+    {
+      "document": "https://en.wikipedia.org/wiki/Christoffel_symbols",
+      "reason": "Unsupported reference renderer: {\\displaystyle \\partial _{i}f\\equiv {\\frac {\\partial \\left(f\\circ \\varphi ^{-1}\\right)}{\\partial x^{i}}}\\quad {\\mbox{for }}i=1,\\,2,\\,\\dots ,\\,n}"
+    }
+  ]
+}

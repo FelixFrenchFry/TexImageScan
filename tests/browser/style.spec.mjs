@@ -62,7 +62,7 @@ test('panel styles keep framed controls and safe dialog focus at narrow widths',
 
     await page.getByRole('button', { name: 'Settings', exact: true }).click();
     await page.getByText('Model & diagnostics', { exact: true }).click();
-    await page.getByLabel('Recognition mode', { exact: true }).click();
+    await page.getByLabel('Output token limit', { exact: true }).click();
     const menu = page.getByRole('listbox');
     await expect(menu).toHaveCSS('background-color', 'rgb(255, 255, 255)');
     await expect(menu).toHaveCSS('box-shadow', 'none');
@@ -72,10 +72,6 @@ test('panel styles keep framed controls and safe dialog focus at narrow widths',
     await page.keyboard.press('Escape');
 
     await page.getByRole('button', { name: 'Scan history', exact: true }).click();
-    await page.getByLabel('Select energy.png', { exact: true }).check();
-    await expect(page.getByRole('button', { name: 'Copy selected', exact: true })).toHaveCSS(
-      'background-color', 'rgb(255, 255, 255)',
-    );
     await page.setViewportSize({ width: 320, height: 900 });
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await page.screenshot({ path: testInfo.outputPath('history-narrow.png') });

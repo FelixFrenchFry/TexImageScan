@@ -1,14 +1,17 @@
-import { type AppState, type RecognitionResult, type HistoryEntry } from './protocol';
+import {
+  MAX_HISTORY_PREVIEW_LENGTH,
+  type AppState,
+  type RecognitionResult,
+  type HistoryEntry,
+} from './protocol';
 import { splitMath } from './preview';
-
-type ScanText = Pick<RecognitionResult, 'id' | 'createdAt' | 'edited'>;
 
 export function historyEntry(scan: Omit<RecognitionResult, 'image'>): HistoryEntry {
   return {
     id: scan.id,
     name: scan.name,
     createdAt: scan.createdAt,
-    preview: scan.edited.slice(0, 160),
+    preview: scan.edited.slice(0, MAX_HISTORY_PREVIEW_LENGTH),
     edited: scan.edited !== scan.original,
     truncated: scan.truncated,
   };
@@ -37,13 +40,6 @@ export function exportSource(source: string, format: string): string {
     return text.slice(text.indexOf('\n') + 1, text.lastIndexOf('```')).trim();
   const length = text.startsWith('$$') || text.startsWith('\\[') || text.startsWith('\\(') ? 2 : 1;
   return text.slice(length, -length);
-}
-
-export function combineScans(scans: readonly ScanText[], format: 'markdown' | 'latex'): string {
-  return [...scans]
-    .sort((a, b) => a.createdAt.localeCompare(b.createdAt) || a.id.localeCompare(b.id))
-    .map((scan) => exportSource(scan.edited, format))
-    .join('\n\n');
 }
 
 export function removeScans(state: AppState, ids: readonly string[]): AppState {

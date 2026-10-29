@@ -3,7 +3,6 @@ import {
   parseCorpusOptions,
   checkCorpusProtocol,
   checkImportedCase,
-  evaluationSplit,
 } from '../scripts/lib/corpus-version.mjs';
 
 describe('corpus version boundaries', () => {
@@ -35,13 +34,6 @@ describe('corpus version boundaries', () => {
       ),
     ).toThrow(/image|pixel/i);
     expect(() => checkImportedCase(imported, parent, 'other')).toThrow(/lineage/i);
-  });
-  it('defaults new versions to development and requires explicit fresh validation', () => {
-    expect(evaluationSplit(1)).toBe('all');
-    expect(evaluationSplit(2)).toBe('development');
-    expect(() => evaluationSplit(2, 'all')).toThrow(/validation/i);
-    expect(() => evaluationSplit(2, 'heldout')).toThrow(/validation/i);
-    expect(evaluationSplit(2, 'heldout', true)).toBe('heldout');
   });
   it('defaults to v1 and consumes an explicit safe version directory', () => {
     expect(parseCorpusOptions(['--frozen'])).toEqual({

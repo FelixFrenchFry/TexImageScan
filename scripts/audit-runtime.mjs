@@ -34,4 +34,4 @@ await clearTestWorkspace();
 await import('./test-production.mjs');
 if (process.exitCode) process.exit(process.exitCode);
 await clearTestWorkspace();
-await import('./test-auto-ui.mjs');
+await import('./test-math-ui.mjs');

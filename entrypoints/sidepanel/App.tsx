@@ -18,7 +18,6 @@ import {
   MAX_IMAGE_BYTES,
   type AppState,
   type PanelCommand,
-  type RecognitionMode,
 } from '../../src/protocol';
 import { captureReplySchema, CAPTURE_ACCESS_MESSAGE } from '../../src/capture';
 import {
@@ -39,13 +38,12 @@ export function App() {
   const [startingCapture, setStartingCapture] = useState(false);
   const [text, setText] = useState('');
   const [tokens, setTokens] = useState('2048');
-  const [task, setTask] = useState<RecognitionMode>('auto');
   const [notice, setNotice] = useState('');
   const [view, setView] = useState<'scan' | 'settings' | 'history'>('scan');
   const fileInput = useRef<HTMLInputElement>(null);
   const pendingText = useRef<{ id: string; text: string } | null>(null);
   const openingScan = useRef<string | null>(null);
-  const { connection, send: sendCommand, exportHistory } = usePanelHost({
+  const { connection, send: sendCommand, readResult } = usePanelHost({
     onState(next) {
       if (firstState.current) {
         firstState.current = false;
@@ -61,7 +59,6 @@ export function App() {
       ) {
         openingScan.current = null;
         setInactive({ resultId: null, inputId: null });
-        setTask(opened.mode ?? opened.task ?? 'auto');
       }
       setState(next);
     },
@@ -189,14 +186,14 @@ export function App() {
   function recognize() {
     if (!input) return;
     setNotice('');
-    send({ type: 'recognize', ...input, maxTokens: Number(tokens), task });
+    send({ type: 'recognize', ...input, maxTokens: Number(tokens) });
   }
 
   async function copyUnsavedResult() {
     if (!state?.result) return;
     setNotice('');
     try {
-      const source = await exportHistory([state.result.id], 'markdown');
+      const source = await readResult(state.result.id);
       await navigator.clipboard.writeText(source);
     } catch (error) {
       setNotice(error instanceof Error ? error.message : 'Could not copy the unsaved result.');
@@ -226,7 +223,6 @@ export function App() {
         recognizing: 'Recognizing locally',
       }[running.phase]
     : '';
-  const modeLabel = task === 'auto' ? 'Auto' : task === 'equation' ? 'Equation' : 'Text with math';
   const toggleView = (next: 'settings' | 'history') => setView(view === next ? 'scan' : next);
   const progressCard = running && (
     <section className="progress-card" aria-live="polite">
@@ -447,7 +443,7 @@ export function App() {
                     <span>scan?<Crop size={20} aria-hidden="true" /></span>
                   </h2>
                   <p className="hint">
-                    Capture text or math from this page, then turn it into editable text.
+                    Capture a printed equation, matrix, or aligned equations and turn them into editable LaTeX.
                   </p>
                   <p className="capture-shortcut">
                     <span className="kbd">Alt + Shift + S</span>
@@ -472,7 +468,7 @@ export function App() {
                 <div className="step-label step-gap">
                   <h2>02 · Ready to recognize</h2>
                   <button className="text-link" onClick={() => setView('settings')}>
-                    {modeLabel} · Options
+                    Options
                   </button>
                 </div>
                 <button
@@ -505,9 +501,7 @@ export function App() {
           <Settings
             state={state}
             disabled={disabled}
-            task={task}
             tokens={tokens}
-            onTask={setTask}
             onTokens={setTokens}
             onCommand={send}
             onClear={() => {
@@ -524,7 +518,6 @@ export function App() {
             onOpen={openScan}
             onDelete={(ids) => send({ type: 'delete-scans', ids })}
             onClear={() => send({ type: 'clear-history' })}
-            onExport={exportHistory}
           />
         </div>
       </main>

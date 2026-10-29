@@ -1,10 +1,21 @@
 import { existsSync } from 'node:fs';
 import { mkdir, mkdtemp, rm } from 'node:fs/promises';
-import { resolve, sep } from 'node:path';
+import { join, resolve, sep } from 'node:path';
 import { chromium } from '@playwright/test';
 
 export function browserExecutable() {
-  const candidates = [process.env.CHROME_PATH, chromium.executablePath()];
+  const candidates = [
+    process.env.CHROME_PATH,
+    ...[process.env.PROGRAMFILES, process.env['PROGRAMFILES(X86)'], process.env.LOCALAPPDATA,
+      'C:/Program Files', 'C:/Program Files (x86)'].filter(Boolean)
+      .map((root) => join(root, 'Google/Chrome/Application/chrome.exe')),
+    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    '/usr/bin/google-chrome',
+    '/usr/bin/google-chrome-stable',
+    '/usr/bin/chromium',
+    '/usr/bin/chromium-browser',
+    chromium.executablePath(),
+  ];
   const executable = candidates.find((path) => path && existsSync(path));
   if (!executable)
     throw new Error(
@@ -16,8 +27,7 @@ export function browserExecutable() {
 export async function openExtension({
   directory = process.env.TEXIMAGESCAN_TEST_BUILD ?? '.output/chrome-mv3',
   profile,
-  gpu = true,
-  extensionDebug = false,
+  gpu = false,
   deviceScaleFactor = 1,
   headless = true,
   viewport = { width: 430, height: 1100 },
@@ -28,11 +38,10 @@ export async function openExtension({
   const context = await chromium.launchPersistentContext(temporary, {
     executablePath: browserExecutable(),
     headless,
+    ignoreDefaultArgs: ['--disable-extensions'],
     args: [
-      `--disable-extensions-except=${extension}`,
-      `--load-extension=${extension}`,
+      '--enable-unsafe-extension-debugging',
       ...(gpu ? ['--enable-unsafe-webgpu'] : []),
-      ...(extensionDebug || profile ? ['--enable-unsafe-extension-debugging'] : []),
     ],
     viewport,
     deviceScaleFactor,
@@ -46,16 +55,11 @@ export async function openExtension({
     }
   }
   try {
-    let id;
-    if (profile) {
-      // reload the unpacked build while retaining its model cache
-      // reloading through the runtime disables command-line installs in recent Chrome builds
-      const cdp = await context.browser().newBrowserCDPSession();
-      ({ id } = await cdp.send('Extensions.loadUnpacked', { path: extension }));
-    } else {
-      const worker = context.serviceWorkers()[0] ?? (await context.waitForEvent('serviceworker'));
-      id = new URL(worker.url()).host;
-    }
+    // Chrome requires CDP to load unpacked extensions
+    // reloading the build keeps the profile's model cache
+    const cdp = await context.browser().newBrowserCDPSession();
+    const { id } = await cdp.send('Extensions.loadUnpacked', { path: extension });
+    await cdp.detach();
     const page = await context.newPage();
     await page.goto(`chrome-extension://${id}/sidepanel.html`);
     await waitForPanel(page);

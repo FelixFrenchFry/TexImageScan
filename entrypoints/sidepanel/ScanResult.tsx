@@ -132,7 +132,7 @@ export function ScanResult({
           </Callout.Icon>
           <Callout.Text>
             Output reached its token limit and may be incomplete or repetitive. Try a tighter crop
-            or a manual mode.
+            or increase Output limit in Settings, then recognize again.
           </Callout.Text>
         </Callout.Root>
       )}
@@ -326,6 +326,10 @@ export function ScanResult({
           <RotateCcw size={13} aria-hidden="true" />
           Recognize again
         </button>
+        <div>
+          <strong>Raw model output</strong>
+          <pre className="stream">{result.raw ?? result.original}</pre>
+        </div>
       </details>
     </section>
   );

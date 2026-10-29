@@ -15,7 +15,7 @@ test('installed extension opens, loads a crop, rejects invalid input, and stays 
   const extension = await openExtension({ gpu: false });
   try {
     const { page } = extension;
-    await expect(page.locator('.model-card')).toContainText('TeleOCR');
+    await expect(page.locator('.model-card')).toContainText('PaddleOCR-VL-1.6');
     await expect(page.getByRole('button', { name: /Download model/ })).toBeEnabled();
     await page.getByLabel('Choose image file').setInputFiles('tests/fixtures/samples/energy.png');
     await backToScan(page);
@@ -177,82 +177,21 @@ test('two panels synchronize retained edits without overwriting newer typing', a
   }
 });
 
-test('Auto is the default for uploads while manual overrides remain available', async () => {
+test('equation uploads use one workflow and retain output settings', async () => {
   const extension = await openExtension({ gpu: false });
   try {
     const { page } = extension;
     await openSettings(page);
-    await expect(
-      page.getByRole('combobox', { name: 'Recognition mode', exact: true }),
-    ).toContainText('Auto');
-    await expect(page.getByLabel('Sample image')).toHaveCount(0);
-    await expect(page.getByText('Try a sample', { exact: true })).toHaveCount(0);
-    await page
-      .getByLabel('Choose image file')
-      .setInputFiles('tests/fixtures/generated/bold-vectors.png');
-    await backToScan(page);
-    await expect(
-      page
-        .getByRole('region', { name: 'Source image', exact: true })
-        .getByRole('img', { name: 'Source: bold-vectors.png' }),
-    ).toBeVisible();
-    await openSettings(page);
-    await page.getByLabel('Choose image file').setInputFiles('tests/fixtures/samples/mixed-multiline.png');
-    await backToScan(page);
-    await expect(
-      page
-        .getByRole('region', { name: 'Source image', exact: true })
-        .getByRole('img', { name: 'Source: mixed-multiline.png' }),
-    ).toBeVisible();
-    await openSettings(page);
-    await expect(
-      page.getByRole('combobox', { name: 'Recognition mode', exact: true }),
-    ).toContainText('Auto');
-    await openSettings(page);
-    await page.getByLabel('Choose image file').setInputFiles('tests/fixtures/samples/mixed-energy.png');
-    await backToScan(page);
-    await expect(
-      page
-        .getByRole('region', { name: 'Source image', exact: true })
-        .getByRole('img', { name: 'Source: mixed-energy.png' }),
-    ).toBeVisible();
-    await openSettings(page);
-    await expect(
-      page.getByRole('combobox', { name: 'Recognition mode', exact: true }),
-    ).toContainText('Auto');
-    await openSettings(page);
-    await page.getByRole('combobox', { name: 'Recognition mode', exact: true }).click();
-    await page.getByRole('option', { name: 'Equation', exact: true }).click();
-    await openSettings(page);
-    await expect(
-      page.getByRole('combobox', { name: 'Recognition mode', exact: true }),
-    ).toContainText('Equation');
-    await page.getByLabel('Choose image file').setInputFiles('tests/fixtures/samples/energy.png');
-    await backToScan(page);
-    await expect(
-      page
-        .getByRole('region', { name: 'Source image', exact: true })
-        .getByRole('img', { name: 'Source: energy.png' }),
-    ).toBeVisible();
-    await openSettings(page);
-    await expect(
-      page.getByRole('combobox', { name: 'Recognition mode', exact: true }),
-    ).toContainText('Equation');
-    await openSettings(page);
-    await page.getByRole('combobox', { name: 'Recognition mode', exact: true }).click();
-    await page.getByRole('option', { name: 'Text with math', exact: true }).click();
-    await openSettings(page);
-    await expect(
-      page.getByRole('combobox', { name: 'Recognition mode', exact: true }),
-    ).toContainText('Text with math');
-    await openSettings(page);
-    await page.getByRole('combobox', { name: 'Recognition mode', exact: true }).click();
-    await page.getByRole('option', { name: 'Auto', exact: true }).click();
-    await openSettings(page);
-    await expect(
-      page.getByRole('combobox', { name: 'Recognition mode', exact: true }),
-    ).toContainText('Auto');
-  } finally {
-    await extension.close();
-  }
+    await expect(page.getByRole('combobox', { name: 'Recognition mode', exact: true })).toHaveCount(0);
+    await expect(page.getByRole('combobox', { name: 'Output token limit', exact: true })).toContainText('2048');
+    await page.getByRole('combobox', { name: 'Output token limit', exact: true }).click();
+    await page.getByRole('option', { name: '4096 tokens', exact: true }).click();
+    for (const name of ['bold-vectors', 'energy']) {
+      await page.getByLabel('Choose image file').setInputFiles(name === 'bold-vectors' ? 'tests/fixtures/generated/bold-vectors.png' : 'tests/fixtures/samples/energy.png');
+      await backToScan(page);
+      await expect(page.getByRole('region', { name: 'Source image', exact: true }).getByRole('img', { name: 'Source: ' + name + '.png' })).toBeVisible();
+      await openSettings(page);
+      await expect(page.getByRole('combobox', { name: 'Output token limit', exact: true })).toContainText('4096');
+    }
+  } finally { await extension.close(); }
 });

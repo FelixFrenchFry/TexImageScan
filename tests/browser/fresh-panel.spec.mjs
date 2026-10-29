@@ -89,14 +89,14 @@ test('reloaded and reopened panels start fresh while the saved scan remains in H
     await expect(page.getByRole('button', { name: 'Capture', exact: true })).toBeEnabled();
     await page.getByRole('button', { name: 'Scan history', exact: true }).click();
     await expect(page.locator('.history-list li.active')).toHaveCount(0);
-    await expect(page.getByRole('region', { name: 'Scan history' })).toContainText('$E=mc^3$');
+    await expect(page.getByRole('button', { name: 'Open energy.png', exact: true }).locator('.katex annotation')).toHaveText('E=mc^3');
     await page.getByRole('button', { name: 'Open energy.png', exact: true }).click();
     await expect(page.getByRole('img', { name: 'Source: energy.png', exact: true })).toBeVisible();
     await page.getByRole('button', { name: 'Edit source', exact: true }).click();
     await expect(page.getByLabel('Editable source')).toHaveValue('$E=mc^3$');
     await page.getByLabel('Editable source').fill('$E=mc^4$');
     await page.getByRole('button', { name: 'Scan history', exact: true }).click();
-    await expect(page.getByRole('region', { name: 'Scan history' })).toContainText('$E=mc^4$');
+    await expect(page.getByRole('button', { name: 'Open energy.png', exact: true }).locator('.katex annotation')).toHaveText('E=mc^4');
     const url = page.url();
     await page.close();
     page = await extension.context.newPage();
@@ -104,7 +104,7 @@ test('reloaded and reopened panels start fresh while the saved scan remains in H
     await expect(page.getByRole('heading', { name: 'What would you like to scan?' })).toBeVisible();
     await page.getByRole('button', { name: 'Scan history', exact: true }).click();
     await expect(page.locator('.history-list li.active')).toHaveCount(0);
-    await expect(page.getByRole('region', { name: 'Scan history' })).toContainText('$E=mc^4$');
+    await expect(page.getByRole('button', { name: 'Open energy.png', exact: true }).locator('.katex annotation')).toHaveText('E=mc^4');
   } finally {
     await extension.close();
   }

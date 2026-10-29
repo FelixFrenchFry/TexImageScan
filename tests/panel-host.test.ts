@@ -129,48 +129,48 @@ it('reconnects once and ignores messages from the disconnected port', async () =
   expect(transport.ports).toHaveLength(2);
 });
 
-it('matches concurrent exports to their replies and reports host errors', async () => {
+it('matches concurrent result reads to their replies and reports host errors', async () => {
   const port = await mount();
   await act(async () => port.receive(initialState()));
-  const first = host().exportHistory(['first'], 'latex');
-  const second = host().exportHistory(['second'], 'markdown');
+  const first = host().readResult('first');
+  const second = host().readResult('second');
   const failure = expect(second).rejects.toThrow('Scan unavailable');
   const requests = port.messages;
   const a = requests[0], b = requests[1];
-  if (a?.type !== 'export-history' || b?.type !== 'export-history')
-    throw new Error('Missing export requests');
-  expect(a).toMatchObject({ ids: ['first'], format: 'latex' });
-  expect(b).toMatchObject({ ids: ['second'], format: 'markdown' });
+  if (a?.type !== 'read-result' || b?.type !== 'read-result')
+    throw new Error('Missing result requests');
+  expect(a).toMatchObject({ resultId: 'first' });
+  expect(b).toMatchObject({ resultId: 'second' });
   await act(async () => {
-    port.receive({ type: 'history-exported', id: b.id, outcome: { ok: false, message: 'Scan unavailable' } });
-    port.receive({ type: 'history-exported', id: a.id, outcome: { ok: true, text: 'x=1' } });
+    port.receive({ type: 'result-text', id: b.id, outcome: { ok: false, message: 'Scan unavailable' } });
+    port.receive({ type: 'result-text', id: a.id, outcome: { ok: true, text: 'x=1' } });
   });
   await expect(first).resolves.toBe('x=1');
   await failure;
   expect(vi.getTimerCount()).toBe(0);
 });
 
-it('times out an unanswered export and ignores its late reply', async () => {
+it('times out an unanswered result read and ignores its late reply', async () => {
   const port = await mount();
   await act(async () => port.receive(initialState()));
-  const result = host().exportHistory(['first'], 'latex');
+  const result = host().readResult('first');
   const failure = expect(result).rejects.toThrow('timed out');
   await act(async () => vi.advanceTimersByTimeAsync(30_000));
   await failure;
   const request = port.messages[0];
-  if (request?.type !== 'export-history') throw new Error('Missing export request');
+  if (request?.type !== 'read-result') throw new Error('Missing result request');
   await act(async () => port.receive({
-    type: 'history-exported', id: request.id, outcome: { ok: true, text: 'late' },
+    type: 'result-text', id: request.id, outcome: { ok: true, text: 'late' },
   }));
   expect(vi.getTimerCount()).toBe(0);
 });
 
 it.each(['disconnect', 'unmount'])(
-  'rejects pending exports and releases their timers on %s',
+  'rejects pending result reads and releases their timers on %s',
   async (action) => {
     const port = await mount();
     await act(async () => port.receive(initialState()));
-    const result = host().exportHistory(['first'], 'latex');
+    const result = host().readResult('first');
     const failure = expect(result).rejects.toThrow(action === 'disconnect' ? 'disconnected' : 'closed');
     await act(async () => action === 'disconnect' ? port.disconnect() : renderer.unmount());
     await failure;
@@ -209,10 +209,10 @@ it('retries a failed host startup and accepts the recovered connection', async (
   expect(container.textContent).toBe('Connected');
 });
 
-it('rejects a failed export send without leaving its timeout running', async () => {
+it('rejects a failed result read send without leaving its timeout running', async () => {
   const port = await mount();
   await act(async () => port.receive(initialState()));
   port.closed = true;
-  await expect(host().exportHistory(['first'], 'latex')).rejects.toThrow('Port closed');
+  await expect(host().readResult('first')).rejects.toThrow('Port closed');
   expect(vi.getTimerCount()).toBe(0);
 });

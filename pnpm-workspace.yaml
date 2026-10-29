@@ -3,5 +3,3 @@ packages:
 verifyDepsBeforeRun: false
 allowBuilds:
   esbuild: true
-  onnxruntime-node: false
-  protobufjs: false

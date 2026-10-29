@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { combineScans, historyEntry, removeScans } from '../src/history';
+import { exportSource, historyEntry, removeScans } from '../src/history';
 import { initialState } from '../src/state';
 import { type RecognitionResult } from '../src/protocol';
 
@@ -18,31 +18,31 @@ export const scan: RecognitionResult = {
   modelRevision: 'test',
 };
 
-it('combines edited scans chronologically and strips only standalone math delimiters for LaTeX', () => {
-  const second = {
-    ...scan,
-    id: 'second',
-    createdAt: '2026-10-24T11:00:00Z',
-    edited: 'Energy $E=mc^2$.',
-  };
-  expect(combineScans([second, scan], 'markdown')).toBe('$x=2$\n\nEnergy $E=mc^2$.');
-  expect(combineScans([second, scan], 'latex')).toBe('x=2\n\nEnergy $E=mc^2$.');
-  expect(combineScans([{ ...scan, edited: '```latex\nx=1 \\\\\ny=2\n```' }], 'latex')).toBe(
+it('strips only standalone math delimiters for LaTeX and preserves Markdown', () => {
+  expect(exportSource('$x=2$', 'markdown')).toBe('$x=2$');
+  expect(exportSource('$x=2$', 'latex')).toBe('x=2');
+  expect(exportSource('Energy $E=mc^2$.', 'latex')).toBe('Energy $E=mc^2$.');
+  expect(exportSource('```latex\nx=1 \\\\\ny=2\n```', 'latex')).toBe(
     'x=1 \\\\\ny=2',
   );
-  expect(combineScans([{ ...scan, edited: '$x$ and $y$' }], 'latex')).toBe('$x$ and $y$');
+  expect(exportSource('$x$ and $y$', 'latex')).toBe('$x$ and $y$');
 });
 
 it('summaries carry a bounded edited excerpt without image or full OCR payloads', () => {
-  const summary = historyEntry({ ...scan, edited: 'a'.repeat(1000) });
+  const summary = historyEntry({ ...scan, edited: 'a'.repeat(100_000) });
   expect(summary).toEqual({
     id: scan.id,
     name: scan.name,
     createdAt: scan.createdAt,
-    preview: 'a'.repeat(160),
+    preview: 'a'.repeat(4096),
     edited: true,
     truncated: false,
   });
+});
+
+it('keeps complete equations beyond the old text excerpt limit', () => {
+  const edited = '$$' + 'x+'.repeat(100) + 'y$$';
+  expect(historyEntry({ ...scan, edited }).preview).toBe(edited);
 });
 
 it('deleting an opened scan clears only its owned input and preserves independent sources', () => {

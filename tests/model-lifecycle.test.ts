@@ -4,12 +4,13 @@ import { deleteDB } from 'idb';
 import manifest from '../src/model-manifest.json';
 import {
   PORT_NAME,
-  historyExportReplySchema,
+  resultTextReplySchema,
   stateSchema,
   type AppState,
   type CaptureEvent,
   type PanelCommand,
   type RecognitionResult,
+  type ResultTextReply,
   type WorkerCommand,
   type WorkerEvent,
 } from '../src/protocol';
@@ -44,7 +45,8 @@ class PanelPort {
   name = PORT_NAME;
   sender = { id: 'lifecycle-test', url: 'chrome-extension://lifecycle-test/sidepanel.html' };
   states: AppState[] = [];
-  exports: string[] = [];
+  texts: string[] = [];
+  replies: ResultTextReply[] = [];
   private listeners: ((state: AppState) => void)[] = [];
   private command: (command: PanelCommand) => void = () => {};
   private disconnectListener: () => void = () => {};
@@ -59,9 +61,10 @@ class PanelPort {
     },
   };
   postMessage(message: unknown) {
-    const reply = historyExportReplySchema.safeParse(message);
+    const reply = resultTextReplySchema.safeParse(message);
     if (reply.success) {
-      if (reply.data.outcome.ok) this.exports.push(reply.data.outcome.text);
+      this.replies.push(reply.data);
+      if (reply.data.outcome.ok) this.texts.push(reply.data.outcome.text);
       return;
     }
     const state = stateSchema.parse(message);
@@ -116,7 +119,7 @@ class GpuWorker {
       truncated: false,
       gpu: 'test GPU',
       modelRevision: manifest.revision,
-      mode: request.task,
+      mode: 'equation',
     };
     this.onmessage?.({ data: { type: 'result', id: request.id, result } });
   }
@@ -128,7 +131,6 @@ const recognize: PanelCommand = {
   image: 'data:image/png;base64,AAAA',
   name: 'crop.png',
   maxTokens: 1024,
-  task: 'auto',
 };
 
 beforeEach(async () => {
@@ -315,7 +317,7 @@ it.each([
   },
 );
 
-it('keeps unsaved edits authoritative for export and navigation until storage recovers', async () => {
+it('keeps unsaved edits authoritative for copying and navigation until storage recovers', async () => {
   const port = await panel();
   port.send(recognize);
   await port.stateWhen((state) => state.job.kind === 'running');
@@ -350,14 +352,14 @@ it('keeps unsaved edits authoritative for export and navigation until storage re
   expect(port.states.at(-1)?.job.kind).toBe('idle');
   expect((await loadState()).result?.edited).toBe('$x=1$');
 
-  port.send({ type: 'export-history', id: 'copy', ids: [result.id, 'another'], format: 'latex' });
-  await vi.waitFor(() => expect(port.exports).toEqual(['x=corrected\n\nx=1']));
+  port.send({ type: 'read-result', id: 'copy', resultId: result.id });
+  await vi.waitFor(() => expect(port.texts).toEqual(['$x=corrected$']));
   port.send({ type: 'open-scan', id: result.id });
   port.send({ type: 'open-scan', id: 'another' });
   port.send({ type: 'clear' });
   port.send(recognize);
-  port.send({ type: 'export-history', id: 'after-navigation', ids: [result.id], format: 'markdown' });
-  await vi.waitFor(() => expect(port.exports).toHaveLength(2));
+  port.send({ type: 'read-result', id: 'after-navigation', resultId: result.id });
+  await vi.waitFor(() => expect(port.texts).toHaveLength(2));
   expect(port.states.at(-1)?.result).toMatchObject({ id: result.id, edited: '$x=corrected$' });
   expect(port.states.at(-1)?.saveError).toBeTruthy();
   expect(worker.requests).toHaveLength(1);
@@ -403,11 +405,27 @@ it('lets a new unsaved result be copied after GPU release and explicitly discard
   expect(worker.terminated).toBe(true);
   expect(port.states.at(-1)?.result).toEqual(result);
   expect(port.states.at(-1)?.saveError).toBeTruthy();
-  port.send({ type: 'export-history', id: 'copy-new', ids: [result.id], format: 'markdown' });
-  await vi.waitFor(() => expect(port.exports).toEqual(['$x=1$']));
+  const unavailable = vi.spyOn(indexedDB, 'open').mockImplementation(() => {
+    throw new Error('Storage unavailable');
+  });
+  port.send({ type: 'read-result', id: 'copy-new', resultId: result.id });
+  await vi.waitFor(() => expect(port.texts).toEqual(['$x=1$']));
+  port.send({ type: 'read-result', id: 'stale', resultId: 'different-result' });
+  await vi.waitFor(() => expect(port.replies.at(-1)).toMatchObject({
+    id: 'stale', outcome: { ok: false, message: expect.stringContaining('no longer active') },
+  }));
+  expect(port.states.at(-1)?.job.kind).toBe('idle');
+  expect(port.states.at(-1)?.saveError).toBeTruthy();
+  expect(unavailable).not.toHaveBeenCalled();
+  unavailable.mockRestore();
   port.send({ type: 'clear', discard: true });
   await vi.waitFor(() => expect(port.states.at(-1)?.result).toBeNull());
   expect(port.states.at(-1)?.saveError).toBeNull();
+  port.send({ type: 'read-result', id: 'discarded', resultId: result.id });
+  await vi.waitFor(() => expect(port.replies.at(-1)).toMatchObject({
+    id: 'discarded', outcome: { ok: false },
+  }));
+  expect(port.texts).toEqual(['$x=1$']);
 });
 
 function capture(event: CaptureEvent): Promise<unknown> {

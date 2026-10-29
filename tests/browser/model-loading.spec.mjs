@@ -81,7 +81,7 @@ test('downloaded models need no manual loading in scan or Settings', async () =>
           manifest.repository +
           '/resolve/' +
           manifest.revision +
-          '/config.json',
+          '/' + manifest.files[0].path,
       );
     }, manifest);
     await page.getByRole('button', { name: 'Recognize image', exact: true }).click();
@@ -109,7 +109,8 @@ test('missing model explains the download size and requires an explicit download
   try {
     const { page } = extension;
     await expect(page.getByRole('region', { name: 'Model setup' })).toContainText('once');
-    await expect(page.getByRole('button', { name: /Download model.*1\.79 GB/ })).toBeEnabled();
+    const size = (manifest.totalBytes / 1e9).toFixed(2).replace('.', '\\.');
+    await expect(page.getByRole('button', { name: new RegExp(`Download model.*${size} GB`) })).toBeEnabled();
     await page.getByLabel('Choose image file').setInputFiles('tests/fixtures/samples/energy.png');
     await expect(page.getByRole('button', { name: 'Recognize image', exact: true })).toBeDisabled();
   } finally {

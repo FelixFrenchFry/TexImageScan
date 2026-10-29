@@ -282,11 +282,6 @@ test('settings and history have their own views and keep a staged crop and compl
     const { page } = extension;
     await completed(extension);
     await page.getByRole('button', { name: 'Settings', exact: true }).click();
-    await expect(
-      page.getByRole('combobox', { name: 'Recognition mode', exact: true }),
-    ).toContainText('Auto');
-    await page.getByRole('combobox', { name: 'Recognition mode', exact: true }).click();
-    await page.getByRole('option', { name: 'Equation', exact: true }).click();
     await page.getByRole('button', { name: 'Back to scan', exact: true }).click();
     await page.getByLabel('Choose image file').setInputFiles('tests/fixtures/samples/integral.png');
     await expect(page.getByRole('heading', { name: 'Ready to recognize' })).toBeVisible();
@@ -299,9 +294,6 @@ test('settings and history have their own views and keep a staged crop and compl
     await page.getByRole('button', { name: 'Back to scan', exact: true }).click();
     await expect(page.getByRole('heading', { name: 'Ready to recognize' })).toBeVisible();
     await page.getByRole('button', { name: 'Settings', exact: true }).click();
-    await expect(
-      page.getByRole('combobox', { name: 'Recognition mode', exact: true }),
-    ).toContainText('Equation');
     await page.getByRole('button', { name: 'Back to scan', exact: true }).click();
     await page.setViewportSize({ width: 320, height: 850 });
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(

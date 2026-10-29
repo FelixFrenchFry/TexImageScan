@@ -65,7 +65,6 @@ export async function downloadModel(
         await cache.delete(key);
       }
     }
-    const downloadOrigin = import.meta.env.WXT_MODEL_HOST ?? origin;
     const cancellation = new AbortController();
     let timer: ReturnType<typeof setTimeout> | undefined;
     const resetTimer = () => {
@@ -84,7 +83,7 @@ export async function downloadModel(
     let loaded = 0;
     try {
       resetTimer();
-      const response = await fetch(key.replace(origin, downloadOrigin), {
+      const response = await fetch(key, {
         credentials: 'omit',
         referrerPolicy: 'no-referrer',
         signal: cancellation.signal,
