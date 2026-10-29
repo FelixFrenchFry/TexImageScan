@@ -1,0 +1,73 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: Ubuntu / Node 24 / pnpm 12 / Chromium
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      # pnpm version from package.json
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # also needed by Vitest
+      - name: Install test browser
+        run: |
+          pnpm exec playwright install --with-deps chromium
+          node --input-type=module -e 'import { chromium } from "@playwright/test"; console.log("CHROME_PATH=" + chromium.executablePath())' >> "$GITHUB_ENV"
+
+      - name: Check types
+        run: pnpm typecheck
+
+      - name: Run Vitest tests
+        run: pnpm test --reporter=default --reporter=junit --outputFile=test-results/vitest.xml
+
+      # includes notices and the PaddleOCR-VL-1.6 runtime
+      - name: Build extension
+        run: pnpm build
+
+      # no model downloads or inference
+      - name: Run Playwright tests
+        run: pnpm test:browser --reporter=list,html --output=test-results/playwright
+        env:
+          PLAYWRIGHT_HTML_OPEN: never
+
+      - name: Check extension package
+        run: pnpm test:package
+
+      - name: Upload test reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-reports
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 7
