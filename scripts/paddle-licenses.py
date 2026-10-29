@@ -108,7 +108,7 @@ def fetch_license(item):
                     else:
                         with urllib.request.urlopen(license_url, timeout=120) as response:
                             content = response.read().decode()
-                        cached_text.write_text(content, encoding='utf-8')
+                        cached_text.write_text(content.replace('\r\n', '\n').replace('\r', '\n'), encoding='utf-8', newline='\n')
                     texts.append((license_url, content))
                 except urllib.error.HTTPError as error:
                     if error.code != 404:
@@ -133,5 +133,5 @@ for record in records:
     text += f"Source: {record['url']}\n\nArchive SHA-256: `{record['checksum']}`\n\n"
     for name, content in record['texts']:
         text += f'### {name}\n\n{content}\n\n'
-OUTPUT.write_text(text, encoding='utf-8', newline='\n')
+OUTPUT.write_text(text.replace('\r\n', '\n').replace('\r', '\n'), encoding='utf-8', newline='\n')
 print(f'Collected verified license texts for {len(records)} Rust dependencies')

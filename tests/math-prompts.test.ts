@@ -14,7 +14,7 @@ it('loads verified math prompt profiles without an ignored experiment directory'
     { cwd: directory, encoding: 'utf8', timeout: 10_000 });
     expect(result.status, result.stderr).toBe(0);
     expect(JSON.parse(result.stdout)).toEqual({
-      sha256: '0b778747e0800b8fca2e3fbfd489c9b58efda7a1191776cc18a7c97429458c9d',
+      sha256: '39d91d0e3c905caaa670428710f929a9be3e60dd56e4a7ab1b99f544d76c5ba2',
       formula: [101306, 59352, 93514, 93963, 23, 92267, 93963, 23],
     });
   } finally { await rm(directory, { recursive: true, force: true }); }

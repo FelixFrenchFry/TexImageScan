@@ -14,7 +14,7 @@ try {
   ]) {
     const response = await page.request.get(url);
     if (!response.ok()) throw new Error(`License download failed: ${url} ${response.status()}`);
-    const text = await response.text();
+    const text = (await response.text()).replace(/\r\n?/g, '\n');
     if ((!file.endsWith('.html') && text.includes('<html')) || text.length < 5000)
       throw new Error(`Unexpected license document: ${url}`);
     await writeFile(corpusPath(`licenses/${file}`), text);
@@ -31,5 +31,5 @@ const notices = manifest.documents
   .join('\n');
 await writeFile(
   corpusPath('NOTICE.md'),
-  `# Corpus source attribution\n\nLicense texts: licenses/. Source snapshots: sources/.\n\nChanges: Cropped without scaling; citation/edit controls, reference markers and equation labels removed where present. Details: manifest.json.\n\n${notices}`,
+  `# Corpus source attribution\n\nLicense texts: licenses/. Source snapshots: sources/.\n\nChanges: Cropped without scaling; citation/edit controls, reference markers and equation labels removed where present. Details: manifest.json.\n\n${notices}`.replace(/\r\n?/g, '\n'),
 );

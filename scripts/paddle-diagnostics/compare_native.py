@@ -147,7 +147,7 @@ def main():
         parser.error("Tolerance must be a finite nonnegative number")
     report = compare_reports(args.native, args.browser, args.abs_tolerance, args.expected_cases)
     args.out.parent.mkdir(parents=True, exist_ok=True)
-    args.out.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    args.out.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps(report["summary"]), flush=True)
 
 

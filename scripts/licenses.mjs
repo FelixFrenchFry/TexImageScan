@@ -87,7 +87,7 @@ for (const record of records) {
   notice += `## ${record.name} ${record.version}\n\nLicense: ${record.license}\n\n`;
   for (const file of record.files) notice += `### ${file.name}\n\n${file.text}\n\n`;
 }
-await writeFile(join(output, 'NOTICE.md'), notice);
+await writeFile(join(output, 'NOTICE.md'), notice.replace(/\r\n?/g, '\n'));
 // remove retired inference notices and keep the license fallbacks used above
 for (const file of [
   'TeleOCR-NOTICE.md', 'teleocr-resize-LICENSE', 'Pillow-LICENSE',
