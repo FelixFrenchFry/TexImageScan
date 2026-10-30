@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 128 128" fill="none">
+  <title>TexImageScan logo</title>
+  <desc>A cube: pixel tiles on top, crop corners on the left face, a sigma on the right face.</desc>
+  <defs>
+    <clipPath id="right-face"><path d="M 64 47.5 L 143.5 17.5 L 143.5 127 L 64 157 Z"/></clipPath>
+  </defs>
+  <path id="body" d="M 64 7.5 L 117 27.5 L 117 100.5 L 64 120.5 L 11 100.5 L 11 27.5 Z" fill="#0E5F55" stroke="#0E5F55" stroke-width="10" stroke-linejoin="round"/>
+  <path id="right-face-fill" d="M 64 47.5 L 117 27.5 L 117 100.5 L 64 120.5 Z" fill="#12A594" stroke="#12A594" stroke-width="10" stroke-linejoin="round" clip-path="url(#right-face)"/>
+  <g id="pixels" transform="matrix(0.53 -0.2 0.53 0.2 11 27.5)">
+    <rect x="3" y="-10.36" width="107.36" height="107.36" rx="17.178" fill="#0E5F55"/>
+  </g>
+  <g id="corners" transform="matrix(0.53 0.2 0 0.73 11 27.5)">
+    <path d="M 12.283 40.06 V 31.9 A 12.24 12.24 0 0 1 24.523 19.66 H 32.683 M 78.283 40.06 V 31.9 A 12.24 12.24 0 0 0 66.043 19.66 H 57.883 M 78.283 67.26 V 75.42 A 12.24 12.24 0 0 1 66.043 87.66 H 57.883 M 12.283 67.26 V 75.42 A 12.24 12.24 0 0 0 24.523 87.66 H 32.683" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g id="sigma" transform="matrix(0.53 -0.2 0 0.73 64 47.5)">
+    <path d="M 75.717 19.66 H 33.717 L 57.237 53.66 L 33.717 87.66 H 75.717" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

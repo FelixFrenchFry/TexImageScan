@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 128 128" fill="none">
+  <title>TexImageScan logo</title>
+  <desc>A cube: pixel tiles on top, crop corners on the left face, a sigma on the right face.</desc>
+  <defs>
+    <clipPath id="right-face"><path d="M 64 47.5 L 143.5 17.5 L 143.5 127 L 64 157 Z"/></clipPath>
+  </defs>
+  <path id="body" d="M 64 7.5 L 117 27.5 L 117 100.5 L 64 120.5 L 11 100.5 L 11 27.5 Z" fill="#0E5F55" stroke="#0E5F55" stroke-width="10" stroke-linejoin="round"/>
+  <path id="right-face-fill" d="M 64 47.5 L 117 27.5 L 117 100.5 L 64 120.5 Z" fill="#12A594" stroke="#12A594" stroke-width="10" stroke-linejoin="round" clip-path="url(#right-face)"/>
+  <g id="pixels" transform="matrix(0.53 -0.2 0.53 0.2 11 27.5)">
+    <rect x="6" y="-7.36" width="29.787" height="29.787" rx="4.766" fill="#90B6B1"/>
+    <rect x="6" y="28.426" width="29.787" height="29.787" rx="4.766" fill="#BBD3CF"/>
+    <rect x="6" y="64.213" width="29.787" height="29.787" rx="4.766" fill="#E6F0EE"/>
+    <rect x="41.787" y="-7.36" width="29.787" height="29.787" rx="4.766" fill="#649992"/>
+    <rect x="41.787" y="28.426" width="29.787" height="29.787" rx="4.766" fill="#90B6B1"/>
+    <rect x="41.787" y="64.213" width="29.787" height="29.787" rx="4.766" fill="#BBD3CF"/>
+    <rect x="77.574" y="-7.36" width="29.787" height="29.787" rx="4.766" fill="#397C74"/>
+    <rect x="77.574" y="28.426" width="29.787" height="29.787" rx="4.766" fill="#649992"/>
+    <rect x="77.574" y="64.213" width="29.787" height="29.787" rx="4.766" fill="#90B6B1"/>
+  </g>
+  <g id="corners" transform="matrix(0.53 0.2 0 0.73 11 27.5)">
+    <path d="M 11.283 40.06 V 31.9 A 12.24 12.24 0 0 1 23.523 19.66 H 31.683 M 79.283 40.06 V 31.9 A 12.24 12.24 0 0 0 67.043 19.66 H 58.883 M 79.283 67.26 V 75.42 A 12.24 12.24 0 0 1 67.043 87.66 H 58.883 M 11.283 67.26 V 75.42 A 12.24 12.24 0 0 0 23.523 87.66 H 31.683" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g id="sigma" transform="matrix(0.53 -0.2 0 0.73 64 47.5)">
+    <path d="M 73.717 19.66 H 35.717 L 56.997 53.66 L 35.717 87.66 H 73.717" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

@@ -249,7 +249,7 @@ export function App() {
   return (
     <div className="app-shell">
       <header className="app-header">
-        <img className="app-logo" src="/icon/logo.svg" alt="" width={24} height={24} />
+        <img className="app-logo" src="/icon/logo.svg" alt="" width={36} height={36} />
         <h1>TexImageScan</h1>
         <button
           className="model-status"

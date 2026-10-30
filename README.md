@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo/teximagescan-128.png" width="96" height="96" alt="TexImageScan logo">
+  <img src="assets/logo/scan-cube.svg" width="96" height="96" alt="TexImageScan logo">
 </p>
 
 <h1 align="center">TexImageScan</h1>

@@ -19,7 +19,6 @@
     "model:verify": "node scripts/model-assets.ts verify",
     "samples:generate": "node scripts/generate-samples.mjs",
     "samples:capture-web": "node scripts/capture-web-samples.mjs",
-    "logo:render": "node scripts/render-logo.mjs",
     "benchmark": "node scripts/math-benchmark/run.ts",
     "corpus:capture": "node scripts/corpus-capture.mjs",
     "corpus:provenance": "node scripts/corpus-provenance.mjs",

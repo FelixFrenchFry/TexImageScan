@@ -119,8 +119,8 @@ textarea:focus-visible {
 .app-logo {
   display: block;
   flex: none;
-  width: 24px;
-  height: 24px;
+  width: 36px;
+  height: 36px;
   margin-right: 8px;
 }
 .model-status {
